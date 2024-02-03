@@ -15,30 +15,14 @@ body {
     box-sizing: inherit;
 }
 
-/* @media screen and (min-width: 1024px)
-.navbar.is-spaced {
-    padding: 1rem 2rem;
-} */
 
 .barra-nav {
-    background-color: coral;
-    color: #fff;
-}
-/* @media screen and (min-width: 1024px)
-.navbar {
-    min-height: 3.25rem;
-}
-@media screen and (min-width: 1024px)
-.navbar, .navbar-end, .navbar-menu, .navbar-start {
-    align-items: stretch;
-    display: flex;
-} */
-.navbar {
-    background-color: #fff;
+    
     min-height: 3.25rem;
     position: relative;
     z-index: 30;
     background-color: rgba(163, 28, 175, 0.66);
+    
 }
 
 
@@ -46,6 +30,3 @@ nav {
     display: block;
 }
 
-body, button, input, optgroup, select, textarea {
-    font-family: "Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
