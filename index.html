@@ -1,42 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
     <aside>
-        <div>
-            <h2>Balance</h2>
-            <div>
-                <h3>Ganancias</h3>
-            </div>
-            <div>
-                <h3>Gastos</h3>
-            </div>
-            <div>
-                <h3>Total</h3>
-            </div>
-        </div>
-    </aside>
-    <div class="operacioines_container_vacio">
-        <div>
-            <img src="" alt="sin_resultados">
-            <p>Sin resultados</p>
-            <p>Cambia los filtros o agrega operaciones</p>
-        </div>
-    </div>
-    <div class="operaciones_container">
-        <div>
-            <h2>Operaciones</h2>
-            <button>+ Nueva operación</button>
-        </div>
+      <div>
+        <h2>Balance</h2>
         <table>
-            
+          <tr>
+            <td>Ganancias</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Gastos</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td></td>
+          </tr>
         </table>
+      </div>
+    </aside>
+    <div class="operaciones_container">
+      <div>
+        <h2>Operaciones</h2>
+        <button>+ Nueva operación</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Categoría</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>descripcion</td>
+            <td>gasto-ingreso</td>
+            <td>01-01-2002</td>
+            <td>$000</td>
+            <td><button>editar</button><button>eliminar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="operacioines_container_vacio">
+      <div>
+        <img src="" alt="" />
+        <p>Sin resultados</p>
+        <p>Cambia los filtros o agrega operaciones</p>
+      </div>
     </div>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
