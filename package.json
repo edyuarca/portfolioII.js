@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "tailwindcss": "^3.4.1"
-  },
-  "scripts": {
-    "build:css": "tailwindcss build styles.css -o output.css"
-  }
-}
-
