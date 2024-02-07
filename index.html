@@ -1,39 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <meta name="description" content="Aplicación para el control y seguimiento de ganancias y gastos">
+    <meta
+      name="description"
+      content="Aplicación para el control y seguimiento de ganancias y gastos"
+    />
     <title>AhorrADAs 📈</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
-    
-</head>
-<body>
-    <nav class="barra-nav">
-        <div class="nav-barra">
-          <a class="navbarra-item">
-            <h1 class="text-3xl font-bold underline">
-              <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
-              AhorrADAs
-            </h1>
-          </a>
-          <div class="navbar-burger burgr">
-        
-          </div>
+  </head>
+  <body>
+    <nav
+      class="bg-red-500 flex "
+      role="navegacion"
+      aria-label="main de navegacion"
+    >
+      <div class="navbarra">
+        <a class="navbarra-item">
+          <h1 class="">
+            <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
+            AhorrADAs
+          </h1>
+        </a>
+        <div class="">
         </div>
-        <div class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item" id="ver-balance">
-              <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance</a>
-            <a class="navbar-item" id="ver-categorias">
-              <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorías</a>
-            <a class="navbar-item" id="ver-reportes"><i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes</a>
-          </div>
+      </div>
+      <div class="flex-row-reverse">
+        <div class="">
+          <a class="navbar-item" id="ver-balance">
+            <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance</a
+          >
+          <a class="navbar-item" id="ver-categorias">
+            <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorías</a
+          >
+          <a class="navbar-item" id="ver-reportes"
+            ><i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes</a
+          >
         </div>
-      </nav>
+      </div>
+    </nav>
+
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
