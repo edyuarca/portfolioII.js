@@ -18,23 +18,22 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
   </head>
-  <body>
+  <body class="bg-fuchsia-200">
     <nav
-      class="bg-red-500 flex "
+      class="bg-fuchsia-700 from-current"
       role="navegacion"
       aria-label="main de navegacion"
     >
-      <div class="navbarra">
-        <a class="navbarra-item">
-          <h1 class="">
+      <div class="">
+        <a class="">
+          <h1 class="flex flex-row size-20 text-4xl font-bold ">
             <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
             AhorrADAs
           </h1>
         </a>
-        <div class="">
-        </div>
+        <div class=""></div>
       </div>
-      <div class="flex-row-reverse">
+      <div class="flex flex-row-reverse">
         <div class="">
           <a class="navbar-item" id="ver-balance">
             <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance</a
@@ -48,6 +47,86 @@
         </div>
       </div>
     </nav>
+
+    <!--FILTROS-->
+    <div class="caja">
+      <div class="columns is-mobile is-vcentered">
+        <div class="columna">
+          <h3 class="">Filtros</h3>
+        </div>
+        <div class="column has-text-right">
+          <a href="#" id="toggle-filtros">Ocultar filtros</a>
+        </div>
+      </div>
+      <div id="filtros">
+        <div class="campo">
+          <label class="label" for="tipo-de-filtro">Tipo</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="tipo-de-filtro">
+                <option value="TODOS">Todos</option>
+                <option value="GASTO">Gasto</option>
+                <option value="GANANCIA">Ganancia</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="campo">
+          <label class="label" for="filtro-por-categoria">Categoría</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select
+                class="filtro-por-categoria seleccion-de-categorias"
+                id="filtro-por-categoria"
+              >
+                <option value="TODAS">Todas</option>
+                <option value="9096affd-8691-434c-982b-5ba2fae9a4e3">
+                  Comida
+                </option>
+                <option value="7ceeed02-0617-4975-915c-6c859322b71e">
+                  Servicios
+                </option>
+                <option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">
+                  Salidas
+                </option>
+                <option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">
+                  Educación
+                </option>
+                <option value="10211a41-491d-4ffd-85e2-ad45f92859a6">
+                  Transporte
+                </option>
+                <option value="af5c1352-4d2f-445f-a636-e463f56a6466">
+                  Trabajo
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label" for="filtro-fecha">Desde</label>
+          <div class="control">
+            <div class="is-fullwidth">
+              <input class="input" type="date" name="" id="filtro-fecha" />
+            </div>
+          </div>
+        </div>
+        <div class="campo">
+          <label class="label" for="filtro-orden">Ordenar por</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="filtro-orden">
+                <option value="MAS_RECIENTES">Más reciente</option>
+                <option value="MENOS_RECIENTES">Menos reciente</option>
+                <option value="MAYOR_MONTO">Mayor monto</option>
+                <option value="MENOR_MONTO">Menor monto</option>
+                <option value="A/Z">A/Z</option>
+                <option value="Z/A">Z/A</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="main.js"></script>
   </body>
