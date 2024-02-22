@@ -9,7 +9,7 @@
   </head>
   <body>
     <aside>
-      <div>
+      <div class="border-solid border-2 border-fuchsia-400">
         <h2 class="text-3xl font-bold underline">Balance</h2>
         <table>
           <tr>
@@ -32,26 +32,30 @@
         <h2>Operaciones</h2>
         <button>+ Nueva operación</button>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Descripción</th>
-            <th>Categoría</th>
-            <th>Fecha</th>
-            <th>Monto</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>descripcion</td>
-            <td>gasto-ingreso</td>
-            <td>01-01-2002</td>
-            <td>$000</td>
-            <td><button>editar</button><button>eliminar</button></td>
-          </tr>
-        </tbody>
-      </table>
+      <div  class="rounded-tl-lg rounded-tr-lg border-solid border-2 border-fuchsia-400">
+          <div class="grid grid-cols-5 divide-x">
+            <span class="">Descripción</span> <!-- border-x-4 border-fuchsia-400 p-3 -->
+            <span class="">Categoría</span>
+            <span class="">Fecha</span>
+            <span class="">Monto</span>
+            <span class="">Acciones</span>
+          </div>
+      </div>  
+      <div>
+          <tbody>
+            <tr class="hidden">
+              <td class="border border-fuchsia-400"></td>
+              <td class="border border-fuchsia-400"></td>
+              <td class="border border-fuchsia-400"></td>
+              <td class="border border-fuchsia-400"></td>
+              <td>
+                <button><img src="imagenes/icon-edit.svg" alt="" /></button>
+                <button><img src="imagenes/icon-delete.svg" alt="" /></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="operacioines_container_vacio">
       <div>
@@ -63,3 +67,4 @@
     <script src="main.js"></script>
   </body>
 </html>
+fd
