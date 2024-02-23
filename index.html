@@ -5,66 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <aside>
-      <div class="border-solid border-2 border-fuchsia-400">
+    <div>
+      <div class="border-solid border-2 border-fuchsia-400 max-w-80">
         <h2 class="text-3xl font-bold underline">Balance</h2>
-        <table>
-          <tr>
-            <td>Ganancias</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Gastos</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Total</td>
-            <td></td>
-          </tr>
-        </table>
-      </div>
-    </aside>
-    <div class="operaciones_container">
-      <div>
-        <h2>Operaciones</h2>
-        <button>+ Nueva operación</button>
-      </div>
-      <div  class="rounded-tl-lg rounded-tr-lg border-solid border-2 border-fuchsia-400">
-          <div class="grid grid-cols-5 divide-x">
-            <span class="">Descripción</span> <!-- border-x-4 border-fuchsia-400 p-3 -->
-            <span class="">Categoría</span>
-            <span class="">Fecha</span>
-            <span class="">Monto</span>
-            <span class="">Acciones</span>
-          </div>
-      </div>  
-      <div>
-          <tbody>
-            <tr class="hidden">
-              <td class="border border-fuchsia-400"></td>
-              <td class="border border-fuchsia-400"></td>
-              <td class="border border-fuchsia-400"></td>
-              <td class="border border-fuchsia-400"></td>
-              <td>
-                <button><img src="imagenes/icon-edit.svg" alt="" /></button>
-                <button><img src="imagenes/icon-delete.svg" alt="" /></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <span>Ganancias</span>
+          <span>0</span>
+        </div>
+        <div>
+          <span>Gastos</span>
+          <span>0</span>
+        </div>
+        <div>
+          <span>Total</span>
+          <span>0</span>
+        </div>
       </div>
     </div>
-    <div class="operacioines_container_vacio">
+    <div class="" id="contenedorSinDatos">
+      <img src="" alt="" />
+      <p>Sin resultados</p>
+      <p>Cambia los filtros o agrega operaciones</p>
+    </div>
+    <div class="border-solid border-2 border-fuchsia-400">
       <div>
-        <img src="" alt="" />
-        <p>Sin resultados</p>
-        <p>Cambia los filtros o agrega operaciones</p>
+      <form action="">
+        <h4>Descripción</h4>
+        <input type="text"
+          id="campoDescripcion"
+          name="campoDescripcion">
+        </div>
+
+        <div>
+          <h4>Monto</h4>
+          <input type="number"
+          id="monto"
+          name="monto"
+          min="0"
+          value="0"
+          >
+        </div>
+        <div>
+          <h4>Tipo</h4>
+          <select name="tipo" id="tipo">
+            <option value="">gasto</option>
+            <option value="">ingreso</option>
+          </select>
+        </div>
+        <div>
+          <h4>Categoría</h4>
+          <select name="tipo" id="tipo">
+            <option value="">Comida</option>
+            <option value="">Servicios</option>
+            <option value="">Salidas</option>
+            <option value="">Educación</option>
+            <option value="">Transporte</option>
+            <option value="">Trabajo</option>
+          </select>
+        </div>
+        <div>
+          <h4>Fecha</h4>
+          <input type="date"
+          id="fecha"
+          name="fecha">
+        </div>
+        <div>
+          <button>Cancelar</button>
+          <button>Agregar</button>
+        </div>
+      </form>
+    </div>
+    <div class="max-w-3xl">
+      <h2>Operaciones</h2>
+      <button class="" id="agregarOperacion">Nueva operación</button>
+
+      <div class="rounded-md border-solid border-2 border-fuchsia-400 hidden">
+        <div class="grid grid-cols-5 divide-x" id="categorias">
+          <span class="">Descripción</span>
+          <span class="">Categoría</span>
+          <span class="">Fecha</span>
+          <span class="">Monto</span>
+          <span class="">Acciones</span>
+        </div>
+        <div class="hidden">
+          <div class="grid grid-cols-5 divide-x" id="operaciones">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="grid grid-cols-2 divide-x">
+              <button><img src="imagenes/icon-edit.svg" alt="" /></button>
+              <button><img src="imagenes/icon-delete.svg" alt="" /></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="main.js"></script>
   </body>
 </html>
-fd
