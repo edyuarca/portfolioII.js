@@ -8,47 +8,53 @@
       name="description"
       content="Aplicación para el control y seguimiento de ganancias y gastos"
     />
-    <title>AhorrADAs 📈</title>
+    <title>AhorrADAs📈</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
       integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
   </head>
   <body class="bg-fuchsia-200 text-white">
-    <nav
-      class="bg-fuchsia-700 from-current"
-      role="navegacion"
-      aria-label="main de navegacion"
-    >
-      <div class="">
-        <a class="">
-          <h1 class="flex flex-row size-20 text-4xl font-bold ">
-            <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
-            AhorrADAs
-          </h1>
-        </a>
-        <div class=""></div>
-      </div>
-      <div class="flex flex-row-reverse">
+    <nav class="bg-fuchsia-700 from-current flex grid grid-flow-col justify-stretch" role="navegacion"
+    aria-label="main de navegacion">
+     
+        <div class=" flex flex-row py-12 w-64 size-15 text-4xl font-bold">
+            <a class="">
+              <h1 class="">
+                <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
+                AhorrADAs
+              </h1>
+            </a>
+         </div>   
+
+      <!---menu de opciones-->
+
+      <div class=" py-12 flex flex-row-reverse mb-8	text-xl space-x-6 space-x-reverse">
         <div class="">
-          <a class="navbar-item" id="ver-balance">
-            <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance</a
-          >
-          <a class="navbar-item" id="ver-categorias">
-            <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorías</a
-          >
-          <a class="navbar-item" id="ver-reportes"
-            ><i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes</a
-          >
+          <a class="opcion" id="">
+            <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorias</a>
+        </div>
+
+        <div>
+          <a class="opcion" id="">
+            <i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes</a>
+        </div>
+
+        <div>
+          <a class="opcion" id="">
+            <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance</a>
+
+        </div>
+        </div>
         </div>
       </div>
+      <!--fin del menu de opciones-->
     </nav>
+    <!--filtros-->
 
-    <!--FILTROS-->
     <div class="caja text-black">
       <div class="columns is-mobile is-vcentered">
         <div class="columna">
