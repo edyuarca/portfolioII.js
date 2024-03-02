@@ -18,11 +18,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
   </head>
   <body class="bg-fuchsia-200 text-white">
-    <nav class="bg-fuchsia-700 from-current flex grid grid-flow-col justify-stretch" role="navegacion"
+    <header>
+    <nav class=" h-32 bg-fuchsia-700 from-current flex grid grid-flow-col justify-stretch" role="navegacion"
     aria-label="main de navegacion">
      
-        <div class=" flex flex-row py-12 w-64 size-15 text-4xl font-bold">
-            <a class="">
+        <div class=" flex flex-row py-12 w-64 size-15 text-4xl font-bold ">
+            <a class="hover:bg-fuchsia-500 rounded-lg h-12 w-96 ml-2">
               <h1 class="">
                 <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
                 AhorrADAs
@@ -32,18 +33,17 @@
 
       <!---menu de opciones-->
 
-      <div class=" py-12 flex flex-row-reverse mb-8	text-xl space-x-6 space-x-reverse">
-        <div class="">
-          <a class="opcion" id="">
-            <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorias</a>
-        </div>
+      <div class=" py-12 flex flex-row-reverse mb-8	text-l space-x-1 space-x-reverse">
 
-        <div>
+        <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
           <a class="opcion" id="">
             <i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes</a>
         </div>
-
-        <div>
+        <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-5">
+          <a class="opcion" id="">
+            <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorias</a>
+        </div>
+        <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
           <a class="opcion" id="">
             <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance</a>
 
@@ -53,86 +53,9 @@
       </div>
       <!--fin del menu de opciones-->
     </nav>
-    <!--filtros-->
+  </header>
 
-    <div class="caja text-black">
-      <div class="columns is-mobile is-vcentered">
-        <div class="columna">
-          <h3 class="text-black">Filtros</h3>
-        </div>
-        <div class="column">
-          <a href="#" id="toggle-filtros">Ocultar filtros</a>
-        </div>
-      </div>
-      <div id="filtros">
-        <div class="campo">
-          <label class="label" for="tipo-de-filtro">Tipo</label>
-          <div class="control">
-            <div class="select is-fullwidth">
-              <select id="tipo-de-filtro">
-                <option value="TODOS">Todos</option>
-                <option value="GASTO">Gasto</option>
-                <option value="GANANCIA">Ganancia</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="campo">
-          <label class="label" for="filtro-por-categoria">Categoría</label>
-          <div class="control">
-            <div class="select is-fullwidth">
-              <select
-                class="filtro-por-categoria seleccion-de-categorias"
-                id="filtro-por-categoria"
-              >
-                <option value="TODAS">Todas</option>
-                <option value="9096affd-8691-434c-982b-5ba2fae9a4e3">
-                  Comida
-                </option>
-                <option value="7ceeed02-0617-4975-915c-6c859322b71e">
-                  Servicios
-                </option>
-                <option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">
-                  Salidas
-                </option>
-                <option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">
-                  Educación
-                </option>
-                <option value="10211a41-491d-4ffd-85e2-ad45f92859a6">
-                  Transporte
-                </option>
-                <option value="af5c1352-4d2f-445f-a636-e463f56a6466">
-                  Trabajo
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label" for="filtro-fecha">Desde</label>
-          <div class="control">
-            <div class="is-fullwidth">
-              <input class="input" type="date" name="" id="filtro-fecha" />
-            </div>
-          </div>
-        </div>
-        <div class="campo">
-          <label class="label" for="filtro-orden">Ordenar por</label>
-          <div class="control">
-            <div class="select is-fullwidth">
-              <select id="filtro-orden">
-                <option value="MAS_RECIENTES">Más reciente</option>
-                <option value="MENOS_RECIENTES">Menos reciente</option>
-                <option value="MAYOR_MONTO">Mayor monto</option>
-                <option value="MENOR_MONTO">Menor monto</option>
-                <option value="A/Z">A/Z</option>
-                <option value="Z/A">Z/A</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  
 
     <script src="main.js"></script>
   </body>
