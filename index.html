@@ -51,7 +51,7 @@
         <!-- Fin del menú de opciones -->
       </nav>
     </header>
-  
+  <main>
     <!-- Sección Nueva operación LO HACE YULI
     <main>
       <section class="" id="vista-operacion">
@@ -166,8 +166,8 @@
                 <div class="mt-3">
                   <label class="text-base font-bold" for="filtro-tipo">Tipo</label>
                   <div class="">
-                    <div class="">
-                      <select id="filtro-tipo">
+                    <div class="border-solid rounded border-gray-400 bg-slate-50 w-full">
+                      <select class= "w-full" id="filtro-tipo">
                         <option value="TODOS">Todos</option>
                         <option value="GASTO">Gasto</option>
                         <option value="GANANCIA">Ganancia</option>
@@ -179,7 +179,7 @@
                   <label class="text-base font-bold" for="filtro-categoria">Categoría</label>
                   <div class="">
                     <div class="">
-                      <select class="" id="filtro-categoria"><option value="TODAS">Todas</option><option value="9096affd-8691-434c-982b-5ba2fae9a4e3">Comida</option><option value="7ceeed02-0617-4975-915c-6c859322b71e">Servicios</option><option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">Salidas</option><option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">Educación</option><option value="10211a41-491d-4ffd-85e2-ad45f92859a6">Transporte</option><option value="af5c1352-4d2f-445f-a636-e463f56a6466">Trabajo</option></select>
+                      <select class="w-full" id="filtro-categoria"><option value="TODAS">Todas</option><option value="9096affd-8691-434c-982b-5ba2fae9a4e3">Comida</option><option value="7ceeed02-0617-4975-915c-6c859322b71e">Servicios</option><option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">Salidas</option><option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">Educación</option><option value="10211a41-491d-4ffd-85e2-ad45f92859a6">Transporte</option><option value="af5c1352-4d2f-445f-a636-e463f56a6466">Trabajo</option></select>
                     </div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@
                   <label class="text-base font-bold" for="filtro-fecha">Desde</label>
                   <div class="">
                     <div class="">
-                      <input class="" type="date" name="" id="filtro-fecha">
+                      <input class="border-solid rounded border-gray-400 bg-slate-50 w-full" type="date" name="" id="filtro-fecha">
                     </div>
                   </div>
                 </div>
@@ -195,7 +195,7 @@
                   <label class="text-base font-bold" for="filtro-orden">Ordenar por</label>
                   <div class="">
                     <div class="">
-                      <select id="filtro-orden">
+                      <select class="w-full" id="filtro-orden">
                         <option value="MAS_RECIENTES">Más reciente</option>
                         <option value="MENOS_RECIENTES">Menos reciente</option>
                         <option value="MAYOR_MONTO">Mayor monto</option>
@@ -209,6 +209,8 @@
               </div>
             </div>
           </div>
+ <!--Operaciones- lo hace Yuli-->
+
           <div class="">
             <div class="">
               <div class="">
@@ -244,7 +246,7 @@
               </div>
             </div>
             <!-- 
-              Operaciones
+              fin de Operaciones
              -->
           </div>
         </div>
@@ -252,8 +254,6 @@
     </section>
 
     </main>
-  
-
     <script src="main.js"></script>
   </body>
 </html>
