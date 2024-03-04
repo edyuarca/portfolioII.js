@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body>
+  <body class="bg-lime-400">
     <div>
       <div class="border-solid border-2 border-fuchsia-400 max-w-80">
         <h2 class="text-3xl font-bold underline">Balance</h2>
@@ -26,12 +26,18 @@
         </div>
       </div>
     </div>
-    <div class="" id="contenedorSinDatos">
-      <img src="" alt="" />
-      <p>Sin resultados</p>
-      <p>Cambia los filtros o agrega operaciones</p>
+    <div class="bg-fuchsia-100  max-w-3xl rounded-md shadow-lg" id="contenedorSinDatos">
+      <div class="flex flex-row justify-between">
+      <h2 class="text-3xl font-bold p-8">Operaciones</h2>
+      <button class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg" id="agregarOperacion">Nueva operación</button>
+      </div>
+      <div>
+        <img src="imagenes/Wallet.svg" alt="" class="w-96 h-96 mx-auto mb-8" />
+        <p class="text-center text-lg pb-3">Sin resultados</p>
+        <p class="text-center text-lg pb-14">Cambia los filtros o agrega operaciones</p>
+      </div>
     </div>
-    <div class="border-solid border-2 border-fuchsia-400">
+    <div class="rounded-md border-solid border-2 border-fuchsia-400 max-w-3xl hidden">
       <div>
       <form action="">
         <h4>Descripción</h4>
@@ -79,11 +85,11 @@
         </div>
       </form>
     </div>
-    <div class="max-w-3xl">
+    <div class="max-w-3xl hidden">
       <h2>Operaciones</h2>
       <button class="" id="agregarOperacion">Nueva operación</button>
 
-      <div class="rounded-md border-solid border-2 border-fuchsia-400 hidden">
+      <div class="rounded-md border-solid border-2 border-fuchsia-400">
         <div class="grid grid-cols-5 divide-x" id="categorias">
           <span class="">Descripción</span>
           <span class="">Categoría</span>
