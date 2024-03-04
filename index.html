@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body class="bg-lime-400">
+    <!-- Contenedor balances -->
     <div>
-      <div class="border-solid border-2 border-fuchsia-400 max-w-80">
+      <div class="bg-fuchsia-100 rounded-md shadow-lg max-w-80">
         <h2 class="text-3xl font-bold underline">Balance</h2>
         <div>
           <span>Ganancias</span>
@@ -26,65 +27,73 @@
         </div>
       </div>
     </div>
-    <div class="bg-fuchsia-100  max-w-3xl rounded-md shadow-lg" id="contenedorSinDatos">
+
+    <!-- Contenedor sección operaciones vacío -->
+    <div
+      class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg hidden"
+      id="contenedorSinDatos"
+    >
       <div class="flex flex-row justify-between">
-      <h2 class="text-3xl font-bold p-8">Operaciones</h2>
-      <button class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg" id="agregarOperacion">Nueva operación</button>
+        <h2 class="text-3xl font-bold p-8">Operaciones</h2>
+        <button
+          class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
+          id="agregarOperacion"
+        >
+          Nueva operación
+        </button>
       </div>
       <div>
         <img src="imagenes/Wallet.svg" alt="" class="w-96 h-96 mx-auto mb-8" />
         <p class="text-center text-lg pb-3">Sin resultados</p>
-        <p class="text-center text-lg pb-14">Cambia los filtros o agrega operaciones</p>
+        <p class="text-center text-lg pb-14">
+          Cambia los filtros o agrega operaciones
+        </p>
       </div>
     </div>
-    <div class="rounded-md border-solid border-2 border-fuchsia-400 max-w-3xl hidden">
-      <div>
-      <form action="">
-        <h4>Descripción</h4>
-        <input type="text"
-          id="campoDescripcion"
-          name="campoDescripcion">
-        </div>
 
-        <div>
-          <h4>Monto</h4>
-          <input type="number"
-          id="monto"
-          name="monto"
-          min="0"
-          value="0"
-          >
-        </div>
-        <div>
-          <h4>Tipo</h4>
-          <select name="tipo" id="tipo">
-            <option value="">gasto</option>
-            <option value="">ingreso</option>
-          </select>
-        </div>
-        <div>
-          <h4>Categoría</h4>
-          <select name="tipo" id="tipo">
-            <option value="">Comida</option>
-            <option value="">Servicios</option>
-            <option value="">Salidas</option>
-            <option value="">Educación</option>
-            <option value="">Transporte</option>
-            <option value="">Trabajo</option>
-          </select>
-        </div>
-        <div>
-          <h4>Fecha</h4>
-          <input type="date"
-          id="fecha"
-          name="fecha">
-        </div>
-        <div>
-          <button>Cancelar</button>
-          <button>Agregar</button>
-        </div>
-      </form>
+    <!-- Contenedor agregar nueva operación-->
+    <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg">
+      <div>
+        <form action="">
+          <h2 class="text-3xl font-bold p-8">Nueva operación</h2>
+          <div>
+            <h4 class="">Descripción</h4>
+            <input type="text" id="campoDescripcion" name="campoDescripcion" />
+          </div>
+          <div>
+            <h4>Monto</h4>
+            <input type="number" id="monto" name="monto" min="0" value="0" />
+          </div>
+          <div>
+            <h4>Tipo</h4>
+            <select name="tipo" id="tipo">
+              <option value="gasto">gasto</option>
+              <option value="ingreso">ingreso</option>
+            </select>
+          </div>
+          <div>
+            <h4>Categoría</h4>
+            <select name="tipo" id="tipo">
+              <option value="">Comida</option>
+              <option value="">Servicios</option>
+              <option value="">Salidas</option>
+              <option value="">Educación</option>
+              <option value="">Transporte</option>
+              <option value="">Trabajo</option>
+            </select>
+          </div>
+          <div>
+            <h4>Fecha</h4>
+            <input type="date" id="fecha" name="fecha" />
+          </div>
+          <div>
+            <button>Cancelar</button>
+            <button>Agregar</button>
+          </div>
+        </form>
+      </div>
     </div>
+    <!-- Tabla -->
     <div class="max-w-3xl hidden">
       <h2>Operaciones</h2>
       <button class="" id="agregarOperacion">Nueva operación</button>
@@ -96,21 +105,21 @@
           <span class="">Fecha</span>
           <span class="">Monto</span>
           <span class="">Acciones</span>
-        </div>
-        <div class="hidden">
-          <div class="grid grid-cols-5 divide-x" id="operaciones">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <div class="grid grid-cols-2 divide-x">
-              <button><img src="imagenes/icon-edit.svg" alt="" /></button>
-              <button><img src="imagenes/icon-delete.svg" alt="" /></button>
-            </div>
+      </div>
+      <div class="hidden">
+        <div class="grid grid-cols-5 divide-x" id="operaciones">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="grid grid-cols-2 divide-x">
+            <button><img src="imagenes/icon-edit.svg" alt="" /></button>
+            <button><img src="imagenes/icon-delete.svg" alt="" /></button>
           </div>
         </div>
       </div>
     </div>
+
     <script src="main.js"></script>
   </body>
 </html>
