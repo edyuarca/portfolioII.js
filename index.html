@@ -8,10 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body class="bg-lime-400">
+  <body class="">
     <div class="flex gap-5 justify-center my-20 sticky">
       <!-- Contenedor balances -->
-      <div class="bg-fuchsia-100 rounded-md shadow-lg max-w-80 flex w-2/5 h-96">
+      <div
+        class="bg-fuchsia-100 rounded-md shadow-lg max-w-80 flex w-2/5 h-96"
+        id="contenedorBalances"
+      >
         <div class="w-full">
           <h2 class="text-3xl font-bold p-8">Balance</h2>
           <div class="flex justify-between">
@@ -30,13 +33,16 @@
       </div>
 
       <!-- Contenedor sección operaciones vacío -->
-      <div class="flex bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-3/5">
+      <div
+        class="flex bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-3/5"
+        id="containerVacio"
+      >
         <div class="w-full" id="contenedorSinDatos">
           <div class="flex flex-row justify-between">
             <h2 class="text-3xl font-bold p-8">Operaciones</h2>
             <button
               class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-              id="agregarOperacion"
+              id="btnAgregarOperacion"
             >
               Nueva operación
             </button>
@@ -55,7 +61,10 @@
         </div>
       </div>
       <!-- Contenedor agregar nueva operación-->
-      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
+      <div
+        class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden"
+        id="containerNuevaOp"
+      >
         <div>
           <form action="">
             <h2 class="text-3xl font-bold p-8">Nueva operación</h2>
