@@ -16,6 +16,7 @@
       crossorigin="anonymous"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
+    
   </head>
   <body class="bg-fuchsia-200 text-white">
     <header>
@@ -57,107 +58,33 @@
       </nav>
     </header>
     <main>
-      <!-- Sección Nueva operación LO HACE YULI
-    <main>
-      <section class="" id="vista-operacion">
-        <div class="">
-          <div class="">
-            <div class="flex justify-center mt-14">
-              <div class="rounded-md bg-white text-black shadow-lg w-auto p-8">
-                <h2 class="size-15 text-4xl font-bold">
-                  Nueva operación
-                </h2>
-                <div class="mt-12">
-                  <label class="text-base font-bold" for="descripcion-input">Descripción</label>
-                  <div class="clear-both text-base box-border relative stroke-inherit">
-                    <div class="mt-2">
-                      <input class="border-solid rounded border-gray-400 bg-slate-50 w-full" type="text" name="" id="descripcion-input"/>
-                    </div>
-                  </div>
-                </div>
-                Otras secciones de formulario 
-                <div class="">
-                  <label class="" for="monto-input">Monto</label>
-                  <div class="">
-                    <div class="">
-                      <div class="">
-                        <input class="border-solid rounded border-gray-400 bg-slate-50" type="number" name="" id="monto-input" value="0"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="">
-                  <label class="" for="tipo-select">Tipo</label>
-                  <div class="">
-                    <div class="">
-                      <select id="tipo-operacion">
-                        <option value="GASTO">Gasto</option>
-                        <option value="GANANCIA">Ganancia</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="">
-                  <label class="label" for="categorias-select">Categoría</label>
-                  <div class="control">
-                    <div class="">
-                      <select class="" id="categorias-select">
-                        <option>Servicios</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="">
-                  <label class="label" for="fecha-input">Fecha</label>
-                  <div class="control">
-                    <div class="">
-                      <input class="border-solid rounded border-gray-400 bg-slate-50" type="date" name="" id="fecha-input"/>
-                    </div>
-                  </div>
-                </div>
-                <div class="">
-                  <button class="" id="cancelar-agregar-operacion-boton">
-                    Cancelar
-                  </button>
-                  <button class="" id="agregar-operacion-boton">
-                    Agregar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
-
-      <!--FILTROS-->
-
-      <section class="section mt-5 vista" id="vista-balance">
-        <div class="container">
-          <!-- 
-          Balance- lo hace Yuli
-         -->
-          <div class="">
-            <div class="">
-              <div class="">
-                <h2 class="">Balance</h2>
-                <div class="">
-                  <div class="">Ganancias</div>
-                  <div class="" id="ganancias">+$0</div>
-                </div>
-                <div class="">
-                  <div class="">Gastos</div>
-                  <div class="" id="gastos">-$0</div>
-                </div>
-                <div class="">
-                  <div class="">Total</div>
-                  <div class="" id="balance">$0</div>
-                </div>
-              </div>
               <!-- 
           FILTROS LO HACE CIN
          -->
+         <div
+                class="mt-14 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
+              >
+                <div class="grid grid-cols-4">
+                  <div class="">
+                    <h3 class="size-15 text-4xl font-bold">Balance</h3>
+                    <div class="columns is-mobile is-vcentered">
+                      <div class="column is-size-5">Ganancias</div>
+                      <div class="column has-text-right has-text-success" id="ganancias">+$0</div>
+                    </div>
+                    <div class="columns is-mobile is-vcentered">
+                      <div class="column is-size-5">Ganancias</div>
+                      <div class="column has-text-right has-text-success" id="ganancias">+$0</div>
+                    </div>
+                    <div class="columns is-mobile is-vcentered">
+                      <div class="column is-size-5">Ganancias</div>
+                      <div class="column has-text-right has-text-success" id="ganancias">+$0</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
               <div
-                class="mt-14 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8"
+                class="mt-14 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
               >
                 <div class="grid grid-cols-4">
                   <div class="">
@@ -260,78 +187,38 @@
                 </div>
               </div>
             </div>
-            <!--Operaciones- lo hace Yuli-->
-
-            <div class="">
-              <div class="">
-                <div class="">
-                  <div class="">
-                    <h3 class="">Operaciones</h3>
-                  </div>
-                  <div class="">
-                    <button type="button" class="" id="ver-operacion">
-                      + Nueva operación
-                    </button>
-                  </div>
-                </div>
-                <div id="con-operaciones" class="">
-                  <div class="">
-                    <div class="">Descripción</div>
-                    <div class="">Categoría</div>
-                    <div class="">Fecha</div>
-                    <div class="">Monto</div>
-                    <div class="">Acciones</div>
-                  </div>
-                  <div id="operaciones"></div>
-                </div>
-                <div class="" id="sin-operaciones">
-                  <figure class="">
-                    <img src="imgs/wallet.svg" class="" alt="" />
-                  </figure>
-                  <h4 class="">Sin resultados</h4>
-                  <p class="">Cambia los filtros o agrega operaciones</p>
-                </div>
-              </div>
-              <!-- 
-              fin de Operaciones
-             -->
-            </div>
-          </div>
-        </div>
-      </section>
-
+            
       <!--CATEGORIAS LO HACE CIN-->
       <form class="pr-6 pb-12 pl-6 mt-6 flex" action="">
-        <div class="m-auto relative w-3/4">
+        <div class="m-auto relative w-3/5">
           <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
             <div class="p-3 block">
               <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
                 <h2 class="size-15 text-4xl font-bold">Categorías</h2>
-               <div class="grid grid-cols-2 place-content-center">
-                <div class="mt-12">
-                  <label class="ml-6 font-bold" for="categoria-input"
-                    >Nombre</label
-                  >
-                  <div class="mb-3 mr-3">
-                    <div class="mt-2 pt-4 m-0 mr-3">
-                      <input
-                        class="h-12 border-solid rounded border-gray-400 bg-slate-50 w-full"
-                        type="text"
-                        name=""
-                        id="categoria-input"
-                      />
+
+                <div class="grid grid-cols-2 place-content-center">
+                  <div class="mt-12">
+                    <label class="ml-6 font-bold" for="categoria-input"
+                      >Nombre</label
+                    >
+                    <div class="mb-3 mr-3">
+                      <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
+                        <input
+                          class="h-12 border-solid rounded border-gray-400 bg-slate-50 max-w-full w-full"
+                          type="text"
+                          name=""
+                          id="categoria-input"
+                        />
+                        <button
+                          class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-md cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
+                          id="agregar-categoria-boton"
+                        >
+                          Agregar
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div class="pt-5">
-                    <button
-                      class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-md cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
-                      id="agregar-categoria-boton"
-                    >
-                      Agregar
-                    </button>
-                  </div>
                 </div>
-              </div> 
                 <div class="" id="categorias">
                   <div class="">
                     <div class="flex grid grid-flow-col justify-between">
@@ -407,7 +294,7 @@
                                 </g>
                               </g>
                             </svg>
-                          </button>              
+                          </button>
                         </p>
                       </div>
                     </div>
@@ -484,7 +371,7 @@
                               </g>
                             </g>
                           </svg>
-                        </button>              
+                        </button>
                         <p></p>
                       </div>
                     </div>
@@ -561,7 +448,7 @@
                               </g>
                             </g>
                           </svg>
-                        </button>              
+                        </button>
                         <p></p>
                       </div>
                     </div>
@@ -638,7 +525,7 @@
                               </g>
                             </g>
                           </svg>
-                        </button>              
+                        </button>
                         <p></p>
                       </div>
                     </div>
@@ -651,8 +538,7 @@
                           >Transporte</span
                         >
                       </div>
-                      <div
-                        class="mt-6 grid grid-cols-2 place-content-center ">
+                      <div class="mt-6 grid grid-cols-2 place-content-center">
                         <button>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -716,7 +602,7 @@
                               </g>
                             </g>
                           </svg>
-                        </button>                        
+                        </button>
                         <p></p>
                       </div>
                     </div>
@@ -793,7 +679,7 @@
                               </g>
                             </g>
                           </svg>
-                        </button>              
+                        </button>
                         <p></p>
                       </div>
                     </div>
