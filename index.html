@@ -1,12 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta
+      name="description"
+      content="Aplicación para el control y seguimiento de ganancias y gastos"
+    />
+    <title>AhorrADAs📈</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
+  </head>
+  <body class="bg-fuchsia-200 text-white">
+    <header>
+      <nav
+        class="h-32 bg-fuchsia-700 from-current flex grid grid-flow-col justify-stretch"
+        role="navegacion"
+        aria-label="main de navegacion"
+      >
+        <div class="flex flex-row py-12 w-64 size-15 text-4xl font-bold">
+          <a class="hover:bg-fuchsia-500 rounded-lg h-12 w-96 ml-2">
+            <h1 class="">
+              <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
+              AhorrADAs
+            </h1>
+          </a>
+        </div>
+
+        <!-- Menú de opciones -->
+        <div
+          class="py-12 flex flex-row-reverse mb-8 text-l space-x-1 space-x-reverse"
+        >
+          <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
+            <a class="opcion" id="">
+              <i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes
+            </a>
+          </div>
+          <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-5">
+            <a class="opcion" id="">
+              <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorias
+            </a>
+          </div>
+          <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
+            <a class="opcion" id="">
+              <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance
+            </a>
+          </div>
+        </div>
+        <!-- Fin del menú de opciones -->
+      </nav>
+    </header>
+
+    <!-- Sección Nueva operación -->
+    <main>
+      <section class="" id="vista-operacion">
+        <div class="">
+          <div class="">
+            <div class="flex justify-center mt-14">
+              <div class="rounded-md bg-white text-black shadow-lg w-auto p-8">
+                <h2 class="size-15 text-4xl font-bold">Nueva operación</h2>
+                <div class="mt-12">
+                  <label class="text-base font-bold" for="descripcion-input"
+                    >Descripción</label
+                  >
+                  <div
+                    class="clear-both text-base box-border relative stroke-inherit"
+                  >
+                    <div class="mt-2">
+                      <input
+                        class="border-solid rounded border-gray-400 bg-slate-50 w-full"
+                        type="text"
+                        name=""
+                        id="descripcion-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!-- Otras secciones de formulario -->
+                <div class="">
+                  <label class="" for="monto-input">Monto</label>
+                  <div class="">
+                    <div class="">
+                      <div class="">
+                        <input
+                          class="border-solid rounded border-gray-400 bg-slate-50"
+                          type="number"
+                          name=""
+                          id="monto-input"
+                          value="0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="">
+                  <label class="" for="tipo-select">Tipo</label>
+                  <div class="">
+                    <div class="">
+                      <select id="tipo-operacion">
+                        <option value="GASTO">Gasto</option>
+                        <option value="GANANCIA">Ganancia</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="">
+                  <label class="label" for="categorias-select">Categoría</label>
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select class="categorias-select" id="categorias-select">
+                        <option>Servicios</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="">
+                  <label class="label" for="fecha-input">Fecha</label>
+                  <div class="control">
+                    <div class="is-fullwidth">
+                      <input
+                        class="border-solid rounded border-gray-400 bg-slate-50"
+                        type="date"
+                        name=""
+                        id="fecha-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="">
+                  <button class="" id="cancelar-agregar-operacion-boton">
+                    Cancelar
+                  </button>
+                  <button class="" id="agregar-operacion-boton">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <script src="main.js"></script>
   </body>
 </html>
