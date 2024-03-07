@@ -1,12 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
-</head>
-<body>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
+  </head>
+
+  <body class="">
+    <div class="flex gap-5 justify-center my-20 sticky">
+      <!-- Contenedor balances -->
+      <div class="bg-fuchsia-100 rounded-md shadow-lg max-w-80 flex w-2/5 h-96">
+        <div class="w-full">
+          <h2 class="text-3xl font-bold p-8">Balance</h2>
+          <div class="flex justify-between">
+            <span class="text-xl px-8 py-5">Ganancias</span>
+            <span class="text-xl text-green-500 px-8 py-5">0</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-xl px-8 py-5">Gastos</span>
+            <span class="text-xl text-rose-500 px-8 py-5">0</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-xl font-bold px-8 py-5">Total</span>
+            <span class="text-xl px-8 py-5">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor sección operaciones vacío -->
+      <div class="flex bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-3/5">
+        <div class="w-full" id="contenedorSinDatos">
+          <div class="flex flex-row justify-between">
+            <h2 class="text-3xl font-bold p-8">Operaciones</h2>
+            <button
+              class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
+              id="agregarOperacion"
+            >
+              Nueva operación
+            </button>
+          </div>
+          <div>
+            <img
+              src="imagenes/Wallet.svg"
+              alt=""
+              class="w-96 h-96 mx-auto mb-8"
+            />
+            <p class="text-center text-lg pb-3">Sin resultados</p>
+            <p class="text-center text-lg pb-14">
+              Cambia los filtros o agrega operaciones
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Contenedor agregar nueva operación-->
+      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
+        <div>
+          <form action="">
+            <h2 class="text-3xl font-bold p-8">Nueva operación</h2>
+            <div class="px-8">
+              <div>
+                <h4 class="mb-1">Descripción</h4>
+                <input
+                  type="text"
+                  id="campoDescripcion"
+                  name="campoDescripcion"
+                  class="w-full mb-3 rounded-sm h-8"
+                />
+              </div>
+              <div>
+                <h4 class="mb-1">Monto</h4>
+                <input
+                  type="number"
+                  id="monto"
+                  name="monto"
+                  min="0"
+                  value="0"
+                  class="w-full mb-3 rounded-sm h-8"
+                />
+              </div>
+              <div>
+                <h4 class="mb-1">Tipo</h4>
+                <select
+                  name="tipo"
+                  id="tipo"
+                  class="w-full mb-3 rounded-sm h-8"
+                >
+                  <option value="gasto">gasto</option>
+                  <option value="ingreso">ingreso</option>
+                </select>
+              </div>
+              <div>
+                <h4 class="mb-1">Categoría</h4>
+                <select
+                  name="tipo"
+                  id="tipo"
+                  class="w-full mb-3 rounded-sm h-8"
+                >
+                  <option value="">Comida</option>
+                  <option value="">Servicios</option>
+                  <option value="">Salidas</option>
+                  <option value="">Educación</option>
+                  <option value="">Transporte</option>
+                  <option value="">Trabajo</option>
+                </select>
+              </div>
+              <div>
+                <h4 class="mb-1">Fecha</h4>
+                <input
+                  type="date"
+                  id="fecha"
+                  name="fecha"
+                  class="w-full rounded-sm h-8"
+                />
+              </div>
+            </div>
+            <div class="flex justify-end gap-3 p-8">
+              <button
+                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
+              >
+                Cancelar
+              </button>
+              <button
+                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
+              >
+                Agregar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tabla -->
+      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
+        <div class="flex justify-between">
+          <h2 class="text-3xl font-bold p-8">Operaciones</h2>
+          <button
+            class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
+            id="agregarOperacion"
+          >
+            Nueva operación
+          </button>
+        </div>
+
+        <div class="grid grid-cols-5 divide-x text-center" id="categorias">
+          <span class="">Descripción</span>
+          <span class="">Categoría</span>
+          <span class="">Fecha</span>
+          <span class="">Monto</span>
+          <span class="">Acciones</span>
+        </div>
+
+        <div
+          class="grid grid-cols-5 divide-x text-center hidden"
+          id="operaciones"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="grid grid-cols-2 place-content-center">
+            <button class="w-9 h-9">
+              <img src="imagenes/icon-edit.svg" alt="" />
+            </button>
+            <button class="w-9 h-9">
+              <img src="imagenes/icon-delete.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
