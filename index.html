@@ -31,7 +31,6 @@
         </div>
 
         <!-- Menú de opciones -->
-
         <div
           class="py-12 flex flex-row-reverse mb-8 text-l space-x-1 space-x-reverse"
         >
@@ -54,235 +53,117 @@
         <!-- Fin del menú de opciones -->
       </nav>
     </header>
-      <main>
-
- <!-- Contenedor balances -->
-
- <div
- class="mt-14 ml-3.5 bg-fuchsia-100 rounded-md shadow-lg max-w-80 flex w-2/5 h-96"
- id="contenedorBalances"
->
- <div class="w-full">
-   <h2 class="text-3xl text-black	font-bold p-8">Balance</h2>
-   <div class="flex justify-between">
-     <span class="text-xl text-black	 px-8 py-5">Ganancias</span>
-     <span class="text-xl text-green-500 px-8 py-5">0</span>
-   </div>
-          <div class="flex justify-between">
-            <span class="text-xl text-black	px-8 py-5">Gastos</span>
-            <span class="text-xl text-rose-500 px-8 py-5">0</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-xl text-black	font-bold px-8 py-5">Total</span>
-            <span class="text-xl text-black	px-8 py-5">0</span>
-          </div>
-        </div>
-      </div>
-     <!-- 
+    <main>
+              <!-- 
           FILTROS LO HACE CIN
          -->
-         <div
-         class="mt-14 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
-       >
-         <div class="grid grid-cols-4">
-           <div class="">
-             <h3 class="size-15 text-4xl font-bold">Filtros</h3>
-           </div>
-           <div class="ml-20 w-40 mt-3">
-             <a href="#" id="toggle-filtros">Ocultar filtros</a>
-           </div>
-         </div>
-         <div id="filtros">
-           <div class="mt-3">
-             <label class="text-base font-bold" for="filtro-tipo"
-               >Tipo</label
-             >
-             <div class="">
-               <div class="">
-                 <select
-                   class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                   id="filtro-tipo"
-                 >
-                   <option value="TODOS">Todos</option>
-                   <option value="GASTO">Gasto</option>
-                   <option value="GANANCIA">Ganancia</option>
-                 </select>
-               </div>
-             </div>
-           </div>
-
-           <div class="mt-3">
-             <label class="text-base font-bold" for="filtro-categoria"
-               >Categoría</label
-             >
-             <div class="">
-               <div class="">
-                 <select
-                   class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                   id="filtro-categoria"
-                 >
-                   <option value="TODAS">Todas</option>
-                   <option value="9096affd-8691-434c-982b-5ba2fae9a4e3">
-                     Comida
-                   </option>
-                   <option value="7ceeed02-0617-4975-915c-6c859322b71e">
-                     Servicios
-                   </option>
-                   <option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">
-                     Salidas
-                   </option>
-                   <option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">
-                     Educación
-                   </option>
-                   <option value="10211a41-491d-4ffd-85e2-ad45f92859a6">
-                     Transporte
-                   </option>
-                   <option value="af5c1352-4d2f-445f-a636-e463f56a6466">
-                     Trabajo
-                   </option>
-                 </select>
-               </div>
-             </div>
-           </div>
-           <div class="mt-3">
-             <label class="text-base font-bold" for="filtro-fecha"
-               >Desde</label
-             >
-             <div>
-               <div
-                 class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-               >
-                 <input
-                   class="border-solid rounded border-gray-400 bg-slate-50 w-full"
-                   type="date"
-                   name=""
-                   id="filtro-fecha"
-                 />
-               </div>
-             </div>
-           </div>
-           <div class="mt-3">
-             <label class="text-base font-bold" for="filtro-orden"
-               >Ordenar por</label
-             >
-             <div class="">
-               <div class="">
-                 <select
-                   class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                   id="filtro-orden"
-                 >
-                   <option value="MAS_RECIENTES">Más reciente</option>
-                   <option value="MENOS_RECIENTES">
-                     Menos reciente
-                   </option>
-                   <option value="MAYOR_MONTO">Mayor monto</option>
-                   <option value="MENOR_MONTO">Menor monto</option>
-                   <option value="A/Z">A/Z</option>
-                   <option value="Z/A">Z/A</option>
-                 </select>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
- </form>
-
-      <!-- Contenedor sección operaciones vacío -->
-
-      <div class="ml-96 flex bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-3/5">
-        <div class="w-full" id="contenedorSinDatos">
-          <div class="flex flex-row justify-between">
-            <h2 class="text-3xl text-black font-bold p-8">Operaciones</h2>
-            <button
-              class="hover:bg-fuchsia-500 border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-              id="agregarOperacion"
-            >
-              Nueva operación
-            </button>
-          </div>
-          <div>
-            <img
-              src="imagenes/Wallet.svg"
-              alt=""
-              class="w-96 h-96 mx-auto mb-8"
-            />
-            <p class="text-center text-black text-lg pb-3">Sin resultados</p>
-            <p class="text-center text-black text-lg pb-14">
-              Cambia los filtros o agrega operaciones
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contenedor agregar nueva operación-->
-      
-      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
-        <div>
-          <form action="">
-            <h2 class=" text-3xl font-bold p-8">Nueva operación</h2>
-            <div class="px-8">
-              <div>
-                <h4 class="mb-1">Descripción</h4>
-                <input
-                  type="text"
-                  id="campoDescripcion"
-                  name="campoDescripcion"
-                  class="w-full mb-3 rounded-sm h-8"
-                />
-              </div>
-              <div>
-                <h4 class="mb-1">Monto</h4>
-                <input
-                  type="number"
-                  id="monto"
-                  name="monto"
-                  min="0"
-                  value="0"
-                  class="w-full mb-3 rounded-sm h-8"
-                />
-              </div>
-              <div>
-                <h4 class="mb-1">Tipo</h4>
-                <select
-                  name="tipo"
-                  id="tipo"
-                  class="w-full mb-3 rounded-sm h-8"
-                >
-                  <option value="gasto">gasto</option>
-                  <option value="ingreso">ingreso</option>
-                </select>
-              </div>
-              <div>
-                <h4 class="mb-1">Categoría</h4>
-                <select
-                  name="categoria"
-                  id="categoria"
-                  class="w-full mb-3 rounded-sm h-8"
-                >
-                  <option value="">Comida</option>
-                  <option value="">Servicios</option>
-                  <option value="">Salidas</option>
-                  <option value="">Educación</option>
-                  <option value="">Transporte</option>
-                  <option value="">Trabajo</option>
-                </select>
-              </div>
-              <div>
-                <h4 class="mb-1">Fecha</h4>
-                <input
-                  type="date"
-                  id="fecha"
-                  name="fecha"
-                  class="w-full rounded-sm h-8"
-                />
+              <div
+                class="mt-14 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
+              >
+                <div class="grid grid-cols-4">
+                  <div class="">
+                    <h3 class="size-15 text-4xl font-bold">Filtros</h3>
+                  </div>
+                  <div class="ml-20 w-40 mt-3">
+                    <a href="#" id="toggle-filtros">Ocultar filtros</a>
+                  </div>
+                </div>
+                <div id="filtros">
+                  <div class="mt-3">
+                    <label class="text-base font-bold" for="filtro-tipo"
+                      >Tipo</label
+                    >
+                    <div class="">
+                      <div class="">
+                        <select
+                          class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
+                          id="filtro-tipo"
+                        >
+                          <option value="TODOS">Todos</option>
+                          <option value="GASTO">Gasto</option>
+                          <option value="GANANCIA">Ganancia</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <label class="text-base font-bold" for="filtro-categoria"
+                      >Categoría</label
+                    >
+                    <div class="">
+                      <div class="">
+                        <select
+                          class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
+                          id="filtro-categoria"
+                        >
+                          <option value="TODAS">Todas</option>
+                          <option value="9096affd-8691-434c-982b-5ba2fae9a4e3">
+                            Comida
+                          </option>
+                          <option value="7ceeed02-0617-4975-915c-6c859322b71e">
+                            Servicios
+                          </option>
+                          <option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">
+                            Salidas
+                          </option>
+                          <option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">
+                            Educación
+                          </option>
+                          <option value="10211a41-491d-4ffd-85e2-ad45f92859a6">
+                            Transporte
+                          </option>
+                          <option value="af5c1352-4d2f-445f-a636-e463f56a6466">
+                            Trabajo
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <label class="text-base font-bold" for="filtro-fecha"
+                      >Desde</label
+                    >
+                    <div class="">
+                      <div
+                        class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
+                      >
+                        <input
+                          class="border-solid rounded border-gray-400 bg-slate-50 w-full"
+                          type="date"
+                          name=""
+                          id="filtro-fecha"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <label class="text-base font-bold" for="filtro-orden"
+                      >Ordenar por</label
+                    >
+                    <div class="">
+                      <div class="">
+                        <select
+                          class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
+                          id="filtro-orden"
+                        >
+                          <option value="MAS_RECIENTES">Más reciente</option>
+                          <option value="MENOS_RECIENTES">
+                            Menos reciente
+                          </option>
+                          <option value="MAYOR_MONTO">Mayor monto</option>
+                          <option value="MENOR_MONTO">Menor monto</option>
+                          <option value="A/Z">A/Z</option>
+                          <option value="Z/A">Z/A</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </form>  
-
       <!--CATEGORIAS LO HACE CIN-->
-
-      <div class="pr-6 pb-12 pl-6 mt-6 flex">
+      <div class="pr-6 pb-12 pl-6 mt-6 flex" action="">
         <div class="m-auto relative w-3/5">
           <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
             <div class="p-3 block">
@@ -315,9 +196,9 @@
                 <div class="" id="categorias">
                   <div class="">
                     <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-6">
+                      <div class="pt-16">
                         <h3
-                          class="w-16 bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
                         >
                           Comida
                         </h3>
@@ -325,10 +206,10 @@
                       <div class="ml-3 mt-6 text-center text-fuchsia-700">
                         <p>
                           <button>
-                            <img class="w-8	h-8" src="imagenes/icon-edit.svg" alt="">
+                            <img class="m-8 h-8" src="imagenes/icon-edit.svg" alt="">
                           </button>
                           <button>
-                            <img class="w-8	h-8" src="imagenes/icon-delete.svg" alt="">
+                            <img class="m-8 h-8" src="imagenes/icon-delete.svg" alt="">
                           </button>
                         </p>
                       </div>
@@ -336,18 +217,17 @@
                   </div>
                   <div class="">
                     <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-6">
-                        <span
-                          class="w-16 bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Servicios</span
-                        >
+                      <div class="pt-16">
+                        <h3 class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                          >Servicios</h3>
+                        
                       </div>
                       <div class="ml-3 mt-6 text-center text-fuchsia-700">
                         <button>
-                          <img class="w-8	h-8" src="/imagenes/icon-edit.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-edit.svg" alt="">
                         </button>
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-delete.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-delete.svg" alt="">
                         </button>
                         <p></p>
                       </div>
@@ -355,18 +235,17 @@
                   </div>
                   <div class="">
                     <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-6">
-                        <span
-                          class="w-16 bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Salidas</span
-                        >
+                      <div class="pt-16">
+                          <h3 class="w-16 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                          >Salidas</h3>
+                        
                       </div>
                       <div class="ml-6 mt-6 text-center text-fuchsia-700">
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-edit.svg" alt="">
+                         <img class="m-8 h-8" src="imagenes/icon-edit.svg" alt="">
                         </button>
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-delete.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-delete.svg" alt="">
                         </button>
                         <p></p>
                       </div>
@@ -374,18 +253,18 @@
                   </div>
                   <div class="">
                     <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-6">
-                        <span
-                          class="w-16 bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Educación</span
-                        >
+                      <div class="pt-16">
+                        <h3
+                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                          >Educación</h3>
+                        
                       </div>
                       <div class="mt-6 text-center text-fuchsia-700">
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-edit.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-edit.svg" alt="">
                         </button>
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-delete.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-delete.svg" alt="">
                         </button>
                         <p></p>
                       </div>
@@ -393,18 +272,18 @@
                   </div>
                   <div class="">
                     <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-6">
-                        <span
-                          class="w-16 bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Transporte</span
-                        >
+                      <div class="pt-16">
+                        <h3
+                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                          >Transporte</h3>
+                        
                       </div>
                       <div class="mt-6 grid grid-cols-2 place-content-center">
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-edit.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-edit.svg" alt="">
                         </button>
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-delete.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-delete.svg" alt="">
                         </button>
                         <p></p>
                       </div>
@@ -412,18 +291,18 @@
                   </div>
                   <div class="">
                     <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-6">
-                        <span
-                          class="w-16 bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Trabajo</span
-                        >
+                      <div class="pt-16">
+                        <h3
+                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                          >Trabajo</h3>
+                        
                       </div>
                       <div class="ml-6 mt-6 text-center text-fuchsia-700">
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-edit.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-edit.svg" alt="">
                         </button>
                         <button>
-                          <img class="w-8	h-8" src="imagenes/icon-delete.svg" alt="">
+                          <img class="m-8 h-8" src="imagenes/icon-delete.svg" alt="">
                         </button>
                         <p></p>
                       </div>
@@ -434,10 +313,9 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
 
       <!--editar categoria LO HACE CIN-->
-
       <div class="m-auto relative w-3/5">
         <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
           <div class="p-3 block">
@@ -467,11 +345,14 @@
               </div>
             </div>
           </div>
+              </div>
+            </div>
         </div>
-      </div>
+    </div> 
 
+        
+      
        <!--REPORTES DEL NAV-BAR LO HACE CIN-->
-
       <div class="m-auto relative w-3/5">
         <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
           <div class="p-3 block">
@@ -485,62 +366,7 @@
                 Prueba agregando más operaciones
               </p> 
       
-            <div class="flex justify-end gap-3 p-8">
-              <button
-                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-              >
-                Cancelar
-              </button>
-              <button
-                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-              >
-                Agregar
-              </button>
-            </div>
-        </div>
-      </div>
-
-      <!-- Tabla -->
-      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
-        <div class="flex justify-between">
-          <h2 class="text-3xl font-bold p-8">Operaciones</h2>
-          <button
-            class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-            id="agregarOperacion"
-          >
-            Nueva operación
-          </button>
-        </div>
-
-        <div class="grid grid-cols-5 divide-x text-center" id="categorias">
-          <span class="">Descripción</span>
-          <span class="">Categoría</span>
-          <span class="">Fecha</span>
-          <span class="">Monto</span>
-          <span class="">Acciones</span>
-        </div>
-
-        <div
-          class="grid grid-cols-5 divide-x text-center hidden"
-          id="operaciones"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="grid grid-cols-2 place-content-center">
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-edit.svg" alt="" />
-            </button>
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-delete.svg" alt="" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
+    </main>
     <script src="main.js"></script>
   </body>
 </html>
