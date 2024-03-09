@@ -56,7 +56,7 @@
     </header>
     <main class="w-full flex gap-4 justify-center">
 
-      <div class="flex flex-col gap-4 w-80">
+      <div class="flex flex-col gap-4 w-80" id="contBalancesFiltros">
 
         <!-- Contenedor balances -->
         <div class="bg-fuchsia-100 rounded-md shadow-lg flex h-">
@@ -185,7 +185,7 @@
       </div>
     
     
-    <div class="w-2/5">
+    <div class="w-2/5" id="contVacio">
       <!-- Contenedor sección operaciones vacío -->
       <div class="flex bg-fuchsia-100  rounded-md shadow-lg">
         <div class="w-full" id="contenedorSinDatos">
@@ -193,7 +193,7 @@
             <h2 class="text-3xl text-black font-bold p-8">Operaciones</h2>
             <button
               class="hover:bg-fuchsia-500 border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-              id="agregarOperacion"
+              id="btnAgregarOperacion"
             >
               Nueva operación
             </button>
@@ -211,10 +211,50 @@
           </div>
         </div>
       </div>
-
-      <!-- Contenedor agregar nueva operación-->
-      
+        
+        <!-- Tabla -->
       <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
+        <div class="flex justify-between">
+          <h2 class="text-3xl font-bold p-8">Operaciones</h2>
+          <button
+            class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
+            id="agregarOperacion"
+          >
+            Nueva operación
+          </button>
+        </div>
+
+        <div class="grid grid-cols-5 divide-x text-center" id="categorias">
+          <span class="">Descripción</span>
+          <span class="">Categoría</span>
+          <span class="">Fecha</span>
+          <span class="">Monto</span>
+          <span class="">Acciones</span>
+        </div>
+
+        <div
+          class="grid grid-cols-5 divide-x text-center hidden"
+          id="operaciones"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="grid grid-cols-2 place-content-center">
+            <button class="w-9 h-9">
+              <img src="imagenes/icon-edit.svg" alt="" />
+            </button>
+            <button class="w-9 h-9">
+              <img src="imagenes/icon-delete.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor agregar nueva operación-->
+      
+      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden" id="contNuevaOp">
         <div>
           <form action="">
             <h2 class=" text-3xl font-bold p-8">Nueva operación</h2>
@@ -274,50 +314,21 @@
                   class="w-full rounded-sm h-8"
                 />
               </div>
+              <div class="flex justify-end gap-3 py-8">
+              <button
+                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
+              >
+                Cancelar
+              </button>
+              <button
+                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
+              >
+                Agregar
+              </button>
+            </div>
             </div>
           </form>
         </div> 
-        
-        <!-- Tabla -->
-      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
-        <div class="flex justify-between">
-          <h2 class="text-3xl font-bold p-8">Operaciones</h2>
-          <button
-            class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-            id="agregarOperacion"
-          >
-            Nueva operación
-          </button>
-        </div>
-
-        <div class="grid grid-cols-5 divide-x text-center" id="categorias">
-          <span class="">Descripción</span>
-          <span class="">Categoría</span>
-          <span class="">Fecha</span>
-          <span class="">Monto</span>
-          <span class="">Acciones</span>
-        </div>
-
-        <div
-          class="grid grid-cols-5 divide-x text-center hidden"
-          id="operaciones"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="grid grid-cols-2 place-content-center">
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-edit.svg" alt="" />
-            </button>
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-delete.svg" alt="" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
         
 
       <!--CATEGORIAS LO HACE CIN-->

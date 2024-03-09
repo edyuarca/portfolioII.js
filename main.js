@@ -1,13 +1,13 @@
 //Contendor operaciones vacío a agregar nueva operación
 const btnNuevaOperacion = document.getElementById("btnAgregarOperacion");
-const containerNuevaOp = document.getElementById("containerNuevaOp");
-const containerVacio = document.getElementById("containerVacio");
-const contenedorBalances = document.getElementById("contenedorBalances");
+const contNuevaOp = document.getElementById("contNuevaOp");
+const contVacio = document.getElementById("contVacio");
+const contBalancesFiltros = document.getElementById("contBalancesFiltros");
 
 const vercontainerNuevaOp = () => {
-  containerNuevaOp.style.display = "block";
-  containerVacio.style.display = "none";
-  contenedorBalances.style.display = "none";
+  contNuevaOp.classList.remove("hidden");
+  contVacio.style.display = "none";
+  contBalancesFiltros.style.display = "none";
 };
 btnNuevaOperacion.addEventListener(`click`, vercontainerNuevaOp);
 
