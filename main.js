@@ -13,8 +13,11 @@ btnNuevaOperacion.addEventListener(`click`, vercontainerNuevaOp);
 
 //Agregar tabla
 
+const nuevaOperacionForm = document.getElementById("nuevaOperacionForm");
+
 const categorias = document.getElementById("categorias");
 const datos = [];
+
 const evaluarLocalStorage = () => {
   if (localStorage.getItem("operaciones") !== null) {
     operacionesGuardadas = JSON.parse(localStorage.getItem("operaciones"));
