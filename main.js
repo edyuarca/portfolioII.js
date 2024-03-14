@@ -13,13 +13,55 @@ btnNuevaOperacion.addEventListener(`click`, vercontainerNuevaOp);
 
 //Agregar tabla
 
-const categorias = document.getElementById("categorias");
-const datos = [];
+const formNuevaOperacion = document.getElementById("formNuevaOperacion");
+const btnAgregarOpTabla = document.getElementById("btnAgregarOpTabla");
+const btnCancelarOpTabla = document.getElementById("btnCancelarOpTabla");
+const campoDescripcion = document.getElementById("campoDescripcion");
+const monto = document.getElementById("monto");
+const tipo = document.getElementById("tipo");
+const categoria = document.getElementById("categoria");
+const fecha = document.getElementById("fecha");
+
+let datos = [];
+console.log(datos);
+
+formNuevaOperacion.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("Formulario enviado");
+
+  const OperacionNueva = {
+    descripcion: campoDescripcion.value,
+    monto: monto.value,
+    tipo: tipo.value,
+    categoria: categoria.value,
+    fecha: fecha.value,
+  };
+
+  console.log("Datos de la nueva operación:", OperacionNueva);
+
+  datos.push(OperacionNueva);
+  localStorage.setItem("operaciones", JSON.stringify(datos));
+
+  formNuevaOperacion.reset();
+});
+
 const evaluarLocalStorage = () => {
   if (localStorage.getItem("operaciones") !== null) {
-    operacionesGuardadas = JSON.parse(localStorage.getItem("operaciones"));
+    localStorage.getItem("operaciones", JSON.parse(datos));
+    console.log("operaciones traidas del local:", operacionesGuardadas);
     return operacionesGuardadas;
   } else {
     localStorage.setItem("operaciones", JSON.stringify(datos));
   }
+  generarTabla();
 };
+
+//boton cancelar envío
+
+const pagPricinpal = () => {
+  containerNuevaOp.style.display = "none";
+  containerVacio.style.display = "block";
+  contenedorBalances.style.display = "block";
+};
+
+btnCancelarOpTabla.addEventListener("click", pagPricinpal);
