@@ -107,12 +107,12 @@
                   id="categoria"
                   class="w-full mb-3 rounded-sm h-8"
                 >
-                  <option value="">Comida</option>
-                  <option value="">Servicios</option>
-                  <option value="">Salidas</option>
-                  <option value="">Educación</option>
-                  <option value="">Transporte</option>
-                  <option value="">Trabajo</option>
+                  <option value="comida">Comida</option>
+                  <option value="servicios">Servicios</option>
+                  <option value="salidas">Salidas</option>
+                  <option value="educacion">Educación</option>
+                  <option value="transporte">Transporte</option>
+                  <option value="trabajo">Trabajo</option>
                 </select>
               </div>
               <div>
@@ -145,7 +145,10 @@
       </div>
 
       <!-- Tabla -->
-      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
+      <div
+        class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full"
+        id="tablaOperaciones"
+      >
         <div class="flex justify-between">
           <h2 class="text-3xl font-bold p-8">Operaciones</h2>
           <button
@@ -164,10 +167,7 @@
           <span class="">Acciones</span>
         </div>
 
-        <div
-          class="grid grid-cols-5 divide-x text-center hidden"
-          id="operaciones"
-        >
+        <div class="grid grid-cols-5 divide-x text-center" id="operaciones">
           <span></span>
           <span></span>
           <span></span>
