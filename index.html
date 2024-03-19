@@ -59,6 +59,35 @@
             </p>
           </div>
         </div>
+        <!-- Tabla -->
+        <div
+          class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full"
+          id="tablaOperaciones"
+        >
+          <div class="flex justify-between">
+          <div class="grid grid-cols-5 divide-x text-center" id="categorias">
+            <span class="">Descripción</span>
+            <span class="">Categoría</span>
+            <span class="">Fecha</span>
+            <span class="">Monto</span>
+            <span class="">Acciones</span>
+          </div>
+
+          <div class="grid grid-cols-5 divide-x text-center" id="operaciones">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="grid grid-cols-2 place-content-center">
+              <button class="w-9 h-9">
+                <img src="imagenes/icon-edit.svg" alt="" />
+              </button>
+              <button class="w-9 h-9">
+                <img src="imagenes/icon-delete.svg" alt="" />
+              </button>
+            </div>
+        </div>
+      </div>
       </div>
       <!-- Contenedor agregar nueva operación-->
       <div
@@ -141,45 +170,6 @@
               </button>
             </div>
           </form>
-        </div>
-      </div>
-
-      <!-- Tabla -->
-      <div
-        class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full"
-        id="tablaOperaciones"
-      >
-        <div class="flex justify-between">
-          <h2 class="text-3xl font-bold p-8">Operaciones</h2>
-          <button
-            class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-            id="agregarOperacion"
-          >
-            Nueva operación
-          </button>
-        </div>
-
-        <div class="grid grid-cols-5 divide-x text-center" id="categorias">
-          <span class="">Descripción</span>
-          <span class="">Categoría</span>
-          <span class="">Fecha</span>
-          <span class="">Monto</span>
-          <span class="">Acciones</span>
-        </div>
-
-        <div class="grid grid-cols-5 divide-x text-center" id="operaciones">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="grid grid-cols-2 place-content-center">
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-edit.svg" alt="" />
-            </button>
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-delete.svg" alt="" />
-            </button>
-          </div>
         </div>
       </div>
     </div>
