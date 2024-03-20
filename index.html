@@ -35,17 +35,17 @@
           class="py-12 flex flex-row-reverse mb-8 text-l space-x-1 space-x-reverse"
         >
           <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
-            <a class="opcion" id="">
+            <a class="opcion" id="reportes" data-target="box1">
               <i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes
             </a>
           </div>
           <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-5">
-            <a class="opcion" id="">
+            <a class="opcion" id="categorias" data-target="box2">
               <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorias
             </a>
           </div>
           <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
-            <a class="opcion" id="">
+            <a class="opcion" id="balance" data-target="box3">
               <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance
             </a>
           </div>
@@ -55,9 +55,9 @@
     </header>
     <main>
               <!-- 
-          FILTROS LO HACE CIN
+          BALANCE LO HACE YULI
          -->
-         
+         <div class="flex flex-col gap-4 w-80" id="box3" data-box>
          <div
                 class="mt-14 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
               >
@@ -69,17 +69,19 @@
                       <div class="" id="ganancias">+$0</div>
                     </div>
                     <div class="">
-                      <div class="">Ganancias</div>
+                      <div class="">Gastos</div>
                       <div class="" id="ganancias">+$0</div>
                     </div>
                     <div class="">
-                      <div class="">Ganancias</div>
+                      <div class="">Total</div>
                       <div class="" id="ganancias">+$0</div>
                     </div>
                   </div>
                 </div>
             </div>
-            
+            <!-- 
+          FILTROS LO HACE CIN
+         -->
               <div
                 class="mt-14 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
               >
@@ -184,9 +186,9 @@
                 </div>
               </div>
             </div>
-          </form>  
+          </div>
       <!--CATEGORIAS LO HACE CIN-->
-      <div class="pr-6 pb-12 pl-6 mt-6 flex" action="">
+      <div class="pr-6 pb-12 pl-6 mt-6 flex hidden" id="box2" data-box>
         <div class="m-auto relative w-3/5">
           <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
             <div class="p-3 block">
@@ -339,7 +341,7 @@
     </div>
 
       <!--editar categoria LO HACE CIN-->
-      <div class="m-auto relative w-3/5">
+      <div class="m-auto relative w-3/5 hidden">
         <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
           <div class="p-3 block">
             <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
@@ -376,7 +378,7 @@
         
       
        <!--REPORTES DEL NAV-BAR LO HACE CIN-->
-      <div class="m-auto relative w-3/5">
+      <div class="m-auto relative w-3/5 hidden" id="box1" data-box>
         <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
           <div class="p-3 block">
             <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
@@ -391,5 +393,6 @@
       
     </main>
     <script src="main.js"></script>
+    <script src="nav-barra.js"></script>
   </body>
 </html>
