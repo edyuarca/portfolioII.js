@@ -230,7 +230,7 @@
                       </div>
                       <div class="ml-3 mt-6 text-center text-fuchsia-700">
                         <p>
-                          <button>
+                          <button class="editar-categoria-btn" data-categoria="Categoria">
                             <img class="m-8 h-8" src="icon-edit.svg" alt="">
                           </button>
                           <button>
@@ -248,7 +248,7 @@
                         
                       </div>
                       <div class="ml-3 mt-6 text-center text-fuchsia-700">
-                        <button>
+                        <button class="editar-categoria-btn" data-categoria="Categoria">
                           <img class="m-8 h-8" src="icon-edit.svg" alt="">
                         </button>
                         <button>
@@ -266,7 +266,7 @@
                         
                       </div>
                       <div class="ml-6 mt-6 text-center text-fuchsia-700">
-                        <button>
+                        <button class="editar-categoria-btn" data-categoria="Categoria">
                          <img class="m-8 h-8" src="icon-edit.svg" alt="">
                         </button>
                         <button>
@@ -285,7 +285,7 @@
                         
                       </div>
                       <div class="mt-6 text-center text-fuchsia-700">
-                        <button>
+                        <button class="editar-categoria-btn" data-categoria="Categoria">
                           <img class="m-8 h-8" src="icon-edit.svg" alt="">
                         </button>
                         <button>
@@ -304,7 +304,7 @@
                         
                       </div>
                       <div class="mt-6 grid grid-cols-2 place-content-center">
-                        <button>
+                        <button class="editar-categoria-btn" data-categoria="Categoria">
                           <img class="m-8 h-8" src="icon-edit.svg" alt="">
                         </button>
                         <button>
@@ -325,7 +325,7 @@
                       <div class="ml-6 mt-6 text-center text-fuchsia-700">
                         <button>
                           <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                        </button>
+                        </button class="editar-categoria-btn" data-categoria="Categoria">
                         <button>
                           <img class="m-8 h-8" src="icon-delete.svg" alt="">
                         </button>
@@ -341,7 +341,8 @@
     </div>
 
       <!--editar categoria LO HACE CIN-->
-      <div class="m-auto relative w-3/5 hidden">
+
+      <div class="m-auto relative w-3/5 hidden" id="editarCategoriaDiv-Categoria" data-box="">
         <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
           <div class="p-3 block">
             <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
@@ -379,7 +380,7 @@
       
        <!--REPORTES DEL NAV-BAR LO HACE CIN-->
       <div class="m-auto relative w-3/5 hidden" id="box1" data-box>
-        <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
+        <div class="flex-wrap mt-5 mr-0.5 mb-0.5">
           <div class="p-3 block">
             <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
               <h2 class="size-15 text-4xl font-bold">Reportes</h2>
@@ -394,5 +395,6 @@
     </main>
     <script src="main.js"></script>
     <script src="nav-barra.js"></script>
+    <script src="Categorias.js"></script>
   </body>
 </html>
