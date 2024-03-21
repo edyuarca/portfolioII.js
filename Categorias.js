@@ -1,19 +1,18 @@
-// Obtener todos los botones de editar de categoría
+// Editar categoria
 const editarCategoriaBtns = document.querySelectorAll(".editar-categoria-btn");
 
-// Agregar un evento de clic a cada botón de edición de categoría
 editarCategoriaBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     const categoria = btn.getAttribute("data-categoria");
     const editarCategoriaDiv = document.getElementById(
       `editarCategoriaDiv-${categoria}`
     );
-    const categoriasDiv = document.getElementById("box2"); //  div de categorías
+    const categoriasDiv = document.getElementById("box2"); 
 
     // Ocultar el div de categorías
     categoriasDiv.style.display = "none";
 
-    // Mostrar el div de edición de categoría correspondiente
+    // Mostrar el div de edición de categoría 
     editarCategoriaDiv.style.display = "block";
   });
 });
@@ -50,3 +49,28 @@ cancelarCategoriaBtn.addEventListener("click", () => {
   // Mostrar el div de categorías
   document.getElementById("box2").style.display = "block";
 });
+
+//BOTON ELIMINAR CATEGORIA
+
+const eliminarCategoriaBtns = document.querySelectorAll(
+    ".eliminar-categoria-btn"
+  );
+  
+  eliminarCategoriaBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const categoriaId = btn.getAttribute("data-categoria");
+  
+      const categoriaAEliminar = document.getElementById(categoriaId);
+  
+      // Confirmar si el usuario realmente quiere eliminar la categoría
+      if (
+        confirm(
+          `¿Estás seguro de que quieres eliminar la categoría "${categoriaAEliminar.textContent}"?`
+        )
+      ) {
+        
+        categoriaAEliminar.remove();
+      }
+    });
+  });
+  
