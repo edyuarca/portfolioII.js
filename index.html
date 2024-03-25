@@ -220,7 +220,7 @@
     <!-- Tabla -->
   <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
     <div class="flex justify-between">
-      <h2 class="text-3xl font-bold p-8">Operaciones</h2>
+      <h2 class="text-3xl font-bold p-8 ">Operaciones</h2>
       <button
         class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
         id="agregarOperacion"
@@ -262,10 +262,10 @@
   <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden" id="contNuevaOp">
     <div>
       <form action="" id="nuevaOperacionForm">
-        <h2 class=" text-3xl font-bold p-8">Nueva operación</h2>
+        <h2 class=" text-black text-3xl font-bold p-8">Nueva operación</h2>
         <div class="px-8">
           <div>
-            <h4 class="mb-1">Descripción</h4>
+            <h4 class="text-black mb-1">Descripción</h4>
             <input
               type="text"
               id="descripcion"
@@ -274,33 +274,33 @@
             />
           </div>
           <div>
-            <h4 class="mb-1">Monto</h4>
+            <h4 class="text-black mb-1">Monto</h4>
             <input
               type="number"
               id="monto"
               name="monto"
               min="0"
               value="0"
-              class="w-full mb-3 rounded-sm h-8"
+              class="text-black w-full mb-3 rounded-sm h-8"
             />
           </div>
           <div>
-            <h4 class="mb-1">Tipo</h4>
+            <h4 class="text-black mb-1">Tipo</h4>
             <select
               name="tipo"
               id="tipo"
-              class="w-full mb-3 rounded-sm h-8"
+              class=" text-black w-full mb-3 rounded-sm h-8"
             >
               <option value="gasto">gasto</option>
               <option value="ingreso">ingreso</option>
             </select>
           </div>
           <div>
-            <h4 class="mb-1">Categoría</h4>
+            <h4 class="text-black mb-1">Categoría</h4>
             <select
               name="categoria"
               id="categoria"
-              class="w-full mb-3 rounded-sm h-8"
+              class="text-black w-full mb-3 rounded-sm h-8"
             >
               <option value="">Comida</option>
               <option value="">Servicios</option>
@@ -311,12 +311,12 @@
             </select>
           </div>
           <div>
-            <h4 class="mb-1">Fecha</h4>
+            <h4 class="text-black mb-1">Fecha</h4>
             <input
               type="date"
               id="fecha"
               name="fecha"
-              class="w-full rounded-sm h-8"
+              class="text-black w-full rounded-sm h-8"
             />
           </div>
           <div class="flex justify-end gap-3 py-8">
@@ -332,7 +332,9 @@
           </button>
         </div>
         </div>
+       </form>
       </div>
+    </div>
         
       <!--CATEGORIAS LO HACE CIN-->
       <div class="pr-6 pb-12 pl-6 mt-6 flex hidden" id="box2" data-box>
