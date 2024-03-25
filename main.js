@@ -1,4 +1,5 @@
 //Contendor operaciones vacío a agregar nueva operación
+const containerOperaciones = document.getElementById("containerOperaciones");
 const btnNuevaOperacion = document.getElementById("btnAgregarOperacion");
 const containerNuevaOp = document.getElementById("containerNuevaOp");
 const containerVacio = document.getElementById("containerVacio");
@@ -6,8 +7,9 @@ const contenedorBalances = document.getElementById("contenedorBalances");
 
 const vercontainerNuevaOp = () => {
   containerNuevaOp.classList.remove("hidden");
-  containerVacio.classList.add("hidden");
+  containerOperaciones.classList.add("hidden");
   contenedorBalances.classList.add("hidden");
+  console.log("ventana oculta");
 };
 btnNuevaOperacion.addEventListener(`click`, vercontainerNuevaOp);
 
@@ -43,6 +45,7 @@ formNuevaOperacion.addEventListener("submit", (e) => {
   console.log("Formulario enviado");
 
   const OperacionNueva = {
+    id: uuidv4(),
     descripcion: campoDescripcion.value,
     monto: monto.value,
     tipo: tipo.value,
@@ -55,8 +58,10 @@ formNuevaOperacion.addEventListener("submit", (e) => {
   datos.push(OperacionNueva);
   localStorage.setItem("operaciones", JSON.stringify(datos));
 
-  formNuevaOperacion.classList.add("hidden");
+  containerNuevaOp.classList.add("hidden");
+  containerVacio.classList.add("hidden");
   contenedorBalances.classList.remove("hidden");
+  containerOperaciones.classList.remove("hidden");
   tablaOperaciones.classList.remove("hidden");
 
   generarTabla();
@@ -65,9 +70,9 @@ formNuevaOperacion.addEventListener("submit", (e) => {
 //boton cancelar envío
 
 const pagPricinpal = () => {
-  containerNuevaOp.style.display = "none";
-  containerVacio.style.display = "block";
-  contenedorBalances.style.display = "block";
+  containerNuevaOp.classList.add("hidden");
+  containerOperaciones.classList.remove("hidden");
+  contenedorBalances.classList.remove("hidden");
 };
 
 btnCancelarOpTabla.addEventListener("click", pagPricinpal);
@@ -82,16 +87,64 @@ const generarTabla = () => {
     for (let operacion of evaluarLocalStorage()) {
       console.log(operacion.categoria);
       operaciones.innerHTML += `
-        <div>
+        
+          
           <span>${operacion.descripcion}</span>
           <span>${operacion.categoria}</span>
           <span>${operacion.fecha}</span>
           <span>${operacion.monto}</span>
-
-        </div>
+          <div>
+          <button class="w-9 h-9"><img src="imagenes/icon-edit.svg" alt=""></button>
+          <button class="w-9 h-9"><img src="imagenes/icon-delete.svg" alt=""></button>
+          </div>
+        
+        
         `;
     }
   }
   console.log("Tabla generada correctamente");
 };
 generarTabla();
+
+//Botones editar y eliminar operación
+
+const btnEditarOp = document.getElementById("btnEditarOp");
+const btnEliminarOp = document.getElementById("btnEliminarOp");
+
+// const generarTablaMod = () => {
+// if (localStorage.getItem("operaciones") !== null) {
+//   const operaciones = JSON.parse(localStorage.getItem("operaciones"));
+//  const encontrarOp = operaciones.find((op) => op.id === id);
+//  return encontrarOp;
+// } else {
+//  console.log("No hay operaciones guardadas en el localStorage.");
+// }
+// };
+
+btnEditarOp.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("Formulario enviado");
+
+  const OperacionNueva = {
+    id: uuidv4(),
+    descripcion: campoDescripcion.value,
+    monto: monto.value,
+    tipo: tipo.value,
+    categoria: categoria.value,
+    fecha: fecha.value,
+  };
+  console.log(categoria.value);
+  console.log("Datos de la nueva operación:", OperacionNueva);
+  datos = evaluarLocalStorage() || [];
+  datos.push(OperacionNueva);
+  localStorage.setItem("operaciones", JSON.stringify(datos));
+
+  containerNuevaOp.classList.add("hidden");
+  containerVacio.classList.add("hidden");
+  contenedorBalances.classList.remove("hidden");
+  containerOperaciones.classList.remove("hidden");
+  tablaOperaciones.classList.remove("hidden");
+
+  generarTabla();
+});
+//btnEliminarOp.addEventListener("click");

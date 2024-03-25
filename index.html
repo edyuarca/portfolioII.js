@@ -32,64 +32,75 @@
         </div>
       </div>
 
-      <!-- Contenedor sección operaciones vacío -->
+      <!-- Contenedor sección operaciones -->
       <div
-        class="flex bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-3/5"
-        id="containerVacio"
+        class="flex flex-col bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-3/5"
+        id="containerOperaciones"
       >
-        <div class="w-full" id="contenedorSinDatos">
-          <div class="flex flex-row justify-between">
-            <h2 class="text-3xl font-bold p-8">Operaciones</h2>
-            <button
-              class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-              id="btnAgregarOperacion"
-            >
-              Nueva operación
-            </button>
-          </div>
-          <div>
-            <img
-              src="imagenes/Wallet.svg"
-              alt=""
-              class="w-96 h-96 mx-auto mb-8"
-            />
-            <p class="text-center text-lg pb-3">Sin resultados</p>
-            <p class="text-center text-lg pb-14">
-              Cambia los filtros o agrega operaciones
-            </p>
-          </div>
+        <div class="flex flex-row justify-between">
+          <h2 class="text-3xl font-bold p-8">Operaciones</h2>
+          <button
+            class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
+            id="btnAgregarOperacion"
+          >
+            Nueva operación
+          </button>
         </div>
-        <!-- Tabla -->
-        <div
-          class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full"
-          id="tablaOperaciones"
-        >
-          <div class="flex justify-between">
-          <div class="grid grid-cols-5 divide-x text-center" id="categorias">
-            <span class="">Descripción</span>
-            <span class="">Categoría</span>
-            <span class="">Fecha</span>
-            <span class="">Monto</span>
-            <span class="">Acciones</span>
-          </div>
-
-          <div class="grid grid-cols-5 divide-x text-center" id="operaciones">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <div class="grid grid-cols-2 place-content-center">
-              <button class="w-9 h-9">
-                <img src="imagenes/icon-edit.svg" alt="" />
-              </button>
-              <button class="w-9 h-9">
-                <img src="imagenes/icon-delete.svg" alt="" />
-              </button>
+        <div>
+          <!-- nuevo -->
+          <div class="w-full" id="contenedorSinDatos">
+            <div id="containerVacio">
+              <img
+                src="imagenes/Wallet.svg"
+                alt=""
+                class="w-96 h-96 mx-auto mb-8"
+              />
+              <p class="text-center text-lg pb-3">Sin resultados</p>
+              <p class="text-center text-lg pb-14">
+                Cambia los filtros o agrega operaciones
+              </p>
             </div>
+          </div>
+          <!-- Tabla -->
+          <div class="hidden" id="tablaOperaciones">
+            <div class="flex flex-col justify-between">
+              <div
+                class="grid grid-cols-5 divide-x text-center"
+                id="categorias"
+              >
+                <p class="">Descripción</p>
+                <p class="">Categoría</p>
+                <p class="">Fecha</p>
+                <p class="">Monto</p>
+                <p class="">Acciones</p>
+              </div>
+
+              <div
+                class="grid grid-cols-5 divide-x text-center"
+                id="operaciones"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="grid grid-cols-2 place-content-center">
+                  <button class="w-9 h-9">
+                    <img src="imagenes/icon-edit.svg" alt="" id="btnEditarOp" />
+                  </button>
+                  <button class="w-9 h-9">
+                    <img
+                      src="imagenes/icon-delete.svg"
+                      alt=""
+                      id="btnEliminarOp"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      <!-- Contenedor agregar nueva operación-->
+      <!-- formulario agregar nueva operación-->
       <div
         class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden"
         id="containerNuevaOp"
