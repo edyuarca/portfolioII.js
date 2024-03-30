@@ -1,3 +1,127 @@
+//agregar y guardar en almacenam
+
+document.addEventListener("DOMContentLoaded", function () {
+  const categoriasContainer = document.getElementById("categ");
+
+  // Función para guardar las categorías en localStorage
+  function guardarCategoriasEnLocalStorage() {
+    const categorias = Array.from(
+      categoriasContainer.querySelectorAll(".categoria")
+    ).map((categoria) => categoria.querySelector("h3").textContent);
+    localStorage.setItem("categorias", JSON.stringify(categorias));
+  }
+
+  // Función para cargar las categorías desde localStorage
+  function cargarCategoriasDesdeLocalStorage() {
+    const categorias = JSON.parse(localStorage.getItem("categorias")) || [];
+    categorias.forEach((categoria) => agregarCategoria(categoria)); // Llama a agregarCategoria
+  }
+
+  // Cargar las categorías almacenadas en localStorage al cargar la página
+  cargarCategoriasDesdeLocalStorage();
+
+  // Agregar categoría
+  const agregarCategoriaBoton = document.getElementById(
+    "agregar-categoria-boton"
+  );
+  const nuevaCategoriaInput = document.getElementById("nueva-categoria-input");
+
+  agregarCategoriaBoton.addEventListener("click", function () {
+    const nombreCategoria = nuevaCategoriaInput.value.trim();
+
+    if (nombreCategoria !== "") {
+      agregarCategoria(nombreCategoria); // Llama a la función para agregar categoría
+      guardarCategoriasEnLocalStorage(); // Guarda las categorías en localStorage
+      nuevaCategoriaInput.value = ""; // Limpia el campo de entrada después de agregar
+    } else {
+      alert("Por favor, introduce un nombre válido para la categoría.");
+    }
+  });
+
+  // Función para agregar una nueva categoría al DOM
+  function agregarCategoria(nombreCategoria) {
+    // Crear un nuevo elemento de categoría
+    const nuevaCategoria = document.createElement("div");
+    nuevaCategoria.classList.add("categoria");
+    nuevaCategoria.id =
+      "categoria-" + (categoriasContainer.children.length + 1);
+
+    // Construir el contenido de la categoría
+    nuevaCategoria.innerHTML = `
+      <div class="flex grid grid-flow-col justify-between">
+        <div class="pt-16">
+          <h3 class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md">
+            ${nombreCategoria}
+          </h3>
+        </div>
+        <div class="ml-6 mt-6 text-center text-fuchsia-700">
+          <button class="editar-categoria-btn" data-categoria-id="${nuevaCategoria.id}">
+            <img class="m-8 h-8" src="icon-edit.svg" alt="" />
+          </button>
+          <button class="eliminar-categoria-btn" data-categoria="${nuevaCategoria.id}">
+            <img class="m-8 h-8" src="icon-delete.svg" alt="" />
+          </button>
+          <p></p>
+        </div>
+      </div>
+    `;
+
+    // Agregar la nueva categoría al contenedor
+    categoriasContainer.appendChild(nuevaCategoria);
+
+    // Agregar funcionalidad a los botones de editar y eliminar de la nueva categoría
+    const editarCategoriaBtn = nuevaCategoria.querySelector(
+      ".editar-categoria-btn"
+    );
+    const eliminarCategoriaBtn = nuevaCategoria.querySelector(
+      ".eliminar-categoria-btn"
+    );
+
+    editarCategoriaBtn.addEventListener("click", function () {
+      // Lógica para editar la categoría
+      const categoriaId = this.getAttribute("data-categoria-id");
+      // Implementa la lógica para editar la categoría según sea necesario
+      console.log("Editar categoría con ID:", categoriaId);
+    });
+
+    eliminarCategoriaBtn.addEventListener("click", function () {
+      // Lógica para eliminar la categoría
+      const categoriaId = this.getAttribute("data-categoria");
+      const categoria = document.getElementById(categoriaId);
+      if (categoria) {
+        categoria.remove();
+        console.log("Categoría eliminada con éxito:", categoriaId);
+      } else {
+        console.log("No se encontró la categoría a eliminar:", categoriaId);
+      }
+    });
+  }
+});
+
+//BOTON ELIMINAR CATEGORIA
+
+const eliminarCategoriaBtns = document.querySelectorAll(
+  ".eliminar-categoria-btn"
+);
+
+eliminarCategoriaBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const categoriaId = btn.getAttribute("data-categoria");
+
+    const categoriaAEliminar = document.getElementById(categoriaId);
+
+    // Confirmar si el usuario realmente quiere eliminar la categoría
+    if (
+      confirm(
+        `¿Estás seguro de que quieres eliminar la categoría "${categoriaAEliminar.textContent}"?`
+      )
+    ) {
+      // Eliminar la categoría del DOM
+      categoriaAEliminar.remove();
+    }
+  });
+});
+
 //EDITAR
 
 const editarCategoriaBtns = document.querySelectorAll(".editar-categoria-btn");
@@ -112,87 +236,4 @@ cancelarCategoriaBtn.addEventListener("click", () => {
 
   // Mostrar el div de categorías
   document.getElementById("box2").style.display = "block";
-});
-
-//BOTON ELIMINAR CATEGORIA
-
-const eliminarCategoriaBtns = document.querySelectorAll(
-  ".eliminar-categoria-btn"
-);
-
-eliminarCategoriaBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const categoriaId = btn.getAttribute("data-categoria");
-
-    const categoriaAEliminar = document.getElementById(categoriaId);
-
-    // Confirmar si el usuario realmente quiere eliminar la categoría
-    if (
-      confirm(
-        `¿Estás seguro de que quieres eliminar la categoría "${categoriaAEliminar.textContent}"?`
-      )
-    ) {
-      // Eliminar la categoría del DOM
-      categoriaAEliminar.remove();
-    }
-  });
-});
-
-//Agregar categoria
-
-const agregarCategoriaBtn = document.getElementById("agregar-categoria-boton");
-const nuevaCategoriaInput = document.getElementById("nueva-categoria-input");
-
-// Agregar un evento de clic al botón de agregar categoría
-agregarCategoriaBtn.addEventListener("click", () => {
-  // Obtener el nombre de la nueva categoría del campo de entrada
-  const nombreNuevaCategoria = nuevaCategoriaInput.value;
-
-  // Verificar si se proporcionó un nombre de categoría
-  if (nombreNuevaCategoria.trim() !== "") {
-    // Crear un nuevo contenedor de categoría en el DOM
-    const nuevaCategoriaContenedor = document.createElement("div");
-    nuevaCategoriaContenedor.classList.add(
-      "p-2",
-      "bg-fuchsia-200",
-      "text-fuchsia-700",
-      "rounded-md",
-      "w-20",
-      "text-center"
-    );
-
-    // Crear un nuevo elemento de categoría en el DOM con el nombre proporcionado
-    const nuevaCategoriaNombre = document.createElement("span");
-    nuevaCategoriaNombre.textContent = nombreNuevaCategoria;
-
-    // Definir el contenido del nuevo elemento de categoría
-    nuevaCategoriaContenedor.innerHTML = `
-         <div class="flex grid grid-flow-col justify-between">
-            <div class="pt-16">
-                <h3 class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md">
-                    ${nombreNuevaCategoria}
-                </h3>
-            </div>
-            <div class="ml-6 mt-6 text-center text-fuchsia-700">
-                <button class="editar-categoria-btn" data-categoria="${nombreNuevaCategoria}">
-                    <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                </button>
-                <button>
-                    <img class="m-8 h-8" src="icon-delete.svg" alt="">
-                </button>
-                <p></p>
-            </div>
-            </div>
-        `;
-
-    // Agregar la nueva categoría al contenedor de categorías
-    const contenedorCategorias = document.getElementById("categ");
-    contenedorCategorias.appendChild(nuevaCategoriaContenedor);
-
-    // Limpiar el campo de entrada después de agregar la categoría
-    nuevaCategoriaInput.value = "";
-  } else {
-    // Si no se proporcionó un nombre de categoría, muestra un mensaje de error
-    alert("Por favor ingresa un nombre para la nueva categoría.");
-  }
 });
