@@ -26,6 +26,14 @@ const fecha = document.getElementById("fecha");
 const operaciones = document.getElementById("operaciones");
 const tablaOperaciones = document.getElementById("tablaOperaciones");
 
+// funcionalidad balances
+
+const ingresos = document.getElementById("ingreso");
+const gastos = document.getElementById("gastos");
+const totalBalances = document.getElementById("totalBalances");
+
+//Tabla de operaciones
+
 let datos = [];
 
 const evaluarLocalStorage = () => {
@@ -39,6 +47,8 @@ const evaluarLocalStorage = () => {
   }
   generarTabla();
 };
+
+let total = 0;
 
 formNuevaOperacion.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -54,6 +64,20 @@ formNuevaOperacion.addEventListener("submit", (e) => {
   };
   console.log(categoria.value);
   console.log("Datos de la nueva operación:", OperacionNueva);
+
+  const balancesOperaciones = (tipo, monto) => {
+    if (tipo === "gasto") {
+      total = total - parseFloat(monto);
+      gastos.innerText = parseFloat(gastos.textContent) + parseFloat(monto);
+    } else if (tipo === "ingreso") {
+      total = total + parseFloat(monto);
+      ingresos.innerText = parseFloat(ingresos.textContent) + parseFloat(monto);
+    }
+    totalBalances.innerText = total;
+  };
+  balancesOperaciones(OperacionNueva.tipo, OperacionNueva.monto);
+  console.log("balances", balancesOperaciones);
+
   datos = evaluarLocalStorage() || [];
   datos.push(OperacionNueva);
   localStorage.setItem("operaciones", JSON.stringify(datos));
@@ -94,8 +118,8 @@ const generarTabla = () => {
           <span>${operacion.fecha}</span>
           <span>${operacion.monto}</span>
           <div>
-          <button class="w-9 h-9"><img src="imagenes/icon-edit.svg" alt=""></button>
-          <button class="w-9 h-9"><img src="imagenes/icon-delete.svg" alt=""></button>
+          <button class="w-9 h-9" id="btnEditarOp"><img src="imagenes/icon-edit.svg" alt=""></button>
+          <button class="w-9 h-9" id="btnEliminarOp"><img src="imagenes/icon-delete.svg" alt=""></button>
           </div>
         
         
@@ -107,44 +131,26 @@ const generarTabla = () => {
 generarTabla();
 
 //Botones editar y eliminar operación
-
 const btnEditarOp = document.getElementById("btnEditarOp");
 const btnEliminarOp = document.getElementById("btnEliminarOp");
 
-// const generarTablaMod = () => {
-// if (localStorage.getItem("operaciones") !== null) {
-//   const operaciones = JSON.parse(localStorage.getItem("operaciones"));
-//  const encontrarOp = operaciones.find((op) => op.id === id);
-//  return encontrarOp;
-// } else {
-//  console.log("No hay operaciones guardadas en el localStorage.");
-// }
-// };
-
-btnEditarOp.addEventListener("submit", (e) => {
-  e.preventDefault();
-  console.log("Formulario enviado");
-
-  const OperacionNueva = {
-    id: uuidv4(),
-    descripcion: campoDescripcion.value,
-    monto: monto.value,
-    tipo: tipo.value,
-    categoria: categoria.value,
-    fecha: fecha.value,
-  };
-  console.log(categoria.value);
-  console.log("Datos de la nueva operación:", OperacionNueva);
-  datos = evaluarLocalStorage() || [];
-  datos.push(OperacionNueva);
-  localStorage.setItem("operaciones", JSON.stringify(datos));
-
-  containerNuevaOp.classList.add("hidden");
-  containerVacio.classList.add("hidden");
-  contenedorBalances.classList.remove("hidden");
-  containerOperaciones.classList.remove("hidden");
-  tablaOperaciones.classList.remove("hidden");
-
-  generarTabla();
+btnEditarOp.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const operacionId = btn.getAttribute("data-id");
+    const operacion = obtenerOperacionPorId(operacionId);
+    completarFormulario(operacion);
+  });
 });
-//btnEliminarOp.addEventListener("click");
+
+const obtenerOperacionPorId = (id) => {
+  const operacionesGuardadas = evaluarLocalStorage();
+  return operacionesGuardadas.find((operacion) => operacion.id === id);
+};
+
+const completarFormulario = (operacion) => {
+  campoDescripcion.value = operacion.descripcion;
+  monto.value = operacion.monto;
+  tipo.value = operacion.tipo;
+  categoria.value = operacion.categoria;
+  fecha.value = operacion.fecha;
+};

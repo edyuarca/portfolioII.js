@@ -18,16 +18,16 @@
         <div class="w-full">
           <h2 class="text-3xl font-bold p-8">Balance</h2>
           <div class="flex justify-between">
-            <span class="text-xl px-8 py-5">Ganancias</span>
-            <span class="text-xl text-green-500 px-8 py-5">0</span>
+            <span class="text-xl px-8 py-5">Ingresos</span>
+            <span class="text-xl text-green-500 px-8 py-5" id="ingreso">0</span>
           </div>
           <div class="flex justify-between">
             <span class="text-xl px-8 py-5">Gastos</span>
-            <span class="text-xl text-rose-500 px-8 py-5">0</span>
+            <span class="text-xl text-rose-500 px-8 py-5" id="gastos">0</span>
           </div>
           <div class="flex justify-between">
             <span class="text-xl font-bold px-8 py-5">Total</span>
-            <span class="text-xl px-8 py-5">0</span>
+            <span class="text-xl px-8 py-5" id="totalBalances">0</span>
           </div>
         </div>
       </div>
@@ -84,15 +84,11 @@
                 <span></span>
                 <span></span>
                 <div class="grid grid-cols-2 place-content-center">
-                  <button class="w-9 h-9">
-                    <img src="imagenes/icon-edit.svg" alt="" id="btnEditarOp" />
+                  <button class="w-9 h-9" id="btnEliminarOp">
+                    <img src="imagenes/icon-edit.svg" alt="" />
                   </button>
                   <button class="w-9 h-9">
-                    <img
-                      src="imagenes/icon-delete.svg"
-                      alt=""
-                      id="btnEliminarOp"
-                    />
+                    <img src="imagenes/icon-delete.svg" alt="" />
                   </button>
                 </div>
               </div>
