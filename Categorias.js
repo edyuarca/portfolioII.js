@@ -14,7 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Función para cargar las categorías desde localStorage
   function cargarCategoriasDesdeLocalStorage() {
     const categorias = JSON.parse(localStorage.getItem("categorias")) || [];
+    limpiarCategoriasContainer(); // Limpiar el contenedor antes de cargar categorías
     categorias.forEach((categoria) => agregarCategoria(categoria)); // Llama a agregarCategoria
+    agregarEventListeners(); // Agrega event listeners después de cargar categorías
+  }
+
+  // Limpiar el contenedor de categorías
+  function limpiarCategoriasContainer() {
+    categoriasContainer.innerHTML = "";
   }
 
   // Cargar las categorías almacenadas en localStorage al cargar la página
@@ -33,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       agregarCategoria(nombreCategoria); // Llama a la función para agregar categoría
       guardarCategoriasEnLocalStorage(); // Guarda las categorías en localStorage
       nuevaCategoriaInput.value = ""; // Limpia el campo de entrada después de agregar
+      agregarEventListeners(); // Agrega event listeners después de agregar categoría
     } else {
       alert("Por favor, introduce un nombre válido para la categoría.");
     }
@@ -44,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const nuevaCategoria = document.createElement("div");
     nuevaCategoria.classList.add("categoria");
     nuevaCategoria.id =
-      "categoria-" + (categoriasContainer.children.length + 1);
+      "categoria-" + (document.querySelectorAll(".categoria").length + 1);
 
     // Construir el contenido de la categoría
     nuevaCategoria.innerHTML = `
@@ -68,147 +76,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Agregar la nueva categoría al contenedor
     categoriasContainer.appendChild(nuevaCategoria);
+  }
 
-    // Agregar funcionalidad a los botones de editar y eliminar de la nueva categoría
-    const editarCategoriaBtn = nuevaCategoria.querySelector(
+  // Función para agregar event listeners a los botones de editar y eliminar
+  function agregarEventListeners() {
+    const editarCategoriaBtns = document.querySelectorAll(
       ".editar-categoria-btn"
     );
-    const eliminarCategoriaBtn = nuevaCategoria.querySelector(
+    const eliminarCategoriaBtns = document.querySelectorAll(
       ".eliminar-categoria-btn"
     );
 
-    editarCategoriaBtn.addEventListener("click", function () {
-      // Lógica para editar la categoría
-      const categoriaId = this.getAttribute("data-categoria-id");
-      // Implementa la lógica para editar la categoría según sea necesario
-      console.log("Editar categoría con ID:", categoriaId);
+    editarCategoriaBtns.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento al contenedor principal
+        const categoriaId = btn.getAttribute("data-categoria-id");
+        const nombreCategoria = document
+          .getElementById(categoriaId)
+          .querySelector("h3").textContent;
+        const inputEditarCategoria = document.getElementById(
+          "editarCategoriaInput"
+        );
+        const editarCategoriaDiv = document.getElementById(
+          "editarCategoriaDiv-Categoria"
+        );
+
+        // Mostrar el nombre de la categoría en el formulario de edición
+        inputEditarCategoria.value = nombreCategoria;
+        inputEditarCategoria.dataset.categoriaId = categoriaId;
+
+        // Ocultar el div de categorías y mostrar el formulario de edición
+        document.getElementById("box2").style.display = "none";
+        editarCategoriaDiv.style.display = "block";
+      });
     });
 
-    eliminarCategoriaBtn.addEventListener("click", function () {
-      // Lógica para eliminar la categoría
-      const categoriaId = this.getAttribute("data-categoria");
-      const categoria = document.getElementById(categoriaId);
-      if (categoria) {
-        categoria.remove();
-        console.log("Categoría eliminada con éxito:", categoriaId);
-      } else {
-        console.log("No se encontró la categoría a eliminar:", categoriaId);
-      }
+    eliminarCategoriaBtns.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento al contenedor principal
+        const categoriaId = btn.getAttribute("data-categoria");
+        const categoriaAEliminar = document.getElementById(categoriaId);
+        const confirmarEliminar = confirm(
+          `¿Estás seguro de que quieres eliminar la categoría "${
+            categoriaAEliminar.querySelector("h3").textContent
+          }"?`
+        );
+        if (confirmarEliminar) {
+          categoriaAEliminar.remove();
+          guardarCategoriasEnLocalStorage(); // Guarda las categorías actualizadas en localStorage
+        }
+      });
     });
   }
-});
-
-//BOTON ELIMINAR CATEGORIA
-
-const eliminarCategoriaBtns = document.querySelectorAll(
-  ".eliminar-categoria-btn"
-);
-
-eliminarCategoriaBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const categoriaId = btn.getAttribute("data-categoria");
-
-    const categoriaAEliminar = document.getElementById(categoriaId);
-
-    // Confirmar si el usuario realmente quiere eliminar la categoría
-    if (
-      confirm(
-        `¿Estás seguro de que quieres eliminar la categoría "${categoriaAEliminar.textContent}"?`
-      )
-    ) {
-      // Eliminar la categoría del DOM
-      categoriaAEliminar.remove();
-    }
-  });
-});
-
-//EDITAR
-
-const editarCategoriaBtns = document.querySelectorAll(".editar-categoria-btn");
-
-editarCategoriaBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const categoria = btn.getAttribute("data-categoria");
-    const editarCategoriaDiv = document.getElementById(
-      `editarCategoriaDiv-${categoria}`
-    );
-    const categoriasDiv = document.getElementById("box2");
-
-    // Ocultar el div de categorías
-    categoriasDiv.style.display = "none";
-
-    // Mostrar el div de edición de categoría
-    editarCategoriaDiv.style.display = "block";
-  });
-});
-
-// Obtener todos los botones del menú
-const menuBtns = document.querySelectorAll(".opcion");
-
-menuBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const targetDivId = btn.getAttribute("data-target");
-
-    // Ocultar todos los divs excepto el div principal
-    document.querySelectorAll("[data-box]").forEach((div) => {
-      if (div.id === targetDivId) {
-        div.style.display = "block"; // Mostrar el div
-      } else {
-        div.style.display = "none"; // Ocultar otros divs
-      }
-    });
-  });
-});
-
-//reflejo del editado en categorias
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Evento de clic para los botones de editar categoría
-  const editarCategoriaBtns = document.querySelectorAll(
-    ".editar-categoria-btn"
-  );
-  editarCategoriaBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const categoriaId = btn.getAttribute("data-categoria-id");
-      const nombreCategoria = document
-        .getElementById(categoriaId)
-        .querySelector("h3").textContent;
-      const inputEditarCategoria = document.getElementById(
-        "editarCategoriaInput"
-      );
-      const editarCategoriaDiv = document.getElementById(
-        "editarCategoriaDiv-Categoria"
-      );
-
-      // Mostrar el nombre de la categoría en el formulario de edición
-      inputEditarCategoria.value = nombreCategoria;
-      inputEditarCategoria.dataset.categoriaId = categoriaId;
-
-      // Ocultar el div de categorías y mostrar el formulario de edición
-      document.getElementById("box2").style.display = "none";
-      editarCategoriaDiv.style.display = "block";
-    });
-  });
-
-  // Evento de clic para el botón de guardar en el formulario de edición
-  const btnGuardarCategoria = document.getElementById("inputEditarCategoria");
-  btnGuardarCategoria.addEventListener("click", () => {
-    const inputEditarCategoria = document.getElementById(
-      "editarCategoriaInput"
-    );
-    const nombreCategoria = inputEditarCategoria.value;
-    const categoriaEditada = inputEditarCategoria.dataset.categoriaId;
-    const categoriaDiv = document.getElementById(categoriaEditada);
-    if (categoriaDiv) {
-      // Actualizar el nombre de la categoría en el div principal
-      categoriaDiv.querySelector("h3").textContent = nombreCategoria;
-
-      // Ocultar el formulario de edición y mostrar el div principal
-      document.getElementById("box2").style.display = "block";
-      document.getElementById("editarCategoriaDiv-Categoria").style.display =
-        "none";
-    }
-  });
 
   // Evento de clic para cancelar la edición y volver al div principal
   const btnCancelarCategoria = document.getElementById(
@@ -222,18 +141,46 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// CANCELAR
+// Evento de clic para el botón de guardar en el formulario de edición
+const btnGuardarCategoria = document.getElementById("inputEditarCategoria");
+btnGuardarCategoria.addEventListener("click", () => {
+  const inputEditarCategoria = document.getElementById("editarCategoriaInput");
+  const nombreCategoria = inputEditarCategoria.value;
+  const categoriaEditada = inputEditarCategoria.dataset.categoriaId;
+  const categoriaDiv = document.getElementById(categoriaEditada);
+  if (categoriaDiv) {
+    // Actualizar el nombre de la categoría en el div principal
+    categoriaDiv.querySelector("h3").textContent = nombreCategoria;
 
-const cancelarCategoriaBtn = document.getElementById(
-  "cancelar-categoria-boton"
-);
+    // Ocultar el formulario de edición y mostrar el div principal
+    document.getElementById("box2").style.display = "block";
+    document.getElementById("editarCategoriaDiv-Categoria").style.display =
+      "none";
 
-cancelarCategoriaBtn.addEventListener("click", () => {
-  // Ocultar el div de edición de categoría
-  document.querySelectorAll('[id^="editarCategoriaDiv"]').forEach((div) => {
-    div.style.display = "none";
-  });
+    // Guardar las categorías editadas en localStorage
+    guardarCategoriasEnLocalStorage();
+  }
 
-  // Mostrar el div de categorías
-  document.getElementById("box2").style.display = "block";
+  // Redirigir al usuario de vuelta al div principal de categorías
+  const box1 = document.getElementById("box1");
+  const box2 = document.getElementById("box2");
+  box1.style.display = "block";
+  box2.style.display = "none";
 });
+
+// Función para guardar las categorías en localStorage
+function guardarCategoriasEnLocalStorage() {
+  const categorias = Array.from(
+    categoriasContainer.querySelectorAll(".categoria")
+  ).map((categoria) => categoria.querySelector("h3").textContent);
+  localStorage.setItem("categorias", JSON.stringify(categorias));
+}
+
+// Función para cargar las categorías desde localStorage
+function cargarCategoriasDesdeLocalStorage() {
+  const categorias = JSON.parse(localStorage.getItem("categorias")) || [];
+  categorias.forEach((categoria) => agregarCategoria(categoria)); // Llama a agregarCategoria
+}
+
+// Cargar las categorías almacenadas en localStorage al cargar la página
+cargarCategoriasDesdeLocalStorage();
