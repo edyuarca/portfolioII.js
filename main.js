@@ -134,23 +134,27 @@ generarTabla();
 const btnEditarOp = document.getElementById("btnEditarOp");
 const btnEliminarOp = document.getElementById("btnEliminarOp");
 
-btnEditarOp.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const operacionId = btn.getAttribute("data-id");
-    const operacion = obtenerOperacionPorId(operacionId);
-    completarFormulario(operacion);
-  });
-});
-
-const obtenerOperacionPorId = (id) => {
-  const operacionesGuardadas = evaluarLocalStorage();
-  return operacionesGuardadas.find((operacion) => operacion.id === id);
+const obtenerIdOperacionAEditar = () => {
+  const operacionesGuardadas = JSON.parse(localStorage.getItem("operaciones"));
+  if (operacionesGuardadas !== null) {
+    operacionesGuardadas.find((OperacionNueva) => OperacionNueva.id === id);
+  }
 };
 
-const completarFormulario = (operacion) => {
-  campoDescripcion.value = operacion.descripcion;
-  monto.value = operacion.monto;
-  tipo.value = operacion.tipo;
-  categoria.value = operacion.categoria;
-  fecha.value = operacion.fecha;
+const traerOpaEditar = () => {
+  vercontainerNuevaOp();
+  operaciones.innerHTML = "";
+
+  const operacionAEditar = obtenerIdOperacionAEditar();
+  console.log("funciona evento id a editar");
+
+  campoDescripcion.value = operacionAEditar.descripcion;
+  monto.value = operacionAEditar.monto;
+  tipo.value = operacionAEditar.tipo;
+  categoria.value = operacionAEditar.categoria;
+  fecha.value = operacionAEditar.fecha;
+
+  return operacionAEditar;
 };
+
+btnEditarOp.addEventListener("click", traerOpaEditar);
