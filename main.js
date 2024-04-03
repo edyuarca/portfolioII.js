@@ -102,7 +102,7 @@ const pagPricinpal = () => {
 btnCancelarOpTabla.addEventListener("click", pagPricinpal);
 
 //creación de tabla
-console.log(operaciones);
+
 const generarTabla = () => {
   operaciones.innerHTML = "";
   console.log(evaluarLocalStorage());
@@ -111,50 +111,62 @@ const generarTabla = () => {
     for (let operacion of evaluarLocalStorage()) {
       console.log(operacion.categoria);
       operaciones.innerHTML += `
-        
-          
-          <span>${operacion.descripcion}</span>
-          <span>${operacion.categoria}</span>
-          <span>${operacion.fecha}</span>
-          <span>${operacion.monto}</span>
-          <div>
-          <button class="w-9 h-9" id="btnEditarOp"><img src="imagenes/icon-edit.svg" alt=""></button>
-          <button class="w-9 h-9" id="btnEliminarOp"><img src="imagenes/icon-delete.svg" alt=""></button>
-          </div>
-        
-        
-        `;
+        <span>${operacion.descripcion}</span>
+        <span>${operacion.categoria}</span>
+        <span>${operacion.fecha}</span>
+        <span>${operacion.monto}</span>
+        <div>
+          <button class="w-9 h-9 btnEditarOp"><img src="imagenes/icon-edit.svg" alt=""></button>
+          <button class="w-9 h-9 btnEliminarOp"><img src="imagenes/icon-delete.svg" alt=""></button>
+        </div>`;
     }
   }
+
   console.log("Tabla generada correctamente");
+  const manejarEdicion = (event) => {
+    vercontainerNuevaOp();
+    const filaOperacion = event.target.closest(".grid-cols-5");
+    const descripcion =
+      filaOperacion.querySelector("span:nth-child(1)").textContent;
+    const categoria =
+      filaOperacion.querySelector("span:nth-child(2)").textContent;
+    const fecha = filaOperacion.querySelector("span:nth-child(3)").textContent;
+    const monto = filaOperacion.querySelector("span:nth-child(4)").textContent;
+
+    // Aquí puedes cargar los datos en el formulario de edición
+    // y mostrar la ventana de edición
+    console.log("Editar operación");
+    console.log(descripcion, categoria, fecha, monto);
+  };
+
+  // Obtener todos los botones de edición y eliminar
+  const btnsEditarOp = document.querySelectorAll(".btnEditarOp");
+  const btnsEliminarOp = document.querySelectorAll(".btnEliminarOp");
+
+  // Asignar evento de clic a los botones de edición
+  btnsEditarOp.forEach((btn) => {
+    btn.addEventListener("click", manejarEdicion);
+  });
+
+  // Asignar evento de clic a los botones de eliminación
+  btnsEliminarOp.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Lógica para eliminar la operación
+      console.log("Eliminar operación");
+    });
+  });
 };
+
+// Generar la tabla cuando se carga la página
 generarTabla();
 
 //Botones editar y eliminar operación
-const btnEditarOp = document.getElementById("btnEditarOp");
-const btnEliminarOp = document.getElementById("btnEliminarOp");
+//const btnEditarOp = document.querySelectorAll("btnEditarOp");
+//const btnEliminarOp = document.querySelectorAll("btnEliminarOp");
 
-const obtenerIdOperacionAEditar = () => {
-  const operacionesGuardadas = JSON.parse(localStorage.getItem("operaciones"));
-  if (operacionesGuardadas !== null) {
-    operacionesGuardadas.find((OperacionNueva) => OperacionNueva.id === id);
-  }
-};
-
-const traerOpaEditar = () => {
-  vercontainerNuevaOp();
-  operaciones.innerHTML = "";
-
-  const operacionAEditar = obtenerIdOperacionAEditar();
-  console.log("funciona evento id a editar");
-
-  campoDescripcion.value = operacionAEditar.descripcion;
-  monto.value = operacionAEditar.monto;
-  tipo.value = operacionAEditar.tipo;
-  categoria.value = operacionAEditar.categoria;
-  fecha.value = operacionAEditar.fecha;
-
-  return operacionAEditar;
-};
-
-btnEditarOp.addEventListener("click", traerOpaEditar);
+//const obtenerIdOperacionAEditar = () => {
+// const operacionesGuardadas = JSON.parse(localStorage.getItem("operaciones"));
+// if (operacionesGuardadas !== null) {
+//   operacionesGuardadas.find((OperacionNueva) => OperacionNueva.id === id);
+// }
+//};
