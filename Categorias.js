@@ -181,6 +181,3 @@ function cargarCategoriasDesdeLocalStorage() {
   const categorias = JSON.parse(localStorage.getItem("categorias")) || [];
   categorias.forEach((categoria) => agregarCategoria(categoria)); // Llama a agregarCategoria
 }
-
-// Cargar las categorías almacenadas en localStorage al cargar la página
-cargarCategoriasDesdeLocalStorage();
