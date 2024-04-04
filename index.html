@@ -55,193 +55,241 @@
     </header>
     <main class="w-full flex gap-4 justify-center">
 
-       <!--CATEGORIAS LO HACE CIN-->
+     <!--CATEGORIAS LO HACE CIN-->
 
-       <div class="pr-6 pb-12 pl-6 mt-6 flex flex-col hidden" id="box2" data-box>
+     <div class="pr-6 pb-12 pl-6 mt-6 flex flex-col hidden" id="box2" data-box>
+      <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
         <div class="m-auto relative w-3/3">
-          <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
-            <div class="p-3 block">
-              <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
-                <h2 class="size-15 text-4xl font-bold">Categorías</h2>
+          <div class="p-3 block">
+            <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
+              <h2 class="size-15 text-4xl font-bold">Categorías</h2>
 
-                <div class="grid grid-cols-2 place-content-center">
-                  <div class="mt-12">
-                    <label class="ml-6 font-bold" for="agregar-categoria-boton"
-                      >Nombre</label
-                    >
-                    <div class="mb-3 mr-3">
-                      <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
-                        <input
-                          class="h-12 border-solid rounded border-gray-400 bg-slate-50 w-full	max-w-full"
-                          type="text"
-                          name=""
-                          id="agregar-categoria-boton"
-                        />
-                        <button
-                          class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
-                          id="agregar-categoria-boton"
-                        >
-                          Agregar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="" id="categorias">
-                  <div class="">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        >
-                          Comida
-                        </h3>
-                      </div>
-                      <div class="ml-3 mt-6 text-center text-fuchsia-700">
-                        <p>
-                          <button class="editar-categoria-btn" data-categoria="Categoria">
-                            <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                          </button>
-                          <button>
-                            <img class="m-8 h-8" src="icon-delete.svg" alt="">
-                          </button>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16">
-                        <h3 class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Servicios</h3>
-                        
-                      </div>
-                      <div class="ml-3 mt-6 text-center text-fuchsia-700">
-                        <button class="editar-categoria-btn" data-categoria="Categoria">
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                        </button>
-                        <button>
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="">
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16">
-                          <h3 class="w-16 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Salidas</h3>
-                        
-                      </div>
-                      <div class="ml-6 mt-6 text-center text-fuchsia-700">
-                        <button class="editar-categoria-btn" data-categoria="Categoria">
-                         <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                        </button>
-                        <button>
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="">
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Educación</h3>
-                        
-                      </div>
-                      <div class="mt-6 text-center text-fuchsia-700">
-                        <button class="editar-categoria-btn" data-categoria="Categoria">
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                        </button>
-                        <button>
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="">
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Transporte</h3>
-                        
-                      </div>
-                      <div class="mt-6 grid grid-cols-2 place-content-center">
-                        <button class="editar-categoria-btn" data-categoria="Categoria">
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                        </button>
-                        <button>
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="">
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                          >Trabajo</h3>
-                        
-                      </div>
-                      <div class="ml-6 mt-6 text-center text-fuchsia-700">
-                        <button class="editar-categoria-btn" data-categoria="Categoria">
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="">
-                        </button>
-                        <button>
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="">
-                        </button>
-                        <p></p>
-                      </div>
+              <div class="grid grid-cols-2 place-content-center">
+                <div class="mt-12">
+                  <label class="ml-6 font-bold" for="nueva-categoria-input"
+                    >Nombre</label
+                  >
+                  <div class="mb-3 mr-3">
+                    <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
+                      <input
+                        class="h-12 border-solid rounded border-gray-400 bg-slate-50 w-full max-w-full"
+                        type="text"
+                        id="nueva-categoria-input"
+                        placeholder="Nombre de la nueva categoría"
+                      />
+                      <button
+                        class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
+                        id="agregar-categoria-boton"
+                      >
+                        Agregar
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-    </div>
-      
-<!--editar categoria LO HACE CIN-->
-
-      <div class="m-auto relative w-3/5 hidden" id="editarCategoriaDiv-Categoria" data-box="">
-        <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
-          <div class="p-3 block">
-            <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
-              <h2 class="size-15 text-4xl font-bold">Editar categoria</h2>
-              <div class="mb-3 mr-3">
-                <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
-                  <input
-                    class="h-12 border-solid rounded border-gray-400 bg-slate-50 max-w-full w-full"
-                    type="text"
-                    name=""
-                    id=""
-                  />
-                  <button
-                    class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
-                    
-                  id="editarCategoriaBtn">
-                    Editar
-                  </button>
-                  <button
-                    class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
-                    id="cancelar-categoria-boton"
-                  >
-                    Cancelar
-                  </button>
+              <div class="categorias" id="categ">
+                <div id="categoria-1" class="categoria">
+                  <div class="flex grid grid-flow-col justify-between">
+                    <div class="pt-16" id="categoriaId">
+                      <h3
+                        class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                      >
+                        Comida
+                      </h3>
+                    </div>
+                    <div class="ml-3 mt-6 text-center text-fuchsia-700">
+                      <p>
+                        <button
+                          class="editar-categoria-btn"
+                          data-categoria-id="categoria-1"
+                        >
+                          <img class="m-8 h-8" src="icon-edit.svg" alt="" />
+                        </button>
+                        <button
+                          class="eliminar-categoria-btn"
+                          data-categoria="categoria-1"
+                        >
+                          <img class="m-8 h-8" src="icon-delete.svg" alt="" />
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div id="categoria-2" class="categoria">
+                  <div class="flex grid grid-flow-col justify-between">
+                    <div class="pt-16" id="categoriaId">
+                      <h3
+                        class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                      >
+                        Servicios
+                      </h3>
+                    </div>
+                    <div class="ml-3 mt-6 text-center text-fuchsia-700">
+                      <button
+                        class="editar-categoria-btn"
+                        data-categoria-id="categoria-2"
+                      >
+                        <img class="m-8 h-8" src="icon-edit.svg" alt="" />
+                      </button>
+                      <button
+                        class="eliminar-categoria-btn"
+                        data-categoria="categoria-2"
+                      >
+                        <img class="m-8 h-8" src="icon-delete.svg" alt="" />
+                      </button>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <div id="categoria-3" class="categoria">
+                  <div class="flex grid grid-flow-col justify-between">
+                    <div class="pt-16" id="categoriaId">
+                      <h3
+                        class="w-16 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                      >
+                        Salidas
+                      </h3>
+                    </div>
+                    <div class="ml-6 mt-6 text-center text-fuchsia-700">
+                      <button
+                        class="editar-categoria-btn"
+                        data-categoria-id="categoria-3"
+                      >
+                        <img class="m-8 h-8" src="icon-edit.svg" alt="" />
+                      </button>
+                      <button
+                        class="eliminar-categoria-btn"
+                        data-categoria="categoria-3"
+                      >
+                        <img class="m-8 h-8" src="icon-delete.svg" alt="" />
+                      </button>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <div id="categoria-4" class="categoria">
+                  <div class="flex grid grid-flow-col justify-between">
+                    <div class="pt-16" id="categoriaId">
+                      <h3
+                        class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                      >
+                        Educación
+                      </h3>
+                    </div>
+                    <div class="mt-6 text-center text-fuchsia-700">
+                      <button
+                        class="editar-categoria-btn"
+                        data-categoria-id="categoria-4"
+                      >
+                        <img class="m-8 h-8" src="icon-edit.svg" alt="" />
+                      </button>
+                      <button
+                        class="eliminar-categoria-btn"
+                        data-categoria="categoria-4"
+                      >
+                        <img class="m-8 h-8" src="icon-delete.svg" alt="" />
+                      </button>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <div id="categoria-5" class="categoria">
+                  <div class="flex grid grid-flow-col justify-between">
+                    <div class="pt-16" id="categoriaId">
+                      <h3
+                        class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                      >
+                        Transporte
+                      </h3>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 place-content-center">
+                      <button
+                        class="editar-categoria-btn"
+                        data-categoria-id="categoria-5"
+                      >
+                        <img class="m-8 h-8" src="icon-edit.svg" alt="" />
+                      </button>
+                      <button
+                        class="eliminar-categoria-btn"
+                        data-categoria="categoria-5"
+                      >
+                        <img class="m-8 h-8" src="icon-delete.svg" alt="" />
+                      </button>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <div id="categoria-6" class="categoria">
+                  <div class="flex grid grid-flow-col justify-between">
+                    <div class="pt-16" id="categoriaId">
+                      <h3
+                        class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
+                      >
+                        Trabajo
+                      </h3>
+                    </div>
+                    <div class="ml-6 mt-6 text-center text-fuchsia-700">
+                      <button
+                        class="editar-categoria-btn"
+                        data-categoria-id="categoria-6"
+                      >
+                        <img class="m-8 h-8" src="icon-edit.svg" alt="" />
+                      </button>
+                      <button
+                        class="eliminar-categoria-btn"
+                        data-categoria="categoria-6"
+                      >
+                        <img class="m-8 h-8" src="icon-delete.svg" alt="" />
+                      </button>
+                      <p></p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <!--editar categoria LO HACE CIN-->
+
+    <div
+      class="m-auto relative w-3/5 hidden"
+      id="editarCategoriaDiv-Categoria"
+      data-box=""
+    >
+      <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
+        <div class="p-3 block">
+          <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
+            <h2 class="size-15 text-4xl font-bold">Editar categoria</h2>
+            <div class="mb-3 mr-3">
+              <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
+                <input
+                  class="h-12 border-solid rounded border-gray-400 bg-slate-50 max-w-full w-full"
+                  type="text"
+                  name
+                  id="editarCategoriaInput"
+                />
+                <button
+                  class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
+                  id="inputEditarCategoria"
+                >
+                  Editar
+                </button>
+                <button
+                  class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
+                  id="cancelar-categoria-boton"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
      <!--REPORTES DEL NAV-BAR LO HACE CIN-->
 
