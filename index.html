@@ -15,21 +15,21 @@
         class="bg-fuchsia-100 rounded-md shadow-lg max-w-80 flex w-2/5 h-96"
         id="contenedorBalances"
       >
-        <div class="w-full">
-          <h2 class="text-3xl font-bold p-8">Balance</h2>
-          <div class="flex justify-between">
-            <span class="text-xl px-8 py-5">Ingresos</span>
-            <span class="text-xl text-green-500 px-8 py-5" id="ingreso">0</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-xl px-8 py-5">Gastos</span>
-            <span class="text-xl text-rose-500 px-8 py-5" id="gastos">0</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-xl font-bold px-8 py-5">Total</span>
-            <span class="text-xl px-8 py-5" id="totalBalances">0</span>
-          </div>
+      <div class="w-full">
+        <h2 class="text-3xl font-bold p-8">Balance</h2>
+        <div class="flex justify-between">
+          <span class="text-xl px-8 py-5">Ingresos</span>
+          <span class="text-xl text-green-500 px-8 py-5" id="ingreso">0</span>
         </div>
+        <div class="flex justify-between">
+          <span class="text-xl px-8 py-5">Gastos</span>
+          <span class="text-xl text-rose-500 px-8 py-5" id="gastos">0</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-xl font-bold px-8 py-5">Total</span>
+          <span class="text-xl px-8 py-5" id="totalBalances">0</span>
+        </div>
+      </div>
       </div>
 
       <!-- Contenedor sección operaciones -->
@@ -180,91 +180,93 @@
           </form>
         </div>
       </div>
-      <!-- formulario editar  operación-->
-      <div
-        class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden"
-        id="containerEditarOp"
-      >
-        <div>
-          <form action="" id="formEditarOperacion">
-            <h2 class="text-3xl font-bold p-8">Nueva operación</h2>
-            <div class="px-8">
-              <div>
-                <h4 class="mb-1">Descripción</h4>
-                <input
-                  type="text"
-                  id="editarDescripcion"
-                  name="editarDescripcion"
-                  class="w-full mb-3 rounded-sm h-8"
-                />
-              </div>
-              <div>
-                <h4 class="mb-1">Monto</h4>
-                <input
-                  type="number"
-                  id="editarMonto"
-                  name="editarMonto"
-                  min="0"
-                  value=""
-                  class="w-full mb-3 rounded-sm h-8"
-                />
-              </div>
-              <div>
-                <h4 class="mb-1">Tipo</h4>
-                <select
-                  name="editarTipo"
-                  id="editarTipo"
-                  class="w-full mb-3 rounded-sm h-8"
-                >
-                  <option value="gasto">gasto</option>
-                  <option value="ingreso">ingreso</option>
-                </select>
-              </div>
-              <div>
-                <h4 class="mb-1">Categoría</h4>
-                <select
-                  name="editarCategoria"
-                  id="editarCategoria"
-                  class="w-full mb-3 rounded-sm h-8"
-                >
-                  <option value="comida">Comida</option>
-                  <option value="servicios">Servicios</option>
-                  <option value="salidas">Salidas</option>
-                  <option value="educacion">Educación</option>
-                  <option value="transporte">Transporte</option>
-                  <option value="trabajo">Trabajo</option>
-                </select>
-              </div>
-              <div>
-                <h4 class="mb-1">Fecha</h4>
-                <input
-                  type="date"
-                  id="editarFecha"
-                  name="editarFecha"
-                  class="w-full rounded-sm h-8"
-                />
-              </div>
-            </div>
-            <div class="flex justify-end gap-3 p-8">
-              <button
-                type="button"
-                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-                id="btnCancelarOpTabla"
-              >
-                Cancelar
-              </button>
-              <button
-                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-                id="btnAgregarOpTabla"
-              >
-                Agregar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
 
+            <!-- formulario editar  operación-->
+            <div
+            class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden"
+            id="containerEditarOp"
+            >
+            <div>
+              <form action="" id="formEditarOperacion">
+                <h2 class="text-3xl font-bold p-8">Nueva operación</h2>
+                <div class="px-8">
+                  <div>
+                    <h4 class="mb-1">Descripción</h4>
+                    <input
+                      type="text"
+                      id="editarDescripcion"
+                      name="editarDescripcion"
+                      class="w-full mb-3 rounded-sm h-8"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="mb-1">Monto</h4>
+                    <input
+                      type="number"
+                      id="editarMonto"
+                      name="editarMonto"
+                      min="0"
+                      value=""
+                      class="w-full mb-3 rounded-sm h-8"
+                    />
+                  </div>
+                  <div>
+                    <h4 class="mb-1">Tipo</h4>
+                    <select
+                      name="editarTipo"
+                      id="editarTipo"
+                      class="w-full mb-3 rounded-sm h-8"
+                    >
+                      <option value="gasto">gasto</option>
+                      <option value="ingreso">ingreso</option>
+                    </select>
+                  </div>
+                  <div>
+                    <h4 class="mb-1">Categoría</h4>
+                    <select
+                      name="editarCategoria"
+                      id="editarCategoria"
+                      class="w-full mb-3 rounded-sm h-8"
+                    >
+                      <option value="comida">Comida</option>
+                      <option value="servicios">Servicios</option>
+                      <option value="salidas">Salidas</option>
+                      <option value="educacion">Educación</option>
+                      <option value="transporte">Transporte</option>
+                      <option value="trabajo">Trabajo</option>
+                    </select>
+                  </div>
+                  <div>
+                    <h4 class="mb-1">Fecha</h4>
+                    <input
+                      type="date"
+                      id="editarFecha"
+                      name="editarFecha"
+                      class="w-full rounded-sm h-8"
+                    />
+                  </div>
+                </div>
+                <div class="flex justify-end gap-3 p-8">
+                  <button
+                    type="button"
+                    class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
+                    id="btnCancelarOpTabla"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
+                    id="btnAgregarOpTabla"
+                  >
+                    Agregar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+            
     <script src="main.js"></script>
   </body>
 </html>
