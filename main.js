@@ -26,6 +26,10 @@ const fecha = document.getElementById("fecha");
 const operaciones = document.getElementById("operaciones");
 const tablaOperaciones = document.getElementById("tablaOperaciones");
 
+const btnEliminarOp = document.querySelectorAll(".btnEliminarOp");
+const btnEditarOp = document.querySelectorAll(".btnEditarOp");
+const containerEditarOp = document.getElementById("containerEditarOp");
+
 // funcionalidad balances
 
 const ingresos = document.getElementById("ingreso");
@@ -50,6 +54,17 @@ const evaluarLocalStorage = () => {
 
 let total = 0;
 
+const balancesOperaciones = (tipo, monto) => {
+  if (tipo === "gasto") {
+    total = total - parseFloat(monto);
+    gastos.innerText = parseFloat(gastos.textContent) + parseFloat(monto);
+  } else if (tipo === "ingreso") {
+    total = total + parseFloat(monto);
+    ingresos.innerText = parseFloat(ingresos.textContent) + parseFloat(monto);
+  }
+  totalBalances.innerText = total;
+};
+
 formNuevaOperacion.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("Formulario enviado");
@@ -65,16 +80,6 @@ formNuevaOperacion.addEventListener("submit", (e) => {
   console.log(categoria.value);
   console.log("Datos de la nueva operación:", OperacionNueva);
 
-  const balancesOperaciones = (tipo, monto) => {
-    if (tipo === "gasto") {
-      total = total - parseFloat(monto);
-      gastos.innerText = parseFloat(gastos.textContent) + parseFloat(monto);
-    } else if (tipo === "ingreso") {
-      total = total + parseFloat(monto);
-      ingresos.innerText = parseFloat(ingresos.textContent) + parseFloat(monto);
-    }
-    totalBalances.innerText = total;
-  };
   balancesOperaciones(OperacionNueva.tipo, OperacionNueva.monto);
   console.log("balances", balancesOperaciones);
 
@@ -116,57 +121,82 @@ const generarTabla = () => {
         <span>${operacion.fecha}</span>
         <span>${operacion.monto}</span>
         <div>
-          <button class="w-9 h-9 btnEditarOp"><img src="imagenes/icon-edit.svg" alt=""></button>
-          <button class="w-9 h-9 btnEliminarOp"><img src="imagenes/icon-delete.svg" alt=""></button>
+          <button class="w-9 h-9 btnEditarOp" data-id="${operacion.id}"><img src="imagenes/icon-edit.svg" alt=""></button>
+        </div>
+        </div>  
+          <button class="w-9 h-9 btnEliminarOp" data-id="${operacion.id}"><img src="imagenes/icon-delete.svg" alt=""></button>
         </div>`;
     }
   }
 
   console.log("Tabla generada correctamente");
-  const manejarEdicion = (event) => {
-    vercontainerNuevaOp();
-    const filaOperacion = event.target.closest(".grid-cols-5");
-    const descripcion =
-      filaOperacion.querySelector("span:nth-child(1)").textContent;
-    const categoria =
-      filaOperacion.querySelector("span:nth-child(2)").textContent;
-    const fecha = filaOperacion.querySelector("span:nth-child(3)").textContent;
-    const monto = filaOperacion.querySelector("span:nth-child(4)").textContent;
-
-    // Aquí puedes cargar los datos en el formulario de edición
-    // y mostrar la ventana de edición
-    console.log("Editar operación");
-    console.log(descripcion, categoria, fecha, monto);
-  };
-
-  // Obtener todos los botones de edición y eliminar
-  const btnsEditarOp = document.querySelectorAll(".btnEditarOp");
-  const btnsEliminarOp = document.querySelectorAll(".btnEliminarOp");
-
-  // Asignar evento de clic a los botones de edición
-  btnsEditarOp.forEach((btn) => {
-    btn.addEventListener("click", manejarEdicion);
-  });
-
-  // Asignar evento de clic a los botones de eliminación
-  btnsEliminarOp.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Lógica para eliminar la operación
-      console.log("Eliminar operación");
-    });
-  });
 };
 
-// Generar la tabla cuando se carga la página
+// Eliminar operación
+const eliminarOperacion = (id) => {
+  const indice = datos.findIndex((operacion) => operacion.id === id);
+  if (indice !== -1) {
+    datos.splice(indice, 1);
+    localStorage.setItem("operaciones", JSON.stringify(datos));
+    generarTabla();
+    console.log("Operación eliminada correctamente");
+  } else {
+    console.log("No se encontró la operación a eliminar");
+  }
+};
+
+// Editar operación
+const editarOperacion = (id) => {
+  const operacion = datos.find((operacion) => operacion.id === id);
+  if (operacion) {
+    const formEditar = document.getElementById("formEditarOperacion");
+    containerEditarOp.classList.remove("hidden");
+    contenedorBalances.classList.add("hidden");
+    containerOperaciones.classList.add("hidden");
+
+    const montoAnterior = operacion.monto;
+
+    document.getElementById("editarDescripcion").value = operacion.descripcion;
+    document.getElementById("editarMonto").value = operacion.monto;
+    document.getElementById("editarTipo").value = operacion.tipo;
+    document.getElementById("editarCategoria").value = operacion.categoria;
+    document.getElementById("editarFecha").value = operacion.fecha;
+
+    formEditar.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      operacion.descripcion =
+        document.getElementById("editarDescripcion").value;
+      operacion.monto = document.getElementById("editarMonto").value;
+      operacion.tipo = document.getElementById("editarTipo").value;
+      operacion.categoria = document.getElementById("editarCategoria").value;
+      operacion.fecha = document.getElementById("editarFecha").value;
+
+      const diferenciaMonto =
+        parseFloat(operacion.monto) - parseFloat(montoAnterior);
+
+      balancesOperaciones(operacion.tipo, diferenciaMonto);
+
+      localStorage.setItem("operaciones", JSON.stringify(datos));
+
+      generarTabla();
+
+      containerEditarOp.classList.add("hidden");
+      contenedorBalances.classList.remove("hidden");
+      containerOperaciones.classList.remove("hidden");
+    });
+  } else console.log("No se encontró la operación con el ID proporcionado");
+};
+operaciones.addEventListener("click", (e) => {
+  const btnEditar = e.target.closest(".btnEditarOp");
+  const btnEliminar = e.target.closest(".btnEliminarOp");
+
+  if (btnEditar) {
+    const idEdit = btnEditar.getAttribute("data-id");
+    editarOperacion(idEdit);
+  } else if (btnEliminar) {
+    const idDelete = btnEliminar.getAttribute("data-id");
+    eliminarOperacion(idDelete);
+  }
+});
 generarTabla();
-
-//Botones editar y eliminar operación
-//const btnEditarOp = document.querySelectorAll("btnEditarOp");
-//const btnEliminarOp = document.querySelectorAll("btnEliminarOp");
-
-//const obtenerIdOperacionAEditar = () => {
-// const operacionesGuardadas = JSON.parse(localStorage.getItem("operaciones"));
-// if (operacionesGuardadas !== null) {
-//   operacionesGuardadas.find((OperacionNueva) => OperacionNueva.id === id);
-// }
-//};
