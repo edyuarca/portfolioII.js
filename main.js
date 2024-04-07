@@ -154,7 +154,19 @@ const editarOperacion = (id) => {
     contenedorBalances.classList.add("hidden");
     containerOperaciones.classList.add("hidden");
 
-    const montoAnterior = operacion.monto;
+    const recalcularIngresos = () => {
+      let ingresosTotales = 0;
+      for (let operacion of datos) {
+        if (operacion.tipo === "ingreso") {
+          ingresosTotales += parseFloat(operacion.monto);
+        }
+      }
+      return ingresosTotales;
+    };
+
+    const montoAnterior = parseFloat(operacion.monto);
+    const tipoAnterior = operacion.tipo;
+    const ingresosTotales = recalcularIngresos();
 
     document.getElementById("editarDescripcion").value = operacion.descripcion;
     document.getElementById("editarMonto").value = operacion.monto;
@@ -172,10 +184,34 @@ const editarOperacion = (id) => {
       operacion.categoria = document.getElementById("editarCategoria").value;
       operacion.fecha = document.getElementById("editarFecha").value;
 
-      const diferenciaMonto =
-        parseFloat(operacion.monto) - parseFloat(montoAnterior);
+      const montoNuevo = parseFloat(operacion.monto);
+      let tipoNuevo = operacion.tipo;
 
-      balancesOperaciones(operacion.tipo, diferenciaMonto);
+      if (tipoAnterior === "ingreso") {
+        total = total - parseFloat(montoAnterior); // Restar el monto anterior de los ingresos
+        ingresos.innerText =
+          parseFloat(ingresos.textContent) - parseFloat(montoAnterior); // Actualizar los ingresos
+      } else if (tipoAnterior === "gasto") {
+        total = total + parseFloat(montoAnterior); // Restar el monto anterior de los gastos
+        gastos.innerText =
+          parseFloat(gastos.textContent) - parseFloat(montoAnterior); // Actualizar los gastos
+      }
+
+      if (tipoNuevo === "gasto") {
+        total = total - parseFloat(montoNuevo); // Sumar el nuevo monto como gasto
+        gastos.innerText =
+          parseFloat(gastos.textContent) + parseFloat(montoNuevo); // Actualizar los gastos
+      } else if (tipoNuevo === "ingreso") {
+        total = total + parseFloat(montoNuevo); // Sumar el nuevo monto como ingreso
+        ingresos.innerText =
+          parseFloat(ingresos.textContent) + parseFloat(montoNuevo); // Actualizar los ingresos
+      }
+
+      totalBalances.innerText = total;
+
+      ingresos.innerText = ingresosTotales;
+
+      balancesOperaciones(tipoAnterior, montoAnterior);
 
       localStorage.setItem("operaciones", JSON.stringify(datos));
 
