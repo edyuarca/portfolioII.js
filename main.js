@@ -106,7 +106,7 @@ const pagPricinpal = () => {
 
 btnCancelarOpTabla.addEventListener("click", pagPricinpal);
 
-//creación de tabla
+//creación de tabla , editar y eliminar operación
 
 const generarTabla = () => {
   operaciones.innerHTML = "";
