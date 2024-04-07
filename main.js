@@ -187,29 +187,28 @@ const editarOperacion = (id) => {
       const montoNuevo = parseFloat(operacion.monto);
       let tipoNuevo = operacion.tipo;
 
-      if (tipoAnterior === "ingreso") {
-        total = total - parseFloat(montoAnterior); // Restar el monto anterior de los ingresos
+      // Actualizar los totales de ingresos y gastos según el nuevo tipo de la operación
+      if (tipoNuevo === "gasto") {
+        // Restar el monto anterior de los ingresos
+        // Restar el nuevo monto de los gastos
+        total = total - parseFloat(montoAnterior) - parseFloat(montoNuevo);
         ingresos.innerText =
           parseFloat(ingresos.textContent) - parseFloat(montoAnterior); // Actualizar los ingresos
-      } else if (tipoAnterior === "gasto") {
-        total = total + parseFloat(montoAnterior); // Restar el monto anterior de los gastos
-        gastos.innerText =
-          parseFloat(gastos.textContent) - parseFloat(montoAnterior); // Actualizar los gastos
-      }
-
-      if (tipoNuevo === "gasto") {
-        total = total - parseFloat(montoNuevo); // Sumar el nuevo monto como gasto
         gastos.innerText =
           parseFloat(gastos.textContent) + parseFloat(montoNuevo); // Actualizar los gastos
       } else if (tipoNuevo === "ingreso") {
-        total = total + parseFloat(montoNuevo); // Sumar el nuevo monto como ingreso
+        // Sumar el monto anterior a los ingresos
+        // Restar el nuevo monto de los gastos
+        total = total + parseFloat(montoAnterior) - parseFloat(montoNuevo);
         ingresos.innerText =
-          parseFloat(ingresos.textContent) + parseFloat(montoNuevo); // Actualizar los ingresos
+          parseFloat(ingresos.textContent) +
+          parseFloat(montoAnterior) -
+          parseFloat(montoNuevo); // Actualizar los ingresos
+        gastos.innerText =
+          parseFloat(gastos.textContent) - parseFloat(montoNuevo); // Actualizar los gastos
       }
 
-      totalBalances.innerText = total;
-
-      ingresos.innerText = ingresosTotales;
+      totalBalances.innerText = total; // Actualizar el total de balances
 
       balancesOperaciones(tipoAnterior, montoAnterior);
 
