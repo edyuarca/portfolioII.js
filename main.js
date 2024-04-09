@@ -154,19 +154,8 @@ const editarOperacion = (id) => {
     contenedorBalances.classList.add("hidden");
     containerOperaciones.classList.add("hidden");
 
-    const recalcularIngresos = () => {
-      let ingresosTotales = 0;
-      for (let operacion of datos) {
-        if (operacion.tipo === "ingreso") {
-          ingresosTotales += parseFloat(operacion.monto);
-        }
-      }
-      return ingresosTotales;
-    };
-
     const montoAnterior = parseFloat(operacion.monto);
     const tipoAnterior = operacion.tipo;
-    const ingresosTotales = recalcularIngresos();
 
     document.getElementById("editarDescripcion").value = operacion.descripcion;
     document.getElementById("editarMonto").value = operacion.monto;
@@ -219,6 +208,10 @@ const editarOperacion = (id) => {
       containerEditarOp.classList.add("hidden");
       contenedorBalances.classList.remove("hidden");
       containerOperaciones.classList.remove("hidden");
+
+      document
+        .getElementById("btnCancelarOpTablaE")
+        .addEventListener("click", pagPricinpal);
     });
   } else console.log("No se encontró la operación con el ID proporcionado");
 };
