@@ -27,8 +27,7 @@ const evaluarLocalStorage = () => {
   }
 };
 
-//filtros ocultar/mostrar
-//FILTROS
+//FILTROS ocultar/mostrar
 
 document.addEventListener("DOMContentLoaded", function () {
   var toggleFiltros = document.getElementById("toggle-filtros");
@@ -46,3 +45,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+

@@ -1,7 +1,8 @@
-//agregar y guardar en almacenam
+//agregar y guardar en almacenam +filtros
 
 document.addEventListener("DOMContentLoaded", function () {
   const categoriasContainer = document.getElementById("categ");
+  const filtroCategoriaSelect = document.getElementById("filtro-categoria");
 
   // Función para guardar las categorías en localStorage
   function guardarCategoriasEnLocalStorage() {
@@ -14,18 +15,30 @@ document.addEventListener("DOMContentLoaded", function () {
   // Función para cargar las categorías desde localStorage
   function cargarCategoriasDesdeLocalStorage() {
     const categorias = JSON.parse(localStorage.getItem("categorias")) || [];
-    limpiarCategoriasContainer(); // Limpiar el contenedor antes de cargar categorías
-    categorias.forEach((categoria) => agregarCategoria(categoria)); // Llama a agregarCategoria
-    agregarEventListeners(); // Agrega event listeners después de cargar categorías
+    limpiarFiltroCategoria(); // Limpiar opciones del filtro de categoría
+    categorias.forEach((categoria) => {
+      agregarCategoria(categoria); // Agregar categoría al contenedor
+      agregarOpcionFiltroCategoria(categoria); // Agregar opción al filtro de categoría
+    });
+    agregarEventListeners(); // Agregar event listeners después de cargar categorías
   }
 
-  // Limpiar el contenedor de categorías
-  function limpiarCategoriasContainer() {
-    categoriasContainer.innerHTML = "";
+  // Limpiar opciones del filtro de categoría
+  function limpiarFiltroCategoria() {
+    filtroCategoriaSelect.innerHTML = "";
+    const optionTodas = document.createElement("option");
+    optionTodas.value = "TODAS";
+    optionTodas.textContent = "Todas";
+    filtroCategoriaSelect.appendChild(optionTodas);
   }
 
-  // Cargar las categorías almacenadas en localStorage al cargar la página
-  cargarCategoriasDesdeLocalStorage();
+  // Agregar opción al filtro de categoría
+  function agregarOpcionFiltroCategoria(nombreCategoria) {
+    const nuevaOpcion = document.createElement("option");
+    nuevaOpcion.value = nombreCategoria;
+    nuevaOpcion.textContent = nombreCategoria;
+    filtroCategoriaSelect.appendChild(nuevaOpcion);
+  }
 
   // Agregar categoría
   const agregarCategoriaBoton = document.getElementById(
@@ -40,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       agregarCategoria(nombreCategoria); // Llama a la función para agregar categoría
       guardarCategoriasEnLocalStorage(); // Guarda las categorías en localStorage
       nuevaCategoriaInput.value = ""; // Limpia el campo de entrada después de agregar
+      agregarOpcionFiltroCategoria(nombreCategoria); // Agregar opción al filtro de categoría
       agregarEventListeners(); // Agrega event listeners después de agregar categoría
     } else {
       alert("Por favor, introduce un nombre válido para la categoría.");
@@ -71,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </button>
           <p></p>
         </div>
-      </div>
+      </div>  
     `;
 
     // Agregar la nueva categoría al contenedor
