@@ -134,14 +134,33 @@ const generarTabla = () => {
 
 // Eliminar operación
 const eliminarOperacion = (id) => {
-  const indice = datos.findIndex((operacion) => operacion.id === id);
-  if (indice !== -1) {
-    datos.splice(indice, 1);
-    localStorage.setItem("operaciones", JSON.stringify(datos));
-    generarTabla();
-    console.log("Operación eliminada correctamente");
+  const operacion = datos.find((operacion) => operacion.id === id);
+  if (operacion) {
+    const indice = datos.findIndex((operacion) => operacion.id === id);
+    if (indice !== -1) {
+      // Restablecer los totales según el tipo de operación eliminada
+      if (operacion.tipo === "ingreso") {
+        ingresos.innerText =
+          parseFloat(ingresos.textContent) - parseFloat(operacion.monto);
+      } else if (operacion.tipo === "gasto") {
+        gastos.innerText =
+          parseFloat(gastos.textContent) - parseFloat(operacion.monto);
+      }
+      totalBalances.innerText =
+        parseFloat(ingresos.textContent) - parseFloat(gastos.textContent);
+
+      // Eliminar la operación del array y del almacenamiento local
+      datos.splice(indice, 1);
+      localStorage.setItem("operaciones", JSON.stringify(datos));
+
+      // Regenerar la tabla
+      generarTabla();
+      console.log("Operación eliminada correctamente");
+    } else {
+      console.log("No se encontró la operación a eliminar");
+    }
   } else {
-    console.log("No se encontró la operación a eliminar");
+    console.log("No se encontró la operación con el ID proporcionado");
   }
 };
 
