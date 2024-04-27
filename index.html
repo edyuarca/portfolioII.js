@@ -321,27 +321,27 @@
 
 <!-- Contenedor balances -->
 
-      <div class="flex flex-col gap-4 w-80" id="box3" data-box>
+      <div class="flex flex-col gap-4 w-80" id="contenedorBalances" data-box>
         <div class="bg-fuchsia-100 rounded-md shadow-lg flex h-">
           <div class="w-full">
             <h2 class="text-3xl font-bold px-8 pt-8">Balance</h2>
             <div class="flex justify-between pt-4">
               <span class="text-xl px-8 py-5">Ganancias</span>
-              <span class="text-xl text-green-500 px-8 py-5">0</span>
+              <span class="text-xl text-green-500 px-8 py-5" id="ingresos">0</span>
             </div>
             <div class="flex justify-between">
               <span class="text-xl px-8 py-5">Gastos</span>
-              <span class="text-xl text-rose-500 px-8 py-5">0</span>
+              <span class="text-xl text-rose-500 px-8 py-5" id="gastos">0</span>
             </div>
             <div class="flex justify-between pb-4">
               <span class="text-xl font-bold px-8 py-5">Total</span>
-              <span class="text-xl px-8 py-5">0</span>
+              <span class="text-xl px-8 py-5" id="totalBalances">0</span>
             </div>
           </div>
         </div>
         <!-- Contenedor filtros -->
         <div
-        class="mt-12 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse">
+        class="mt-12 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse" id="contenedorFiltros">
           <div class="grid grid-cols-4">
             <div class="">
               <h3 class="size-15 text-4xl font-bold">Filtros</h3>
@@ -449,8 +449,8 @@
     
      <!-- Contenedor sección operaciones vacío -->
 
-    <div class="w-2/5" id="box3" data-box="">
-      <div class="flex bg-fuchsia-100  rounded-md shadow-lg">
+    <div class="w-2/5" data-box="">
+      <div class="flex bg-fuchsia-100  rounded-md shadow-lg" id="contenedorSinDatos">
         <div class="w-full" id="contenedorSinDatos">
           <div class="flex flex-row justify-between">
             <h2 class="text-3xl text-black font-bold p-8">Operaciones</h2>
@@ -476,7 +476,7 @@
       </div>
         
         <!-- Tabla -->
-      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden">
+      <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden" id="tablaOperaciones">
         <div class="flex justify-between">
           <h2 class="text-3xl font-bold p-8">Operaciones</h2>
           <button
@@ -499,18 +499,16 @@
           class="grid grid-cols-5 divide-x text-center hidden"
           id="operaciones"
         >
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <div class="grid grid-cols-2 place-content-center">
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-edit.svg" alt="" />
-            </button>
-            <button class="w-9 h-9">
-              <img src="imagenes/icon-delete.svg" alt="" />
-            </button>
-          </div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div>
+          <button class="w-9 h-9 btnEditarOp" data-id="${operacion.id}"><img src="imagenes/icon-edit.svg" alt=""></button>
+        </div>
+        </div>  
+          <button class="w-9 h-9 btnEliminarOp" data-id="${operacion.id}"><img src="imagenes/icon-delete.svg" alt=""></button>
+        </div>
         </div>
       </div>
     </div>
@@ -519,14 +517,14 @@
       
       <div class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden" id="contNuevaOp">
         <div>
-          <form action="" id="nuevaOperacionForm">
+          <form action="" id="formNuevaOperacion">
             <h2 class=" text-3xl font-bold p-8">Nueva operación</h2>
             <div class="px-8">
               <div>
                 <h4 class="mb-1">Descripción</h4>
                 <input
                   type="text"
-                  id="descripcion"
+                  id="campoDescripcion"
                   name="descripcion"
                   class="w-full mb-3 rounded-sm h-8"
                 />
@@ -579,7 +577,7 @@
               </div>
               <div class="flex justify-end gap-3 py-8">
               <button
-                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
+                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg" id="btnCancelarOpTabla"
               >
                 Cancelar
               </button>
@@ -597,6 +595,7 @@
     <script src="operaciones-balance.js"></script>
     <script src="nav-barra.js"></script>
     <script src="Categorias-filtros.js"></script>
+    <script src="main.js"></script>
 
   </body>
 </html>

@@ -1,14 +1,15 @@
-//Contendor operaciones vacío a agregar nueva operación
-const containerOperaciones = document.getElementById("containerOperaciones");
+const containerOperaciones = document.getElementById("contenedorSinDatos");
 const btnNuevaOperacion = document.getElementById("btnAgregarOperacion");
-const containerNuevaOp = document.getElementById("containerNuevaOp");
+const containerNuevaOp = document.getElementById("contNuevaOp");
 const containerVacio = document.getElementById("containerVacio");
 const contenedorBalances = document.getElementById("contenedorBalances");
+const contenedorFiltros = document.getElementById("contenedorFiltros");
 
 const vercontainerNuevaOp = () => {
   containerNuevaOp.classList.remove("hidden");
   containerOperaciones.classList.add("hidden");
   contenedorBalances.classList.add("hidden");
+  contenedorFiltros.classList.add("hidden");
   console.log("ventana oculta");
 };
 btnNuevaOperacion.addEventListener(`click`, vercontainerNuevaOp);
@@ -88,9 +89,9 @@ formNuevaOperacion.addEventListener("submit", (e) => {
   localStorage.setItem("operaciones", JSON.stringify(datos));
 
   containerNuevaOp.classList.add("hidden");
-  containerVacio.classList.add("hidden");
+  containerOperaciones.classList.add("hidden");
   contenedorBalances.classList.remove("hidden");
-  containerOperaciones.classList.remove("hidden");
+  contenedorFiltros.classList.remove("hidden");
   tablaOperaciones.classList.remove("hidden");
 
   generarTabla();
