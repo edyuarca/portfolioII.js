@@ -1,223 +1,151 @@
-// Operaciones
+let operaciones = [];
+let operacionEditando = null;
 
-//Contendor operaciones vacío a agregar nueva operación
-const containerOperaciones = document.getElementById("containerOperaciones");
-const btnNuevaOperacion = document.getElementById("btnAgregarOperacion");
-const containerNuevaOp = document.getElementById("containerNuevaOp");
-const containerVacio = document.getElementById("containerVacio");
-const contenedorBalances = document.getElementById("contenedorBalances");
-
-const vercontainerNuevaOp = () => {
-  containerNuevaOp.classList.remove("hidden");
-  containerOperaciones.classList.add("hidden");
-  contenedorBalances.classList.add("hidden");
-  console.log("ventana oculta");
-};
-btnNuevaOperacion.addEventListener(`click`, vercontainerNuevaOp);
-
-//Agregar tabla
-
-const formNuevaOperacion = document.getElementById("formNuevaOperacion");
-const btnAgregarOpTabla = document.getElementById("btnAgregarOpTabla");
-const btnCancelarOpTabla = document.getElementById("btnCancelarOpTabla");
-const campoDescripcion = document.getElementById("campoDescripcion");
-const monto = document.getElementById("monto");
-const tipo = document.getElementById("tipo");
-const categoria = document.getElementById("categoria");
-const fecha = document.getElementById("fecha");
-const operaciones = document.getElementById("operaciones");
-const tablaOperaciones = document.getElementById("tablaOperaciones");
-
-const btnEliminarOp = document.querySelectorAll(".btnEliminarOp");
-const btnEditarOp = document.querySelectorAll(".btnEditarOp");
-const containerEditarOp = document.getElementById("containerEditarOp");
-
-// funcionalidad balances
-
-const ingresos = document.getElementById("ingreso");
-const gastos = document.getElementById("gastos");
-const totalBalances = document.getElementById("totalBalances");
-
-//Tabla de operaciones
-
-let datos = [];
-
-const evaluarLocalStorage = () => {
-  if (localStorage.getItem("operaciones") !== null) {
-    const operacionesGuardadas = JSON.parse(
-      localStorage.getItem("operaciones")
-    );
-    return operacionesGuardadas;
-  } else {
-    localStorage.setItem("operaciones", JSON.stringify(datos));
-  }
-  generarTabla();
-};
-
-let total = 0;
-
-const balancesOperaciones = (tipo, monto) => {
-  monto = parseFloat(monto); // Convertir el monto a número
-  if (tipo === "gasto") {
-    total = total - monto;
-    gastos.innerText = parseFloat(gastos.textContent) + monto;
-  } else if (tipo === "ingreso") {
-    total = total + monto;
-    ingresos.innerText = parseFloat(ingresos.textContent) + monto;
-  }
-  totalBalances.innerText = total;
-};
-
-formNuevaOperacion.addEventListener("submit", (e) => {
-  e.preventDefault();
-  console.log("Formulario enviado");
-
-  const OperacionNueva = {
-    id: uuidv4(),
-    descripcion: campoDescripcion.value,
-    monto: monto.value,
-    tipo: tipo.value,
-    categoria: categoria.value,
-    fecha: fecha.value,
-  };
-  console.log("Valor de la categoría:", categoria.value);
-  console.log("Datos de la nueva operación:", OperacionNueva);
-
-  balancesOperaciones(OperacionNueva.tipo, OperacionNueva.monto);
-  console.log("balances", balancesOperaciones);
-
-  datos = evaluarLocalStorage() || [];
-  datos.push(OperacionNueva);
-  localStorage.setItem("operaciones", JSON.stringify(datos));
-
-  containerNuevaOp.classList.add("hidden");
-  containerVacio.classList.add("hidden");
-  contenedorBalances.classList.remove("hidden");
-  containerOperaciones.classList.remove("hidden");
-  tablaOperaciones.classList.remove("hidden");
-
-  generarTabla();
-});
-
-//boton cancelar envío
-
-const pagPricinpal = () => {
-  containerNuevaOp.classList.add("hidden");
-  containerOperaciones.classList.remove("hidden");
-  contenedorBalances.classList.remove("hidden");
-  containerEditarOp.classList.add("hidden"); // Ocultar el div de editar operación
-};
-
-btnCancelarOpTabla.addEventListener("click", pagPricinpal);
-
-console.log(pagPricinpal);
-
-//creación de tabla
-
-const generarTabla = () => {
-  operaciones.innerHTML = "";
-  console.log(evaluarLocalStorage());
-  if (evaluarLocalStorage()) {
-    console.log("hola");
-    for (let operacion of evaluarLocalStorage()) {
-     
-      operaciones.innerHTML += `
-        <span>${operacion.descripcion}</span>
-        <span>${operacion.categoria}</span>
-        <span>${operacion.fecha}</span>
-        <span>${operacion.monto}</span>
-        <div>
-          <button class="w-9 h-9 btnEditarOp" data-id="${operacion.id}"><img src="icon-edit.svg" alt=""></button>
-        </div>
-        </div>  
-          <button class="w-9 h-9 btnEliminarOp" data-id="${operacion.id}"><img src="icon-delete.svg" alt=""></button>
-        </div>`;
+function cargarOperaciones() {
+    const operacionesGuardadas = localStorage.getItem('operaciones');
+    if (operacionesGuardadas) {
+        operaciones = JSON.parse(operacionesGuardadas);
+        operaciones.forEach((operacion, index) => {
+            agregarOperacionADOM(index);
+        });
+        actualizarBalance();
     }
-  }
-};
+}
 
+function guardarOperaciones() {
+    localStorage.setItem('operaciones', JSON.stringify(operaciones));
+}
 
-// Eliminar operación
-const eliminarOperacion = (id) => {
-  const operacion = datos.find((operacion) => operacion.id === id);
-  if (operacion) {
-    const indice = datos.findIndex((operacion) => operacion.id === id);
-    if (indice !== -1) {
-      // Restablecer los totales según el tipo de operación eliminada
-      if (operacion.tipo === "ingreso") {
-        ingresos.innerText = parseFloat(ingresos.textContent) - parseFloat(operacion.monto);
-      } else if (operacion.tipo === "gasto") {
-        gastos.innerText = parseFloat(gastos.textContent) - parseFloat(operacion.monto);
-      }
-      totalBalances.innerText = parseFloat(ingresos.textContent) - parseFloat(gastos.textContent);
-      
-      // Eliminar la operación del array y del almacenamiento local
-      datos.splice(indice, 1);
-      localStorage.setItem("operaciones", JSON.stringify(datos));
-      
-      // Regenerar la tabla
-      generarTabla();
-      console.log("Operación eliminada correctamente");
+function showSection(sectionId) {
+    document.getElementById('balance-filtros-operaciones').classList.add('hidden');
+    document.getElementById('categorias').classList.add('hidden');
+    document.getElementById('reportes').classList.add('hidden');
+    document.getElementById(sectionId).classList.remove('hidden');
+    document.getElementById('nueva-operacion').classList.add('hidden');
+}
+
+function toggleNuevaOperacion() {
+    const nuevaOperacionBox = document.getElementById('nueva-operacion');
+    nuevaOperacionBox.classList.toggle('hidden');
+    const mainSection = document.getElementById('balance-filtros-operaciones');
+    if (!nuevaOperacionBox.classList.contains('hidden')) {
+        mainSection.classList.add('hidden');
     } else {
-      console.log("No se encontró la operación a eliminar");
+        mainSection.classList.remove('hidden');
     }
-  } else {
-    console.log("No se encontró la operación con el ID proporcionado");
-  }
-};
+}
 
-// Editar operación
-const editarOperacion = (id) => {
-  const operacion = datos.find((operacion) => operacion.id === id);
-  if (operacion) {
-    const formEditar = document.getElementById("formEditarOperacion");
-    containerEditarOp.classList.remove("hidden");
-    contenedorBalances.classList.add("hidden");
-    containerOperaciones.classList.add("hidden");
+function cancelarOperacion() {
+    operacionEditando = null;
+    document.getElementById('nueva-operacion-form').reset();
+    toggleNuevaOperacion();
+    showSection('balance-filtros-operaciones');
+}
 
-    const montoAnterior = operacion.monto;
+function actualizarBalance() {
+    const ganancias = operaciones.filter(op => op.tipo === 'ganancia').reduce((acc, op) => acc + parseFloat(op.monto), 0);
+    const gastos = operaciones.filter(op => op.tipo === 'gasto').reduce((acc, op) => acc + parseFloat(op.monto), 0);
+    const total = ganancias - gastos;
 
-    document.getElementById("editarDescripcion").value = operacion.descripcion;
-    document.getElementById("editarMonto").value = operacion.monto;
-    document.getElementById("editarTipo").value = operacion.tipo;
-    document.getElementById("editarCategoria").value = operacion.categoria;
-    document.getElementById("editarFecha").value = operacion.fecha;
+    document.getElementById('ganancias').innerText = `Ganancias: $${ganancias.toFixed(2)}`;
+    document.getElementById('gastos').innerText = `Gastos: $${gastos.toFixed(2)}`;
+    document.getElementById('total').innerText = `Total: $${total.toFixed(2)}`;
+}
 
-    formEditar.addEventListener("submit", (e) => {
-      e.preventDefault();
+function agregarOperacion() {
+    const descripcion = document.getElementById('descripcion').value;
+    const monto = document.getElementById('monto').value;
+    const tipo = document.getElementById('tipo-operacion').value;
+    const categoria = document.getElementById('categoria-operacion').value;
+    const fecha = document.getElementById('fecha-operacion').value;
 
-      operacion.descripcion =
-        document.getElementById("editarDescripcion").value;
-      operacion.monto = document.getElementById("editarMonto").value;
-      operacion.tipo = document.getElementById("editarTipo").value;
-      operacion.categoria = document.getElementById("editarCategoria").value;
-      operacion.fecha = document.getElementById("editarFecha").value;
+    if (operacionEditando !== null) {
+        operaciones[operacionEditando] = { descripcion, monto, tipo, categoria, fecha };
+        actualizarOperacionEnDOM(operacionEditando);
+    } else {
+        const nuevaOperacion = { descripcion, monto, tipo, categoria, fecha };
+        operaciones.push(nuevaOperacion);
+        agregarOperacionADOM(operaciones.length - 1);
+    }
 
-      const diferenciaMonto =
-        parseFloat(operacion.monto) - parseFloat(montoAnterior);
+    document.getElementById('nueva-operacion-form').reset();
+    toggleNuevaOperacion();
+    actualizarBalance();
+    operacionEditando = null; 
 
-      balancesOperaciones(operacion.tipo, diferenciaMonto);
+    guardarOperaciones(); 
+}
 
-      localStorage.setItem("operaciones", JSON.stringify(datos));
+function agregarOperacionADOM(index) {
+    const operacion = operaciones[index];
+    const operacionDiv = document.createElement('div');
+    operacionDiv.className = 'bg-gray-100 p-4 rounded mt-4';
 
-      generarTabla();
+    operacionDiv.innerHTML = `
+        <h3 class="text-lg font-bold">${operacion.descripcion}</h3>
+        <p>Monto: $${operacion.monto}</p>
+        <p>Tipo: ${operacion.tipo.charAt(0).toUpperCase() + operacion.tipo.slice(1)}</p>
+        <p>Categoría: ${operacion.categoria}</p>
+        <p>Fecha: ${operacion.fecha}</p>
+        <div class="flex justify-end space-x-2 mt-2">
+            <button class="bg-violet-500 text-white px-2 py-1 rounded hover:bg-violet-600" onclick="editarOperacion(${index})">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="eliminarOperacion(this, ${index})">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+    `;
+    document.getElementById('operaciones-lista').appendChild(operacionDiv);
+}
 
-      containerEditarOp.classList.add("hidden");
-      contenedorBalances.classList.remove("hidden");
-      containerOperaciones.classList.remove("hidden");
-    });
-  } else console.log("No se encontró la operación con el ID proporcionado");
-};
-operaciones.addEventListener("click", (e) => {
-  const btnEditar = e.target.closest(".btnEditarOp");
-  const btnEliminar = e.target.closest(".btnEliminarOp");
+function actualizarOperacionEnDOM(index) {
+    const operacion = operaciones[index];
+    const operacionDiv = document.getElementById('operaciones-lista').children[index];
 
-  if (btnEditar) {
-    const idEdit = btnEditar.getAttribute("data-id");
-    editarOperacion(idEdit);
-  } else if (btnEliminar) {
-    const idDelete = btnEliminar.getAttribute("data-id");
-    eliminarOperacion(idDelete);
-  }
+    operacionDiv.innerHTML = `
+        <h3 class="text-lg font-bold">${operacion.descripcion}</h3>
+        <p>Monto: $${operacion.monto}</p>
+        <p>Tipo: ${operacion.tipo.charAt(0).toUpperCase() + operacion.tipo.slice(1)}</p>
+        <p>Categoría: ${operacion.categoria}</p>
+        <p>Fecha: ${operacion.fecha}</p>
+        <div class="flex justify-end space-x-2 mt-2">
+            <button class="bg-violet-500 text-white px-2 py-1 rounded hover:bg-violet-600" onclick="editarOperacion(${index})">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="eliminarOperacion(this, ${index})">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+    `;
+}
+
+function eliminarOperacion(button, index) {
+    // Eliminar la operación del array
+    operaciones.splice(index, 1); 
+
+    // Eliminar el elemento del DOM
+    const operacionDiv = button.closest('.bg-gray-100'); 
+    operacionDiv.remove(); // Elimina la operación del DOM
+
+    // Actualizar balance después de eliminar
+    actualizarBalance(); 
+    
+    guardarOperaciones();
+}
+
+function editarOperacion(index) {
+    const operacion = operaciones[index];
+    document.getElementById('descripcion').value = operacion.descripcion;
+    document.getElementById('monto').value = operacion.monto;
+    document.getElementById('tipo-operacion').value = operacion.tipo;
+    document.getElementById('categoria-operacion').value = operacion.categoria;
+    document.getElementById('fecha-operacion').value = operacion.fecha;
+
+    operacionEditando = index;
+    toggleNuevaOperacion();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    cargarOperaciones(); 
 });
-generarTabla();

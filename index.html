@@ -1,970 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>AhorraADAs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Agrega FontAwesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
-  </head>
-  <body class="bg-fuchsia-200 text-white">
-    <header>
-      <nav
-        class="h-32 bg-fuchsia-700 from-current flex grid grid-flow-col justify-stretch"
-        role="navegacion"
-        aria-label="main de navegacion"
-      >
-        <div class="flex flex-row py-12 w-64 size-15 text-4xl font-bold">
-          <a class="hover:bg-fuchsia-500 rounded-lg h-12 w-96 ml-2">
-            <h1 class="">
-              <i class="fas fa-wallet mr-2" aria-hidden="true"></i>
-              AhorrADAs
-            </h1>
-          </a>
-        </div>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22> 💹</text></svg>"
+    />
 
-        <!-- Menú de opciones -->
-        <div
-          class="py-12 flex flex-row-reverse mb-8 text-l space-x-1 space-x-reverse"
-        >
-          <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
-            <button class="opcion" id="reportes" data-target="box1">
-              <i class="fas fa-chart-pie mr-2" aria-hidden="true"></i>Reportes
-            </button>
-          </div>
-          <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-5">
-            <button class="opcion" id="categorias" data-target="box2">
-              <i class="fas fa-tag mr-2" aria-hidden="true"></i>Categorias
-            </button>
-          </div>
-          <div class="hover:bg-fuchsia-500 w-32 h-10 rounded-lg p-2 pl-6">
-            <button class="opcion" id="contenedorBalances" data-target="box3">
-              <i class="fas fa-chart-line mr-2" aria-hidden="true"></i>Balance
-            </button>
-          </div>
-        </div>
-        <!-- Fin del menú de opciones -->
+    <style>
+      :root {
+        --primary-color: rgb(201, 121, 217);
+        --primary-color-dark: rgb(157, 94, 169);
+        --accent-color: rgb(255, 239, 255);
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Header -->
+    <header
+      class="bg-[var(--primary-color)] p-4 text-white flex justify-between items-center"
+    >
+      <h1 class="text-xl font-bold">AhorraADAs</h1>
+      <nav>
+        <ul class="flex space-x-4">
+          <li>
+            <a
+              href="#"
+              onclick="showSection('balance-filtros-operaciones')"
+              class="hover:underline"
+              >Balance</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showSection('categorias')"
+              class="hover:underline"
+              >Categorías</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showSection('reportes')"
+              class="hover:underline"
+              >Reportes</a
+            >
+          </li>
+        </ul>
       </nav>
     </header>
 
-    <main class="w-full flex gap-4 justify-center">
-      <!-- 
-          BALANCE LO HACE YULI
-         -->
-      <div class="flex flex-col gap-4 w-80" id="box3" data-box>
-        
-        <div class="flex gap-5 justify-center my-20 sticky">
-          <!-- Contenedor balances -->
-          <div
-            class="mt-10 ml-3.5 w-80 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
-            id="contenedorBalances"
-          >
-            <div class="w-full">
-              <h2 class="text-3xl font-bold p-8">Balance</h2>
-              <div class="flex justify-between">
-                <span class="text-xl px-8 py-5">Ingresos</span>
-                <span class="text-xl text-green-500 px-8 py-5" id="ingreso">0</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-xl px-8 py-5">Gastos</span>
-                <span class="text-xl text-rose-500 px-8 py-5" id="gastos">0</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-xl font-bold px-8 py-5">Total</span>
-                <span class="text-xl px-8 py-5" id="totalBalances">0</span>
-              </div>
-            </div>
-          </div>
-    
-          </div>
-        <!-- 
-          FILTROS LO HACE CIN
-         -->
-        <div
-          class="ml-2 w-75 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse"
-          id=""
-        >
-          <div class="grid grid-cols-4">
-            <div class="">
-              <h3 class="size-15 text-4xl font-bold">Filtros</h3>
-            </div>
-            <div class="ml-20 w-40 mt-3">
-              <a class="hover:text-fuchsia-700" href="#" id="ocultar-filtros"
-                >Ocultar filtros</a
-              >
-            </div>
-          </div>
-          <div id="filtros">
-            <div class="mt-3">
-              <div class="">
-                <div class="">
-                  <div class="mt-3">
-                    <h3 class="text-base font-bold">Tipo</h3>
-                    <div class="flex mt-2">
-                      <button
-                        class="mr-3 bg-fuchsia-200 hover:bg-fuchsia-500 rounded px-3 py-1"
-                        id="filtro-todos"
-                      >
-                        Todos
-                      </button>
-                      <button
-                        class="mr-3 bg-fuchsia-200 hover:bg-fuchsia-500 rounded px-3 py-1"
-                        id="filtro-gasto"
-                      >
-                        Gasto
-                      </button>
-                      <button
-                        class="bg-fuchsia-200 hover:bg-fuchsia-500 rounded px-3 py-1"
-                        id="filtro-ganancia"
-                      >
-                        Ganancia
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-3">
-              <label class="text-base font-bold" for="filtro-categoria"
-                >Categoría</label
-              >
-              <div class="">
-                <div class="">
-                  <select
-                    class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                    id="filtro-categoria"
-                  >
-                    <option value="TODAS">Todas</option>
-                    <option value="9096affd-8691-434c-982b-5ba2fae9a4e3">
-                      Comida
-                    </option>
-                    <option value="7ceeed02-0617-4975-915c-6c859322b71e">
-                      Servicios
-                    </option>
-                    <option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">
-                      Salidas
-                    </option>
-                    <option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">
-                      Educación
-                    </option>
-                    <option value="10211a41-491d-4ffd-85e2-ad45f92859a6">
-                      Transporte
-                    </option>
-                    <option value="af5c1352-4d2f-445f-a636-e463f56a6466">
-                      Trabajo
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="mt-3">
-              <label class="text-base font-bold" for="filtro-fecha"
-                >Desde</label
-              >
-              <div>
-                <div
-                  class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                >
-                  <input
-                    class="border-solid rounded border-gray-400 bg-slate-50 w-full"
-                    type="date"
-                    name=""
-                    id="filtro-fecha"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="mt-3">
-              <label class="text-base font-bold" for="filtro-orden"
-                >Ordenar por</label
-              >
-              <div class="">
-                <div class="">
-                  <select
-                    class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                    id="filtro-orden"
-                  >
-                    <option value="MAS_RECIENTES">Más reciente</option>
-                    <option value="MENOS_RECIENTES">Menos reciente</option>
-                    <option value="MAYOR_MONTO">Mayor monto</option>
-                    <option value="MENOR_MONTO">Menor monto</option>
-                    <option value="A/Z">A/Z</option>
-                    <option value="Z/A">Z/A</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Contenedor sección operaciones -->
-      <div id="box3" data-box="">
-        <div
-          class="mt-11 m-auto relative w-full max-w-full"
-          id="containerOperaciones"
-        >
-          <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
-            <div class="p-3 block">
-              <div class="mt-16 rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
-                <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
-                  <div class="grow">
-                    <h2 class="ml-6 mt-8 size-15 text-4xl font-bold">
-                      Operaciones
-                    </h2>
-                  </div>
-                  <button
-                    class="hover:bg-fuchsia-500 border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 m-8 bg-fuchsia-700 text-white shadow-lg"
-                    id="btnAgregarOperacion"
-                  >
-                    Nueva operación
-                  </button>
-                </div>
-                <div>
-                  <!-- Tabla -->
-
-                  <div class="hidden" id="tablaOperaciones">
-                    <div class="flex flex-col justify-between">
-                      <div
-                        class="grid grid-cols-5 divide-x text-black text-center"
-                        id="categorias"
-                      >
-                        <p class="">Descripción</p>
-                        <p class="">Categoría</p>
-                        <p class="">Fecha</p>
-                        <p class="">Monto</p>
-                        <p class="">Acciones</p>
-                      </div>
-
-                      <div
-                        class="grid grid-cols-6 divide-x text-black text-center"
-                        id="operaciones"
-                      >
-                        <span>comida</span>
-                        <span>servicio</span>
-                        <span>salidas</span>
-                        <span>educacion</span>
-
-                        <div class="grid grid-cols-2 place-content-center">
-                          <button id="btnEditarOp" class="w-9 h-9 btnEditarOp">
-                            <img src="icon-edit.svg" alt="" />
-                          </button>
-                          <button
-                            id="btnEliminarOp"
-                            class="w-9 h-9 btnEliminarOp"
-                            data-id="${operacion.id}"
-                          >
-                            <img src="icon-delete.svg" alt="" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- nuevo -->
-                  <div class="w-full" id="contenedorSinDatos">
-                    <div id="containerVacio">
-                      <img
-                        src="imagenes/Wallet.svg"
-                        alt=""
-                        class="w-96 h-96 mx-auto mb-8"
-                      />
-                      <p class="text-center text-black text-lg pb-3">
-                        Sin resultados
-                      </p>
-                      <p class="text-center text-black text-lg pb-14">
-                        Cambia los filtros o agrega operaciones
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- formulario agregar nueva operación-->
+    <!-- Main content -->
+    <main class="container mx-auto my-8">
       <div
-        class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden"
-        id="containerNuevaOp"
+        id="balance-filtros-operaciones"
+        class="flex justify-center space-x-8"
       >
-        <div>
-          <form action="" id="formNuevaOperacion">
-            <h2 class="text-3xl text-black font-bold p-8">Nueva operación</h2>
-            <div class="px-8">
-              <div>
-                <h4 class="text-black mb-1">Descripción</h4>
-                <input
-                  type="text"
-                  id="campoDescripcion"
-                  name="campoDescripcion"
-                  class="text-black w-full mb-3 rounded-sm h-8"
-                />
+        <!-- Columna 1 (Balance + Filtros) -->
+        <div class="space-y-8">
+          <!-- Balance -->
+          <div class="bg-white shadow rounded p-6 w-80 max-w-sm">
+            <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">
+              Balance
+            </h2>
+            <div class="flex flex-col space-y-2">
+              <div class="flex justify-between text-green-500">
+                <span>Ganancias</span>
+                <span id="ganancias">+$0</span>
               </div>
-              <div>
-                <h4 class="text-black mb-1">Monto</h4>
-                <input
-                  type="number"
-                  id="monto"
-                  name="monto"
-                  min="0"
-                  value=""
-                  class="text-black w-full mb-3 rounded-sm h-8"
-                />
+              <div class="flex justify-between text-red-500">
+                <span>Gastos</span>
+                <span id="gastos">-$0</span>
               </div>
+              <div class="flex justify-between font-bold">
+                <span>Total</span>
+                <span id="total">$0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filtros -->
+          <div class="bg-white shadow rounded p-6 w-full max-w-sm">
+            <h3 class="text-xl font-bold text-[var(--primary-color)] mb-4">
+              Filtros
+            </h3>
+            <form class="space-y-4">
               <div>
-                <h4 class="text-black mb-1">Tipo</h4>
+                <label
+                  for="tipo"
+                  class="block text-sm font-medium text-gray-700"
+                  >Tipo</label
+                >
                 <select
-                  name="tipo"
                   id="tipo"
-                  class="text-black w-full mb-3 rounded-sm h-8"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 >
-                  <option value="gasto">gasto</option>
-                  <option value="ingreso">ingreso</option>
+                  <option>Todos</option>
+                  <option>Ganancia</option>
+                  <option>Gasto</option>
                 </select>
               </div>
               <div>
-                <h4 class="text-black mb-1">Categoría</h4>
+                <label
+                  for="categoria"
+                  class="block text-sm font-medium text-gray-700"
+                  >Categoría</label
+                >
                 <select
-                  name="categoria"
                   id="categoria"
-                  class="text-black w-full mb-3 rounded-sm h-8"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 >
-                  <option value="comida">Comida</option>
-                  <option value="servicios">Servicios</option>
-                  <option value="salidas">Salidas</option>
-                  <option value="educacion">Educación</option>
-                  <option value="transporte">Transporte</option>
-                  <option value="trabajo">Trabajo</option>
+                  <option>Todas</option>
+                  <option>Comida</option>
+                  <option>Servicios</option>
+                  <option>Salidas</option>
+                  <option>Trabajo</option>
                 </select>
               </div>
               <div>
-                <h4 class="text-black mb-1">Fecha</h4>
+                <label
+                  for="fecha"
+                  class="block text-sm font-medium text-gray-700"
+                  >Desde</label
+                >
                 <input
                   type="date"
                   id="fecha"
-                  name="fecha"
-                  class="text-black w-full rounded-sm h-8"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
               </div>
-            </div>
-            <div class="flex justify-end gap-3 p-8">
-              <button
-                type="button"
-                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-                id="btnCancelarOpTabla"
-              >
-                Cancelar
-              </button>
-              <button
-                class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-                id="btnAgregarOpTabla"
-              >
-                Agregar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-            <!-- formulario editar  operación-->
-            <div
-            class="bg-fuchsia-100 max-w-3xl rounded-md shadow-lg w-full hidden"
-            id="containerEditarOp"
-            >
-            <div>
-              <form action="" id="formEditarOperacion">
-                <h2 class="text-3xl text-black font-bold p-8">Nueva operación</h2>
-                <div class="px-8">
-                  <div>
-                    <h4 class=" text-black mb-1">Descripción</h4>
-                    <input
-                      type="text"
-                      id="editarDescripcion"
-                      name="editarDescripcion"
-                      class="text-black w-full mb-3 rounded-sm h-8"
-                    />
-                  </div>
-                  <div>
-                    <h4 class="text-black mb-1">Monto</h4>
-                    <input
-                      type="number"
-                      id="editarMonto"
-                      name="editarMonto"
-                      min="0"
-                      value=""
-                      class="text-black w-full mb-3 rounded-sm h-8"
-                    />
-                  </div>
-                  <div>
-                    <h4 class="text-black mb-1">Tipo</h4>
-                    <select
-                      name="editarTipo"
-                      id="editarTipo"
-                      class="text-black w-full mb-3 rounded-sm h-8"
-                    >
-                      <option value="gasto">gasto</option>
-                      <option value="ingreso">ingreso</option>
-                    </select>
-                  </div>
-                  <div>
-                    <h4 class="text-black mb-1">Categoría</h4>
-                    <select
-                      name="editarCategoria"
-                      id="editarCategoria"
-                      class="text-black w-full mb-3 rounded-sm h-8"
-                    >
-                      <option value="comida">Comida</option>
-                      <option value="servicios">Servicios</option>
-                      <option value="salidas">Salidas</option>
-                      <option value="educacion">Educación</option>
-                      <option value="transporte">Transporte</option>
-                      <option value="trabajo">Trabajo</option>
-                    </select>
-                  </div>
-                  <div>
-                    <h4 class="text-black mb-1">Fecha</h4>
-                    <input
-                      type="date"
-                      id="editarFecha"
-                      name="editarFecha"
-                      class="text-black w-full rounded-sm h-8"
-                    />
-                  </div>
-                </div>
-                <div class="flex justify-end gap-3 p-8">
-                  <button
-                    type="button"
-                    class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-                    id="btnCancelarOpTabla"
-                    onclick="pagPricinpal()">
-                    Cancelar
-                  </button>
-                  <button
-                    class="border-solid border-2 border-fuchsia-700 rounded-full py-2.5 px-4 bg-fuchsia-700 text-white shadow-lg"
-                    id="btnAgregarOpTabla"
-                  >
-                    Agregar
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-      <!--CATEGORIAS LO HACE CIN-->
-
-      <div class="pr-6 pb-12 pl-6 mt-6 flex flex-col hidden" id="box2" data-box>
-        <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
-          <div class="m-auto relative w-3/3">
-            <div class="p-3 block">
-              <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
-                <h2 class="size-15 text-4xl font-bold">Categorías</h2>
-
-                <div class="grid grid-cols-2 place-content-center">
-                  <div class="mt-12">
-                    <label class="ml-6 font-bold" for="nueva-categoria-input"
-                      >Nombre</label
-                    >
-                    <div class="mb-3 mr-3">
-                      <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
-                        <input
-                          class="h-12 border-solid rounded border-gray-400 bg-slate-50 w-full max-w-full"
-                          type="text"
-                          id="nueva-categoria-input"
-                          placeholder="Nombre de la nueva categoría"
-                        />
-                        <button
-                          class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
-                          id="agregar-categoria-boton"
-                        >
-                          Agregar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="categorias" id="categ">
-                  <div id="categoria-1" class="categoria">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16" id="categoriaId">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        >
-                          Comida
-                        </h3>
-                      </div>
-                      <div class="ml-3 mt-6 text-center text-fuchsia-700">
-                        <p>
-                          <button
-                            class="editar-categoria-btn"
-                            data-categoria-id="categoria-1"
-                          >
-                            <img class="m-8 h-8" src="icon-edit.svg" alt="" />
-                          </button>
-                          <button
-                            class="eliminar-categoria-btn"
-                            data-categoria="categoria-1"
-                          >
-                            <img class="m-8 h-8" src="icon-delete.svg" alt="" />
-                          </button>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="categoria-2" class="categoria">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16" id="categoriaId">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        >
-                          Servicios
-                        </h3>
-                      </div>
-                      <div class="ml-3 mt-6 text-center text-fuchsia-700">
-                        <button
-                          class="editar-categoria-btn"
-                          data-categoria-id="categoria-2"
-                        >
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="" />
-                        </button>
-                        <button
-                          class="eliminar-categoria-btn"
-                          data-categoria="categoria-2"
-                        >
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="" />
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="categoria-3" class="categoria">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16" id="categoriaId">
-                        <h3
-                          class="w-16 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        >
-                          Salidas
-                        </h3>
-                      </div>
-                      <div class="ml-6 mt-6 text-center text-fuchsia-700">
-                        <button
-                          class="editar-categoria-btn"
-                          data-categoria-id="categoria-3"
-                        >
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="" />
-                        </button>
-                        <button
-                          class="eliminar-categoria-btn"
-                          data-categoria="categoria-3"
-                        >
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="" />
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="categoria-4" class="categoria">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16" id="categoriaId">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        >
-                          Educación
-                        </h3>
-                      </div>
-                      <div class="mt-6 text-center text-fuchsia-700">
-                        <button
-                          class="editar-categoria-btn"
-                          data-categoria-id="categoria-4"
-                        >
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="" />
-                        </button>
-                        <button
-                          class="eliminar-categoria-btn"
-                          data-categoria="categoria-4"
-                        >
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="" />
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="categoria-5" class="categoria">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16" id="categoriaId">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        >
-                          Transporte
-                        </h3>
-                      </div>
-                      <div class="mt-6 grid grid-cols-2 place-content-center">
-                        <button
-                          class="editar-categoria-btn"
-                          data-categoria-id="categoria-5"
-                        >
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="" />
-                        </button>
-                        <button
-                          class="eliminar-categoria-btn"
-                          data-categoria="categoria-5"
-                        >
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="" />
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="categoria-6" class="categoria">
-                    <div class="flex grid grid-flow-col justify-between">
-                      <div class="pt-16" id="categoriaId">
-                        <h3
-                          class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        >
-                          Trabajo
-                        </h3>
-                      </div>
-                      <div class="ml-6 mt-6 text-center text-fuchsia-700">
-                        <button
-                          class="editar-categoria-btn"
-                          data-categoria-id="categoria-6"
-                        >
-                          <img class="m-8 h-8" src="icon-edit.svg" alt="" />
-                        </button>
-                        <button
-                          class="eliminar-categoria-btn"
-                          data-categoria="categoria-6"
-                        >
-                          <img class="m-8 h-8" src="icon-delete.svg" alt="" />
-                        </button>
-                        <p></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div>
+                <label
+                  for="ordenar"
+                  class="block text-sm font-medium text-gray-700"
+                  >Ordenar por</label
+                >
+                <select
+                  id="ordenar"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                >
+                  <option>Más reciente</option>
+                  <option>Más antiguo</option>
+                </select>
               </div>
-            </div>
+            </form>
           </div>
+        </div>
+
+        <!-- Columna 2 (Operaciones) -->
+
+        <!-- Operaciones -->
+        <div class="bg-white shadow rounded p-6 w-96">
+          <h2 class="text-xl font-bold text-[var(--primary-color)]">
+            Operaciones
+          </h2>
+          <div id="operaciones-lista">
+            <p class="text-center text-gray-500"></p>
+          </div>
+          <!-- Botón para agregar nueva operación -->
+          <button
+            onclick="toggleNuevaOperacion()"
+            class="mt-4 bg-[var(--primary-color)] text-white px-4 py-2 rounded hover:bg-[var(--primary-color-dark)]"
+          >
+            Nueva Operación
+          </button>
+          <img src="Wallet.svg" alt="" />
         </div>
       </div>
 
-      <!--editar categoria LO HACE CIN-->
-
+      <!-- Nueva Operación -->
       <div
-        class="m-auto relative w-3/5 hidden"
-        id="editarCategoriaDiv-Categoria"
-        data-box=""
+        id="nueva-operacion"
+        class="mt-8 bg-white shadow rounded p-6 max-w-lg mx-auto hidden"
       >
-        <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
-          <div class="p-3 block">
-            <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
-              <h2 class="size-15 text-4xl font-bold">Editar categoria</h2>
-              <div class="mb-3 mr-3">
-                <div class="mt-2 pt-4 m-0 mr-3 flex gap-2">
-                  <input
-                    class="h-12 border-solid rounded border-gray-400 bg-slate-50 max-w-full w-full"
-                    type="text"
-                    name
-                    id="editarCategoriaInput"
-                  />
-                  <button
-                    class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
-                    id="inputEditarCategoria"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    class="bg-fuchsia-700 text-white hover:bg-fuchsia-500 rounded-full cursor-pointer flex justify-center pb-2 pl-4 pr-4 pt-2 text-center"
-                    id="cancelar-categoria-boton"
-                  >
-                    Cancelar
-                  </button>
-                </div>
-              </div>
-            </div>
+        <h2 class="text-xl font-bold text-[var(--primary-color)] mb-4">
+          Nueva Operación
+        </h2>
+        <form id="nueva-operacion-form" class="space-y-4">
+          <div>
+            <label
+              for="descripcion"
+              class="block text-sm font-medium text-gray-700"
+              >Descripción</label
+            >
+            <input
+              type="text"
+              id="descripcion"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              placeholder="Descripción de la operación"
+            />
           </div>
-        </div>
-      </div>
-
-      <!--REPORTES DEL NAV-BAR LO HACE CIN-->
-
-      <div class="m-auto relative w-3/5 hidden" id="box1" data-box>
-        <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
-          <div class="p-3 block">
-            <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
-              <h2 class="size-15 text-4xl font-bold">Reportes</h2>
-              <img class="mt-24 ml-48 w-96 h-96" src="reporte.avif" alt="" />
-              <h4 class="mt-14 text-center text-2xl">
-                Operaciones insuficientes
-              </h4>
-              <p class="mt-8 text-center">Prueba agregando más operaciones</p>
-
-              <!--BOX DENTRO DE REPORTES-->
-              <!--resumen-->
-
-              <div id="con-reportes" class="box-content">
-                <section class="pt-12 pr-6 pb-12 pl-6 mb-6" id="resumen">
-                  <h4 class="text-black text-2xl mb-4 pb-4">Resumen</h4>
-                  <!-- 
-        Categoría con mayor ganancia
-       -->
-                  <div class="ml-3 mr-3 mt-3 font-sans">
-                    <div class="font-semibold">
-                      Categoría con mayor ganancia
-                    </div>
-                    <div class="">
-                      <span
-                        class="w-20 text-center bg-fuchsia-200 text-fuchsia-700 rounded-md"
-                        id="categoria-mayor-ganancia"
-                      ></span>
-                    </div>
-                    <div class="" id="categoria-mayor-ganancia-monto"></div>
-                  </div>
-                  <!-- 
-        Categoría con mayor gasto
-       -->
-                  <div class="ml-3 mr-3 mt-3 font-sans font-semibold">
-                    <div class="">Categoría con mayor gasto</div>
-                    <div class="">
-                      <span class="" id="categoria-mayor-gasto"></span>
-                    </div>
-                    <div class="" id="categoria-mayor-gasto-monto"></div>
-                  </div>
-                  <!-- 
-        Categoría con mayor balance
-       -->
-                  <div class="ml-3 mr-3 mt-3 font-sans font-semibold">
-                    <div class="">Categoría con mayor balance</div>
-                    <div class="">
-                      <span class="" id="categoria-mayor-balance"></span>
-                    </div>
-                    <div class="" id="categoria-mayor-balance-monto"></div>
-                  </div>
-                  <!-- 
-        Mes con mayor ganancia
-       -->
-                  <div class="ml-3 mr-3 mt-3 font-sans font-semibold">
-                    <div class="">Mes con mayor ganancia</div>
-                    <div class="" id="mes-mayor-ganancia"></div>
-                    <div class="" id="mes-mayor-ganancia-monto"></div>
-                  </div>
-                  <!-- 
-        Mes con mayor gasto
-       -->
-                  <div class="ml-3 mr-3 mt-3 font-sans font-semibold">
-                    <div class="">Mes con mayor gasto</div>
-                    <div class="" id="mes-mayor-gasto"></div>
-                    <div class="" id="mes-mayor-gasto-monto"></div>
-                  </div>
-                </section>
-                <!-- 
-      Totales por categoría
-     -->
-                <section class="pt-12 pr-6 pb-12 pl-6 mb-6">
-                  <h4 class="text-black text-2xl mb-4 pb-4">
-                    Totales por categorías
-                  </h4>
-                  <div id="reporte-categorias">
-                    <div
-                      class="ml-3 mr-3 mt-3 font-sans font-semibold grid gap-4 grid-cols-4"
-                    >
-                      <div class="">
-                        <h4 class="">Categoria</h4>
-                      </div>
-                      <div class="">
-                        <h4 class="has-text-weight-semibold has-text-right">
-                          Ganancias
-                        </h4>
-                      </div>
-                      <div class="">
-                        <h4 class="">Gastos</h4>
-                      </div>
-                      <div class="column">
-                        <h4 class="">Balance</h4>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <!-- 
-      Totales por mes
-     -->
-                <section class="pt-12 pr-6 pb-12 pl-6 mb-6">
-                  <h3 class="text-black text-2xl mb-4 pb-4">Totales por mes</h3>
-                  <div id="reporte-mes">
-                    <div
-                      class="ml-3 mr-3 mt-3 font-sans font-semibold grid gap-4 grid-cols-4"
-                    >
-                      <div class="">
-                        <h4 class="">Mes</h4>
-                      </div>
-                      <div class="">
-                        <h4 class="">Ganancias</h4>
-                      </div>
-                      <div class="">
-                        <h4 class="">Gastos</h4>
-                      </div>
-                      <div class="">
-                        <h4 class="">Balance</h4>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-     <div class="m-auto relative w-3/5 hidden" id="box1" data-box>
-      <div class="flex-wrap mt-0.5 mr-0.5 mb-0.5">
-        <div class="p-3 block">
-          <div class="rounded-md bg-fuchsia-100 text-black shadow-lg p-8">
-            <h2 class="size-15 text-4xl font-bold">Reportes</h2>
-            <img class="mt-24 ml-48 w-96 h-96" src="reporte.avif" alt="">
-            <h4 class="mt-14 text-center text-2xl	">
-              Operaciones insuficientes
-            </h4>
-            <p class="mt-8 text-center">
-              Prueba agregando más operaciones
-            </p>
+          <div>
+            <label for="monto" class="block text-sm font-medium text-gray-700"
+              >Monto</label
+            >
+            <input
+              type="number"
+              id="monto"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              placeholder="Monto"
+            />
           </div>
-      </div>
-  </div>
-</div>  
-
-<!-- Contenedor balances -->
-
-      <div class="flex flex-col gap-4 w-80" id="contenedorBalances" data-box>
-        <div class="bg-fuchsia-100 rounded-md shadow-lg flex h-">
-          <div class="w-full">
-            <h2 class="text-3xl font-bold px-8 pt-8">Balance</h2>
-            <div class="flex justify-between pt-4">
-              <span class="text-xl px-8 py-5">Ganancias</span>
-              <span class="text-xl text-green-500 px-8 py-5" id="ingresos">0</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-xl px-8 py-5">Gastos</span>
-              <span class="text-xl text-rose-500 px-8 py-5" id="gastos">0</span>
-            </div>
-            <div class="flex justify-between pb-4">
-              <span class="text-xl font-bold px-8 py-5">Total</span>
-              <span class="text-xl px-8 py-5" id="totalBalances">0</span>
-            </div>
-          </div>
-        </div>
-        <!-- Contenedor filtros -->
-        <div
-        class="mt-12 rounded-md bg-fuchsia-100 text-black shadow-lg p-8 flex-col-reverse" id="contenedorFiltros">
-          <div class="grid grid-cols-4">
-            <div class="">
-              <h3 class="size-15 text-4xl font-bold">Filtros</h3>
-            </div>
-            <div class="ml-20 w-40 mt-3">
-              <a class="hover:text-fuchsia-700" href="#" id="toggle-filtros">Ocultar filtros</a>
-            </div>
-          </div>
-          
-        <div id="filtros">
-          <div class="mt-3">
-            <label class="text-base font-bold" for="filtro-tipo"
+          <div>
+            <label
+              for="tipo-operacion"
+              class="block text-sm font-medium text-gray-700"
               >Tipo</label
             >
-            <div class="">
-              <div class="">
-                <select
-                  class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                  id="filtro-tipo"
-                >
-                  <option value="TODOS">Todos</option>
-                  <option value="GASTO">Gasto</option>
-                  <option value="GANANCIA">Ganancia</option>
-                </select>
-              </div>
-            </div>
+            <select
+              id="tipo-operacion"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            >
+              <option value="ganancia">Ganancias</option>
+              <option value="gasto">Gastos</option>
+            </select>
           </div>
-
-          <div class="mt-3">
-            <label class="text-base font-bold" for="filtro-categoria"
+          <div>
+            <label
+              for="categoria-operacion"
+              class="block text-sm font-medium text-gray-700"
               >Categoría</label
             >
-            <div class="">
-              <div class="">
-                <select
-                  class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                  id="filtro-categoria"
-                >
-                  <option value="TODAS">Todas</option>
-                  <option value="9096affd-8691-434c-982b-5ba2fae9a4e3">
-                    Comida
-                  </option>
-                  <option value="7ceeed02-0617-4975-915c-6c859322b71e">
-                    Servicios
-                  </option>
-                  <option value="4bebc556-d6d8-4240-b40b-de6aa53a6534">
-                    Salidas
-                  </option>
-                  <option value="72e858b3-e7de-4a1d-8f14-e80e3cadcc9f">
-                    Educación
-                  </option>
-                  <option value="10211a41-491d-4ffd-85e2-ad45f92859a6">
-                    Transporte
-                  </option>
-                  <option value="af5c1352-4d2f-445f-a636-e463f56a6466">
-                    Trabajo
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="mt-3">
-            <label class="text-base font-bold" for="filtro-fecha"
-              >Desde</label
+            <select
+              id="categoria-operacion"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
             >
-            <div>
-              <div
-                class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
+              <option>Comida</option>
+              <option>Servicios</option>
+              <option>Salidas</option>
+              <option>Trabajo</option>
+            </select>
+          </div>
+          <div>
+            <label
+              for="fecha-operacion"
+              class="block text-sm font-medium text-gray-700"
+              >Fecha</label
+            >
+            <input
+              type="date"
+              id="fecha-operacion"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            />
+          </div>
+          <button
+            type="button"
+            onclick="agregarOperacion()"
+            class="bg-[var(--primary-color)] text-white px-4 py-2 rounded hover:bg-[var(--primary-color-dark)]"
+          >
+            Agregar Operación
+          </button>
+          <!-- Botón de Cancelar -->
+          <button
+            type="button"
+            onclick="cancelarOperacion()"
+            class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            Cancelar
+          </button>
+        </form>
+      </div>
+
+      <!-- Sección de Categorías -->
+      <div
+        id="categorias"
+        class="hidden bg-white shadow rounded p-6 mt-8 max-w-md mx-auto"
+      >
+        <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">
+          Categorías
+        </h2>
+        <form class="space-y-4">
+          <div>
+            <label
+              for="nombre-categoria"
+              class="block text-sm font-medium text-gray-700"
+              >Nombre</label
+            >
+            <input
+              type="text"
+              id="nombre-categoria"
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            />
+          </div>
+          <button
+            id="btn-agregar-categoria"
+            type="button"
+            class="bg-[var(--primary-color)] text-white px-4 py-2 rounded hover:bg-[var(--primary-color-dark)]"
+          >
+            Agregar
+          </button>
+        </form>
+        <ul id="lista-categorias" class="mt-4 space-y-2">
+          <li
+            class="flex justify-between items-center bg-[var(--primary-color)] text-white px-4 py-2 rounded"
+          >
+            <span>Comida</span>
+            <div class="space-x-2">
+              <!-- Botón Editar -->
+              <button
+                class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
               >
-                <input
-                  class="border-solid rounded border-gray-400 bg-slate-50 w-full"
-                  type="date"
-                  name=""
-                  id="filtro-fecha"
-                />
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <!-- Botón Eliminar -->
+              <button
+                class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </li>
+          <li
+            class="flex justify-between items-center bg-[var(--primary-color)] text-white px-4 py-2 rounded"
+          >
+            <span>Servicios</span>
+            <div class="space-x-2">
+              <!-- Botón Editar -->
+              <button
+                class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+              >
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <!-- Botón Eliminar -->
+              <button
+                class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </li>
+          <li
+            class="flex justify-between items-center bg-[var(--primary-color)] text-white px-4 py-2 rounded"
+          >
+            <span>Salidas</span>
+            <div class="space-x-2">
+              <!-- Botón Editar -->
+              <button
+                class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+              >
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <!-- Botón Eliminar -->
+              <button
+                class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </li>
+          <li
+            class="flex justify-between items-center bg-[var(--primary-color)] text-white px-4 py-2 rounded"
+          >
+            <span>Trabajo</span>
+
+            <div class="space-x-2">
+              <!-- Botón Editar -->
+              <button
+                class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+              >
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <!-- Botón Eliminar -->
+              <button
+                class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </li>
+          <!-- Más categorías aquí -->
+        </ul>
+      </div>
+
+      <!-- Sección de Reportes -->
+      <section>
+        <div
+          id="reportes"
+          class="hidden bg-white shadow rounded p-6 mt-8 max-w-4xl mx-auto"
+        >
+          <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">
+            Reportes
+          </h2>
+          <div id="report-content" class="space-y-4">
+            <div class="my-6 py-6">
+              <figure class="image">
+                <img src="reporte.avif" class="" alt="" />
+              </figure>
+              
+              
+            </div>
+            <!-- Resumen -->
+
+            <div class="bg-gray-100 rounded p-4 shadow-sm hidden">
+              <h3 class="text-xl font-semibold">Resumen</h3>
+              <p class="text-lg">
+                <strong>Categoria con mayor ganancia:</strong>
+                <span id="mayorGananciaCategoria">---</span> -
+                <span id="mayorGananciaMonto">---</span>
+              </p>
+              <p class="text-lg">
+                <strong>Categoria con mayor gasto:</strong>
+                <span id="mayorGastoCategoria">---</span> -
+                <span id="mayorGastoMonto">---</span>
+              </p>
+              <p class="text-lg">
+                <strong>Categoria con mayor balance:</strong>
+                <span id="mayorBalanceCategoria">---</span> -
+                <span id="mayorBalanceMonto">---</span>
+              </p>
+
+              <!-- Gastos por Mes -->
+              <div class="bg-gray-100 rounded p-4 shadow-sm">
+                <h3 class="text-xl font-semibold">Gastos por mes</h3>
+                <div id="gastosPorMes" class="space-y-1">
+                  <p class="text-lg">
+                    <strong>Mes con mayor ganancia:</strong>
+                    <span id="mayorMesGanancia">---</span> -
+                    <span id="mayorMesMonto">---</span>
+                  </p>
+                  <p class="text-lg">
+                    <strong>Mes con mayor gasto:</strong>
+                    <span id="mayorMesGasto">---</span> -
+                    <span id="mayorMesMonto">---</span>
+                  </p>
+                  <p class="text-lg">
+                    <strong>Totales por categoría:</strong>
+                    <span id="totalesCategoria">---</span> -
+                  </p>
+                  <p class="text-lg">
+                    <strong>Totales por mes:</strong>
+                    <span id="reporte-mes">---</span> -
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="mt-3">
-            <label class="text-base font-bold" for="filtro-orden"
-              >Ordenar por</label
-            >
-            <div class="">
-              <div class="">
-                <select
-                  class="mt-3 w-full h-9 border-solid rounded border-gray-400 bg-slate-50"
-                  id="filtro-orden"
-                >
-                  <option value="MAS_RECIENTES">Más reciente</option>
-                  <option value="MENOS_RECIENTES">
-                    Menos reciente
-                  </option>
-                  <option value="MAYOR_MONTO">Mayor monto</option>
-                  <option value="MENOR_MONTO">Menor monto</option>
-                  <option value="A/Z">A/Z</option>
-                  <option value="Z/A">Z/A</option>
-                </select>
-              </div>
-            </div>
+            <button id="btn-generar-reporte" class="bg-violet-500 text-white px-4 py-2 rounded mt-4">
+              Generar Reporte
+          </button>
           </div>
         </div>
-      </div>
+      </section>
     </main>
 
-    <script src="Categorias-filtros.js"></script>
-    <script src="nav-barra.js"></script>
     <script src="operaciones-balance.js"></script>
-
+    <script src="filtros-operaciones.js"></script>
+    <script src="categorias-filtros-operaciones.js"></script>
+    <script src="reporte.js"></script>
   </body>
 </html>
-
