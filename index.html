@@ -29,7 +29,7 @@
   <body class="bg-gray-100">
     <!-- Header -->
     <header
-      class="bg-[var(--primary-color)] p-4 text-white flex justify-between items-center sm:justify-end md:justify-between"
+      class="bg-[var(--primary-color)] p-4 text-white flex items-center sm:justify-end md:justify-between sm:justify-end md:justify-between"
     >
       <h1 class="hidden text-xl font-bold sm:hidden md:block">AhorraADAs</h1>
       <nav>
@@ -68,11 +68,12 @@
     >
       <div
         id="balance-filtros-operaciones"
-        class="flex flex-col md:flex-row justify-center space-y-8 md:space-x-8"
+        class="flex flex-col md:flex-row justify-center space-y-8 md:sm:flex-col-reverse md:flex-row"
       >
         <!-- Columna 1 (Balance + Filtros) -->
         <div class="space-y-8 md:w-80">
           <!-- Balance -->
+         
           <div class="bg-white shadow rounded p-6 w-full md:w-80 max-w-sm">
             <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">
               Balance
@@ -94,7 +95,7 @@
           </div>
 
           <!-- Filtros -->
-          <div class="bg-white shadow rounded p-6 w-full max-w-sm">
+          <div class="bg-white shadow rounded p-6">
             <h3 class="text-xl font-bold text-[var(--primary-color)] mb-4">
               Filtros
             </h3>
@@ -164,7 +165,9 @@
         <!-- Columna 2 (Operaciones) -->
 
         <!-- Operaciones -->
-        <div class="bg-white shadow rounded p-6 w-96">
+        <div
+          class="bg-white shadow rounded p-6 md:w-2/5 md:mb-0 md:ml-8 sm:mb-8 sm:ml-0"
+        >
           <h2 class="text-xl font-bold text-[var(--primary-color)]">
             Operaciones
           </h2>
@@ -178,7 +181,7 @@
           >
             Nueva Operación
           </button>
-          <img src="Wallet.svg" alt="" />
+          <img src="Wallet.svg" alt="" class="w-3/5 m-auto" />
         </div>
       </div>
 
@@ -446,12 +449,9 @@
                 </div>
               </div>
             </div>
-            <button
-              id="btn-generar-reporte"
-              class="bg-violet-500 text-white px-4 py-2 rounded mt-4"
-            >
+            <button id="btn-generar-reporte" class="bg-violet-500 text-white px-4 py-2 rounded mt-4">
               Generar Reporte
-            </button>
+          </button>
           </div>
         </div>
       </section>
