@@ -16,8 +16,7 @@ function generarReporte() {
 
     operaciones.forEach(operacion => {
         const monto = parseFloat(operacion.monto); 
-
-        // Determina si es ganancia o gasto
+        // Determinar si es ganancia o gasto
         if (operacion.tipo === "ganancia") {
             if (monto > mayorGanancia.monto) {
                 mayorGanancia = { categoria: operacion.categoria, monto: monto };
@@ -52,5 +51,5 @@ function generarReporte() {
     }
 }
 
-
+// Asegúrate de que localStorage contiene datos válidos antes de ejecutar
 console.log(JSON.parse(localStorage.getItem('operaciones')));

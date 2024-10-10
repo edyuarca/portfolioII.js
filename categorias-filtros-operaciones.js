@@ -1,9 +1,10 @@
+
 let categorias = JSON.parse(localStorage.getItem('categorias')) || ['Comida', 'Servicios', 'Salidas', 'Trabajo'];
 
-
+// Función para renderizar las categorías en la lista principal
 function renderizarCategorias() {
     const listaCategorias = document.getElementById('lista-categorias');
-    listaCategorias.innerHTML = ''; // Limpia la lista
+    listaCategorias.innerHTML = ''; // Limpiar la lista
     categorias.forEach((categoria, index) => {
         const li = document.createElement('li');
         li.classList = "flex justify-between items-center bg-[var(--primary-color)] text-white px-4 py-2 rounded";
@@ -88,5 +89,5 @@ window.onload = function() {
     actualizarSelectCategorias();
 };
 
-
+// Agregar evento al botón de agregar categoría
 document.getElementById('btn-agregar-categoria').addEventListener('click', agregarCategoria);

@@ -33,7 +33,7 @@ function mostrarOperacionesFiltradas(operacionesFiltradas) {
 }
 
 function agregarOperacionADOM(index) {
-    const operacion = operaciones[index]; 
+    const operacion = operaciones[index]; // Obtener la operación en función del índice
     const operacionDiv = document.createElement('div');
     operacionDiv.className = 'bg-gray-100 p-4 rounded mt-4';
 

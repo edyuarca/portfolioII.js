@@ -125,7 +125,7 @@ function eliminarOperacion(button, index) {
     operaciones.splice(index, 1); 
 
     // Eliminar el elemento del DOM
-    const operacionDiv = button.closest('.bg-gray-100'); 
+    const operacionDiv = button.closest('.bg-gray-100'); // Encuentra el div correcto
     operacionDiv.remove(); // Elimina la operación del DOM
 
     // Actualizar balance después de eliminar
